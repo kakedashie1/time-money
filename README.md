@@ -13,7 +13,7 @@
 - Linux (Ubuntu)
 - Git, GitHub Actions (CI/CD)
 - テスト: JUnit5, Spring Boot Test, MockMvc
-- ワイヤーフレーム: Figma[ワイヤーフレーム](docs/ワイヤーフレーム.pdf)
+- ワイヤーフレーム・画面遷移図: Figma
 
 ## 機能一覧
 
@@ -57,7 +57,7 @@ docker compose up -d
 - 要件定義
   - ワイヤーフレーム: Figma[ワイヤーフレーム](docs/ワイヤーフレーム.pdf)
   - 画面遷移図: Figma[画面遷移図](docs/画面遷移図.pdf)
-- [設計書](docs/design.md)
+- [設計書](docs/design/design.md)
 - [ER 図](docs/er.png)
 - [API 仕様](docs/api-spec.md)
 - [運用 Runbook](docs/runbook.md)
