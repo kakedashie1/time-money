@@ -13,7 +13,7 @@
 - Linux (Ubuntu)
 - Git, GitHub Actions (CI/CD)
 - テスト: JUnit5, Spring Boot Test, MockMvc
-- ワイヤーフレーム: Figma
+- ワイヤーフレーム: Figma[ワイヤーフレーム](docs/ワイヤーフレーム.pdf)
 
 ## 機能一覧
 
