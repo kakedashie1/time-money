@@ -54,9 +54,9 @@ docker compose up -d
 
 ## 設計資料
 
-- [要件定義](docs/requirements.md)
-  ワイヤーフレーム: Figma[ワイヤーフレーム](docs/ワイヤーフレーム.pdf)
-  画面遷移図: Figma[画面遷移図](docs/画面遷移図.pdf)
+- 要件定義
+  - ワイヤーフレーム: Figma[ワイヤーフレーム](docs/ワイヤーフレーム.pdf)
+  - 画面遷移図: Figma[画面遷移図](docs/画面遷移図.pdf)
 - [設計書](docs/design.md)
 - [ER 図](docs/er.png)
 - [API 仕様](docs/api-spec.md)
