@@ -58,13 +58,13 @@ docker compose up -d
   - ワイヤーフレーム: Figma[ワイヤーフレーム](docs/ワイヤーフレーム.pdf)
   - 画面遷移図: Figma[画面遷移図](docs/画面遷移図.pdf)
 - [設計書](docs/design/design.md)
-- [ER 図](docs/er.png)
+- [ER 図](docs/ER図.pdf)
 - [API 仕様](docs/api-spec.md)
 - [運用 Runbook](docs/runbook.md)
 
 ## スクリーンショット
 
-![Dashboard](docs/images/dashboard.png)
+![Dashboard](docs/ER図.png)
 
 ## テスト
 

@@ -11,4 +11,3 @@ content-types/org.springframework.ide.eclipse.applicationProperties/charset=UTF-
 content-types/userCreated_bat/charset=MS932
 content-types/userCreated_bat/file-extensions=bat,cmd
 eclipse.preferences.version=1
-line.separator=\n
