@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.example.demo.repository.TimeRepository">
+<!--  **************** 一覧全件検索 ****************  -->
+<!--  一覧検索  -->
+<select id="selectListAll" resultType="com.example.demo.entity.TimeLog">
+ SELECT log_id, category_name, start_time, end_time, user_id, log.category_id FROM log LEFT JOIN category ON log.category_id = category.category_id LEFT JOIN user ON log.user_id = user.id ORDER BY log_id 
+</select>
+</mapper>

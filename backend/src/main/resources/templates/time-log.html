@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<!-- ------------検索---------------- -->
+<h2>ログイン</h2>
+
+
+<div th:if="${timeLogList} != null">
+	<h2>タイムログ一覧</h2>
+
+	<table class="timeLogList">
+		<tr>
+			<th>カテゴリー</th><th>開始時間</th><th>終了時間</th>
+		</tr>
+		<tr th:each="time : ${timeLogList}">
+			<td th:text="${time.categoryName}"></td>
+			<td th:text="${time.startTime}"></td>
+			<td th:text="${time.endTime}"></td>
+			
+			
+		</tr>
+
+	</table>
+</div>
+
+
+
+
+</body>
+</html>
