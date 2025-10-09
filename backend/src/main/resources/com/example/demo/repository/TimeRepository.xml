@@ -6,7 +6,11 @@
 <mapper namespace="com.example.demo.repository.TimeRepository">
 <!--  **************** 一覧全件検索 ****************  -->
 <!--  一覧検索  -->
-<select id="selectListAll" resultType="com.example.demo.entity.TimeLog">
- SELECT log_id, category_name, start_time, end_time, user_id, log.category_id FROM log LEFT JOIN category ON log.category_id = category.category_id LEFT JOIN user ON log.user_id = user.id ORDER BY log_id 
+<select id="selectListAll" resultType="com.example.demo.entity.TimeLog" resultMap="logList">
+ SELECT log_id, category_name, DATE_FORMAT(start_time,'%H:%i') AS start_time_str, DATE_FORMAT(end_time,'%H:%i') AS end_time, user_id, log.category_id FROM log LEFT JOIN category ON log.category_id = category.category_id LEFT JOIN user ON log.user_id = user.id ORDER BY log_id 
 </select>
+<resultMap type="com.example.demo.entity.TimeLog" id="logList">
+	<result property="startTime" column="start_time_str" />
+</resultMap>
+<insert id="insert"> INSERT INTO log (start_time, end_time,category_id ) VALUES ( #{task.startTime}, #{task.endTime}, #{task.categoryId} ) </insert>
 </mapper>
