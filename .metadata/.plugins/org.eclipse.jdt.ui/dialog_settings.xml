@@ -20,8 +20,8 @@
 	<section name="NewClassCreationWizard.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="804"/>
 		<item key="DIALOG_Y_ORIGIN" value="132"/>
-		<item key="DIALOG_WIDTH" value="810"/>
-		<item key="DIALOG_HEIGHT" value="783"/>
+		<item key="DIALOG_WIDTH" value="814"/>
+		<item key="DIALOG_HEIGHT" value="787"/>
 		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|5|0|Yu Gothic UI"/>
 	</section>
 	<section name="OptionalMessageDialog.hide.">
@@ -48,5 +48,23 @@
 		<item key="updateTextualMatches" value="false"/>
 		<item key="updateQualifiedNames" value="false"/>
 		<item key="patterns" value="*"/>
+	</section>
+	<section name="NewInterfaceCreationWizard.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="804"/>
+		<item key="DIALOG_Y_ORIGIN" value="213"/>
+		<item key="DIALOG_WIDTH" value="814"/>
+		<item key="DIALOG_HEIGHT" value="665"/>
+		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|5|0|Yu Gothic UI"/>
+	</section>
+	<section name="org.eclipse.jdt.internal.ui.dialogs.OpenTypeSelectionDialog2">
+		<item key="ShowStatusLine" value="true"/>
+		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History/&gt;"/>
+	</section>
+	<section name="DialogBounds_SuperInterfaceSelectionDialog">
+		<item key="DIALOG_X_ORIGIN" value="166"/>
+		<item key="DIALOG_Y_ORIGIN" value="-64"/>
+		<item key="DIALOG_WIDTH" value="482"/>
+		<item key="DIALOG_HEIGHT" value="686"/>
+		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|5|0|Yu Gothic UI"/>
 	</section>
 </section>
