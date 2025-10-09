@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entity.Task;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.repository.TimeRepository;
 
@@ -23,6 +24,15 @@ public class TimeServiceImpl implements TimeService {
 		
 		List<TimeLog> list = timeRepository.selectListAll();
 		return list;
+	}
+
+
+	@Override
+	@Transactional
+	public void regist(Task task) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+		timeRepository.insert(task);
 	}
 
 }

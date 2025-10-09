@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.TimeLog;
 import com.example.demo.service.TimeService;
@@ -14,34 +13,21 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class LogController {
+public class CommonController {
 	
 	private final TimeService timeService;
-	
-	
-	@GetMapping("/login")
-	private String login() {
-		return "login";
-	}
-	
-	@GetMapping("/top")
-	private String showListSelection(Model model) {
-		// HTMLテンプレート名で return
-		List<TimeLog> list = timeService.findListAll();
+
+	/*--- 完了後のリダイレクト先（タスク更新系） ---*/
+	@GetMapping("/time-complete")
+	private String completeTime(Model model) {
 		
-		model.addAttribute("timeLogList", list);
-		return "time-log";
-	}
-	
-	
-	
-	
-	@PostMapping("/time-log")
-	private String showLogList(Model model) {
+		
 		
 		List<TimeLog> list = timeService.findListAll();
 		
 		model.addAttribute("timeLogList", list);
 		return "time-log";
+		
 	}
+
 }
