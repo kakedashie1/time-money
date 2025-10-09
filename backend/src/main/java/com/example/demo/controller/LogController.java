@@ -24,15 +24,6 @@ public class LogController {
 		return "login";
 	}
 	
-	@GetMapping("/top")
-	private String showListSelection(Model model) {
-		// HTMLテンプレート名で return
-		List<TimeLog> list = timeService.findListAll();
-		
-		model.addAttribute("timeLogList", list);
-		return "time-log";
-	}
-	
 	
 	
 	

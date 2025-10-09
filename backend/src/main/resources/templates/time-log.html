@@ -2,21 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>TimeLog</title>
+<title>ログイン</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <!-- ------------検索---------------- -->
-<h2>TimeLog</h2>
+<h2>ログイン</h2>
 
 
 <div th:if="${timeLogList} != null">
 	<h2>タイムログ一覧</h2>
-	
-	
-	<form th:action="@{/time-show-regist}" method="POST">
-		<input type="submit" value="タイムログ登録" class="btn">
-	</form>
 
 	<table class="timeLogList">
 		<tr>
