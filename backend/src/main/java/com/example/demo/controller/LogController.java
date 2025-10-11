@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
+import com.example.demo.form.TimeDetailForm;
 import com.example.demo.service.TimeService;
 
 import lombok.RequiredArgsConstructor;
@@ -43,5 +45,15 @@ public class LogController {
 		
 		model.addAttribute("timeLogList", list);
 		return "time-log";
+	}
+	
+	@PostMapping("/log-detail")
+	private String logDetail(Model model, TimeDetailForm form) {
+		
+		LogDetail logDetail = timeService.findDetailByLogId(form.getLogId());
+		
+		model.addAttribute("logDetail", logDetail);
+		
+		return "log-detail";
 	}
 }

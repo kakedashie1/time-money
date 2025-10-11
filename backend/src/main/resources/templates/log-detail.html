@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログ詳細</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<h2>タスク詳細</h2>
+
+	<!-- ------------タスク詳細---------------- -->
+	<table class="detail-table" th:object="${logDetail}">
+		<tr>
+			<td class="guide">【カテゴリー名】</td>
+			<td th:text="*{categoryName}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【開始時間】</td>
+			<td th:text="*{startTime}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【終了時間】</td>
+			<td th:text="*{endTime}"></td>
+		</tr>
+		
+	</table>
+	<br>
+	<a th:href="@{/top}">トップページに戻る</a>
+</body>
+</html>
