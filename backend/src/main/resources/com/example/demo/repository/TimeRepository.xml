@@ -66,5 +66,13 @@
 		WHERE
 		log_id = #{log.logId}
 	</update>
+	
+	<delete id="delete">
+		DELETE
+		FROM
+			log
+		WHERE
+			log_id = #{logId}
+	</delete>
 
 </mapper>

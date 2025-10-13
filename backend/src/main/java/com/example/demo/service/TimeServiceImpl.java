@@ -11,11 +11,16 @@ import com.example.demo.entity.TimeLog;
 import com.example.demo.repository.TimeRepository;
 
 import lombok.RequiredArgsConstructor;
+
 @Service
 @RequiredArgsConstructor
 public class TimeServiceImpl implements TimeService {
 
+
+
 	private final TimeRepository timeRepository;
+
+
 	
 	
 	@Override
@@ -49,10 +54,20 @@ public class TimeServiceImpl implements TimeService {
 
 
 	@Override
+	@Transactional
 	public void edit(Log log) {
 		// TODO 自動生成されたメソッド・スタブ
 		
 		timeRepository.update(log);
+		
+	}
+
+
+	@Override
+	public void remove(Integer logId) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+		timeRepository.delete(logId);
 		
 	}
 
