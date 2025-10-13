@@ -31,6 +31,10 @@
 		<input type="hidden" th:field="*{endTime}">
 		<input type="submit" value="編集" class="btn">
 	</form>
+	<form th:action="@{/log-remove}" method="POST" th:object="${logDetail}">
+		<input type="hidden" th:field="*{logId}">
+		<input type="submit" value="削除" class="btn">
+	</form>
 	<br>
 	<br>
 	<a th:href="@{/top}">トップページに戻る</a>

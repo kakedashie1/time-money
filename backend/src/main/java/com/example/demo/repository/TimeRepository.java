@@ -20,4 +20,6 @@ public interface TimeRepository {
 	LogDetail selectByLogId(@Param("logId") Integer logId);
 	
 	void update(@Param("log") Log log);
+	
+	void delete(@Param("logId") Integer logId);
 }

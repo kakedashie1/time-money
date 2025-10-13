@@ -15,4 +15,6 @@ public interface TimeService {
 	LogDetail findDetailByLogId(Integer logId);
 	
 	void edit(Log log);
+	
+	void remove(Integer logId);
 }
