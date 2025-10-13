@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
-import com.example.demo.entity.Task;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.repository.TimeRepository;
 
@@ -30,7 +30,7 @@ public class TimeServiceImpl implements TimeService {
 
 	@Override
 	@Transactional
-	public void regist(Task task) {
+	public void regist(Log task) {
 		// TODO 自動生成されたメソッド・スタブ
 		
 		timeRepository.insert(task);
@@ -45,6 +45,15 @@ public class TimeServiceImpl implements TimeService {
 		LogDetail logDetail = timeRepository.selectByLogId(logId);
 				
 		return logDetail;
+	}
+
+
+	@Override
+	public void edit(Log log) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+		timeRepository.update(log);
+		
 	}
 
 }

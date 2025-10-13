@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.TimeLog;
-import com.example.demo.form.TimeRegistForm;
+import com.example.demo.form.TimeEditForm;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.TimeService;
 
@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class TimeRegistController {
+public class TimeEditController {
 	
 	private final TimeService timeService;
 	
@@ -31,15 +31,15 @@ public class TimeRegistController {
 	
 	
 	
-	@PostMapping("/time-show-regist")
-	public String showRegist(@ModelAttribute TimeRegistForm form,Model model) {
+	@PostMapping("/time-show-edit")
+	public String showEdit(@ModelAttribute TimeEditForm form,Model model) {
 		List<Category> list = categoryService.findAll();
 		model.addAttribute("categoryList", list);
-		return "time-regist";
+		return "time-edit";
 	}
 	
-	@PostMapping("/time-regist")
-	public String regist(@Validated  Model model ,TimeRegistForm form,BindingResult result) {
+	@PostMapping("/time-edit")
+	public String edit(@Validated  Model model ,TimeEditForm form,BindingResult result) {
 		
 		if (result.hasErrors()) {
 			List<TimeLog> TimeLogList = timeService.findListAll();
@@ -49,21 +49,22 @@ public class TimeRegistController {
 			List<Category> CategoryList = categoryService.findAll();
 			model.addAttribute("categoryList", CategoryList);
 			
-			return "time-regist";
+			return "time-edit";
 		}
 		
 		Category category = categoryService.findByCategoryId(form.getCategoryId());
 		form.setCategoryName(category.getCategoryName());
-//		
 		
 		
-		Log task = new Log();
-		task.setCategoryId(form.getCategoryId());
-		task.setStartTime(form.getStartTime());
-		task.setEndTime(form.getEndTime());
+		
+		Log log = new Log();
+		log.setLogId(form.getLogId());
+		log.setCategoryId(form.getCategoryId());
+		log.setStartTime(form.getStartTime());
+		log.setEndTime(form.getEndTime());
 		
 		
-		timeService.regist(task);
+		timeService.edit(log);
 		
 		List<TimeLog> list = timeService.findListAll();
 		

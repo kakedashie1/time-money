@@ -4,29 +4,67 @@
 
 
 <mapper namespace="com.example.demo.repository.TimeRepository">
-<!--  **************** 一覧全件検索 ****************  -->
-<!--  一覧検索  -->
-<resultMap type="com.example.demo.entity.TimeLog" id="logList">
-	<id property="logId" column="log_id" />
-	<result property="categoryName" column="category_name" />
-	<result property="endTime" column="end_time" />
-	<result property="startTime" column="start_time_str" />
-	<result property="userId" column="user_id" />
-	<result property="categoryId" column="category_id" />
-</resultMap>
-<select id="selectListAll" resultType="com.example.demo.entity.TimeLog" resultMap="logList">
- SELECT log_id, category_name, DATE_FORMAT(start_time,'%H:%i') AS start_time_str, DATE_FORMAT(end_time,'%H:%i') AS end_time, user_id, log.category_id FROM log LEFT JOIN category ON log.category_id = category.category_id LEFT JOIN user ON log.user_id = user.id ORDER BY log_id 
-</select>
+	<!-- **************** 一覧全件検索 **************** -->
+	<!-- 一覧検索 -->
+	<resultMap type="com.example.demo.entity.TimeLog"
+		id="logList">
+		<id property="logId" column="log_id" />
+		<result property="categoryName" column="category_name" />
+		<result property="endTime" column="end_time" />
+		<result property="startTime" column="start_time_str" />
+		<result property="userId" column="user_id" />
+		<result property="categoryId" column="category_id" />
+	</resultMap>
+	<select id="selectListAll"
+		resultType="com.example.demo.entity.TimeLog" resultMap="logList">
+		SELECT log_id,
+		category_name, DATE_FORMAT(start_time,'%H:%i') AS
+		start_time_str,
+		DATE_FORMAT(end_time,'%H:%i') AS end_time, user_id,
+		log.category_id
+		FROM log LEFT JOIN category ON log.category_id =
+		category.category_id
+		LEFT JOIN user ON log.user_id = user.id ORDER BY
+		log_id
+	</select>
 
-<insert id="insert"> INSERT INTO log (start_time, end_time,category_id ) VALUES ( #{task.startTime}, #{task.endTime}, #{task.categoryId} ) </insert>
-<resultMap type="com.example.demo.entity.LogDetail" id="logDetail">
-	<id property="logId" column="log_id" />
-	<result property="categoryName" column="category_name" />
-	<result property="endTime" column="end_time" />
-	<result property="startTime" column="start_time_str" />
-	
-</resultMap>
-<select id="selectByLogId" resultMap="logDetail">
- SELECT log_id, category_name, DATE_FORMAT(start_time,'%H:%i') AS start_time_str, DATE_FORMAT(end_time,'%H:%i') AS end_time FROM log INNER JOIN category ON log.category_id = category.category_id LEFT JOIN user ON log.user_id = user.id WHERE log_id = #{logId} ORDER BY log_id 
-</select>
+	<insert id="insert"> INSERT INTO log (start_time, end_time,category_id )
+		VALUES ( #{task.startTime}, #{task.endTime}, #{task.categoryId} )
+	</insert>
+	<resultMap type="com.example.demo.entity.LogDetail"
+		id="logDetail">
+		<id property="logId" column="log_id" />
+		<result property="endTime" column="end_time" />
+		<result property="startTime" column="start_time_str" />
+		<association property="category"
+			javaType="com.example.demo.entity.Category">
+			<id property="categoryId" column="category_id" />
+			<result property="categoryName" column="category_name" />
+		</association>
+
+	</resultMap>
+	<select id="selectByLogId" resultMap="logDetail">
+		SELECT log_id,
+		category_name, DATE_FORMAT(start_time,'%H:%i') AS
+		start_time_str,
+		DATE_FORMAT(end_time,'%H:%i') AS
+		end_time,log.category_id FROM log
+		INNER JOIN category ON
+		log.category_id = category.category_id LEFT JOIN
+		user ON log.user_id =
+		user.id WHERE log_id = #{logId} ORDER BY log_id
+	</select>
+
+	<update id="update">
+		UPDATE
+		log
+		SET
+		category_id= #{log.categoryId},
+		start_time = #{log.startTime},
+		end_time = #{log.endTime}
+
+		WHERE
+		log_id = #{log.logId}
+	</update>
+
 </mapper>

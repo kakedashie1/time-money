@@ -24,6 +24,14 @@
 		</tr>
 		
 	</table>
+	<form th:action="@{/time-show-edit}" method="POST" th:object="${logDetail}">
+		<input type="hidden" th:field="*{logId}">
+		<input type="hidden" name="categoryId" th:value="*{category.categoryId}">
+		<input type="hidden" th:field="*{startTime}">
+		<input type="hidden" th:field="*{endTime}">
+		<input type="submit" value="編集" class="btn">
+	</form>
+	<br>
 	<br>
 	<a th:href="@{/top}">トップページに戻る</a>
 </body>
