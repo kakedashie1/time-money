@@ -1,40 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>TimeLog</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
+	<meta charset="UTF-8">
+	<title>TimeLog</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
-<!-- ------------検索---------------- -->
-<h2>TimeLog</h2>
+	<!-- ------------検索---------------- -->
+	<h2>TimeLog</h2>
 
 
-<div th:if="${timeLogList} != null">
-	<h2>タイムログ一覧</h2>
-	
-	
-	<form th:action="@{/time-show-regist}" method="POST">
-		<input type="submit" value="タイムログ登録" class="btn">
-	</form>
+	<div th:if="${timeLogList} != null">
+		<h2>タイムログ一覧</h2>
 
-	<table class="timeLogList">
-		<tr>
-			<th>カテゴリー</th><th>開始時間</th><th>終了時間</th>
-		</tr>
-		<tr th:each="time : ${timeLogList}">
-			<td th:text="${time.categoryName}"></td>
-			<td th:text="${time.startTime}"></td>
-			<td th:text="${time.endTime}"></td>
-			
-			
-		</tr>
 
-	</table>
-</div>
+		<form th:action="@{/time-show-regist}" method="POST">
+			<input type="submit" value="タイムログ登録" class="btn">
+		</form>
+
+		<table class="timeLogList">
+			<tr>
+				<th>詳細</th>
+				<th>カテゴリー</th>
+				<th>開始時間</th>
+				<th>終了時間</th>
+			</tr>
+			<tr th:each="time : ${timeLogList}">
+				<td>
+					<form th:action="@{/log-detail}" method="POST">
+						<input type="hidden" name="logId" th:value="${time.logId}">
+						<input type="submit" value="詳細" class="tbtn">
+					</form>
+				</td>
+				<td th:text="${time.categoryName}"></td>
+				<td th:text="${time.startTime}"></td>
+				<td th:text="${time.endTime}"></td>
+
+
+			</tr>
+
+		</table>
+	</div>
 
 
 
 
 </body>
+
 </html>

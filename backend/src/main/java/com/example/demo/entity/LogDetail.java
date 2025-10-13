@@ -1,0 +1,15 @@
+package com.example.demo.entity;
+
+import lombok.Data;
+
+@Data
+public class LogDetail {
+
+	
+	private Integer logId;
+	private String categoryName;
+	private String startTime;
+	private String endTime;
+	private Integer userId;
+	private Category category;
+}

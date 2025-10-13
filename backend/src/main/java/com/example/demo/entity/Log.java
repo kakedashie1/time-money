@@ -3,7 +3,7 @@ package com.example.demo.entity;
 import lombok.Data;
 
 @Data
-public class Task {
+public class Log {
 
 	
 	private Integer logId;

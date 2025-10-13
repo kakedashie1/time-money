@@ -3,16 +3,16 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>タスク登録</title>
+	<title>ログ編集</title>
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
 
-	<h2>タスク登録</h2>
+	<h2>ログ編集</h2>
 
-	<form th:action="@{/time-regist}" method="POST" th:object="${timeRegistForm}">
-
+	<form th:action="@{/time-edit}" method="POST" th:object="${timeEditForm}">
+		<input type="hidden" th:field="*{logId}">
 		<table class="detail-table">
 			<tr>
 				<td class="guide">【ログ名】</td>
@@ -42,7 +42,7 @@
 
 		</table>
 
-		<input type="submit" value="登録" class="btn">
+		<input type="submit" value="更新" class="btn">
 
 	</form>
 
