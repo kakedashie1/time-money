@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.example.demo.entity.Log;
@@ -17,4 +18,6 @@ public interface TimeService {
 	void edit(Log log);
 	
 	void remove(Integer logId);
+	
+	List<TimeLog> findByNowDay(LocalDate nowDay);
 }

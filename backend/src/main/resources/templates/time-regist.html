@@ -28,14 +28,14 @@
 			<tr>
 				<td class="guide">【開始時間】</td>
 				<td>
-					<input type="time" th:field="*{startTime}" ><br>
+					<input type="datetime-local" th:field="*{startTime}" ><br>
 					<div th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}" class="error-msg"></div>
 				</td>
 			</tr>
 			<tr>
 				<td class="guide">【終了時間】</td>
 				<td>
-					<input type="time" th:field="*{endTime}"><br>
+					<input type="datetime-local" th:field="*{endTime}"><br>
 					<div th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}" class="error-msg"></div>
 				</td>
 			</tr>

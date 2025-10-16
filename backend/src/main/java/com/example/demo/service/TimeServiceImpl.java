@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -69,6 +70,15 @@ public class TimeServiceImpl implements TimeService {
 		
 		timeRepository.delete(logId);
 		
+	}
+
+
+	@Override
+	public List<TimeLog> findByNowDay(LocalDate nowDay) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+		List<TimeLog> changeDay = timeRepository.selectByNowDay(nowDay);
+		return changeDay;
 	}
 
 }

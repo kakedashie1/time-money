@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class LogRemoveController {
 	public String remove(
 			@ModelAttribute LogRemoveForm form,
 			Model model) {
-
+		LocalDate nowday = LocalDate.now();
 		timeService.remove(form.getLogId());
 		// タスク削除確認画面に遷移する
 		List<TimeLog> list = timeService.findListAll();
@@ -32,7 +33,7 @@ public class LogRemoveController {
 		List<TimeLog> TimeLogList = timeService.findListAll();
 
 		model.addAttribute("timeLogList", TimeLogList);
-
+		model.addAttribute("today", nowday);
 		model.addAttribute("categoryList", list);
 
 		return "time-log";

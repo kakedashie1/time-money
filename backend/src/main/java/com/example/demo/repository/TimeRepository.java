@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -22,4 +23,6 @@ public interface TimeRepository {
 	void update(@Param("log") Log log);
 	
 	void delete(@Param("logId") Integer logId);
+	
+	List<TimeLog> selectByNowDay(@Param("nowDay") LocalDate nowDay);
 }
