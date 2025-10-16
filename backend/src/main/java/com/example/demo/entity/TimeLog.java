@@ -9,5 +9,6 @@ public class TimeLog {
 	private String endTime;
 	private Integer userId;
 	private Integer categoryId;
-	private String yearDate;
+	private String nowDay;
+	
 }

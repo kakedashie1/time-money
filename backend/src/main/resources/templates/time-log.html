@@ -19,8 +19,14 @@
 		<form th:action="@{/time-show-regist}" method="POST">
 			<input type="submit" value="タイムログ登録" class="btn">
 		</form>
-		
-		
+		<form th:action="@{/next-day}" method="POST">
+			<input type="submit" value="次の日" class="btn">
+		</form>
+		<form th:action="@{/prev-day}" method="POST">
+			<input type="submit" value="前の日" class="btn">
+		</form>
+		<p th:text="${today}"></p>
+
 
 		<table class="timeLogList">
 			<tr>

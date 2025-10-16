@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ public class LogController {
 	
 	private final TimeService timeService;
 	
+	private LocalDate nowDay = LocalDate.now();
 	
 	@GetMapping("/login")
 	private String login() {
@@ -30,8 +32,9 @@ public class LogController {
 	private String showListSelection(Model model) {
 		// HTMLテンプレート名で return
 		List<TimeLog> list = timeService.findListAll();
-		
+		nowDay = LocalDate.now();
 		model.addAttribute("timeLogList", list);
+		model.addAttribute("today", nowDay);
 		return "time-log";
 	}
 	
@@ -40,10 +43,11 @@ public class LogController {
 	
 	@PostMapping("/time-log")
 	private String showLogList(Model model) {
-		
+		nowDay = LocalDate.now();
 		List<TimeLog> list = timeService.findListAll();
 		
 		model.addAttribute("timeLogList", list);
+		model.addAttribute("today", nowDay);
 		return "time-log";
 	}
 	
@@ -55,5 +59,29 @@ public class LogController {
 		model.addAttribute("logDetail", logDetail);
 		
 		return "log-detail";
+	}
+	
+	
+	
+	@PostMapping("/next-day")
+	private String nextDay(Model model) {
+		nowDay = nowDay.plusDays(1);
+		List<TimeLog> nextDay = timeService.findByNowDay(nowDay);
+		
+		model.addAttribute("timeLogList", nextDay);
+		model.addAttribute("today", nowDay);
+		
+		return "time-log";
+	}
+	
+	@PostMapping("/prev-day")
+	private String prevDay(Model model) {
+		nowDay = nowDay.plusDays(-1);
+		List<TimeLog> prevDay = timeService.findByNowDay(nowDay);
+		
+		model.addAttribute("timeLogList", prevDay);
+		model.addAttribute("today", nowDay);
+		
+		return "time-log";
 	}
 }

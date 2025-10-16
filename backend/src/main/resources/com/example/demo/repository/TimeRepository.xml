@@ -14,7 +14,7 @@
 		<result property="startTime" column="start_time_str" />
 		<result property="userId" column="user_id" />
 		<result property="categoryId" column="category_id" />
-		<result property="yearDate" column="year_date" />
+		
 	</resultMap>
 	<select id="selectListAll"
 		resultType="com.example.demo.entity.TimeLog" resultMap="logList">
@@ -22,17 +22,17 @@
 		category_name, DATE_FORMAT(start_time,'%H:%i') AS
 		start_time_str,
 		DATE_FORMAT(end_time,'%H:%i') AS end_time, user_id,
-		log.category_id,year_date
+		log.category_id
 		FROM log LEFT JOIN category ON log.category_id =
 		category.category_id
 		LEFT JOIN user ON log.user_id = user.id 
-		WHERE year_date = CURDATE()
+		WHERE STR_TO_DATE(start_time, '%Y-%m-%d') = CURDATE()
 		ORDER BY
 		log_id
 	</select>
 
-	<insert id="insert"> INSERT INTO log (start_time, end_time,category_id ,year_date)
-		VALUES ( #{task.startTime}, #{task.endTime}, #{task.categoryId},now() )
+	<insert id="insert"> INSERT INTO log (start_time, end_time,category_id )
+		VALUES ( #{task.startTime}, #{task.endTime}, #{task.categoryId} )
 	</insert>
 	<resultMap type="com.example.demo.entity.LogDetail"
 		id="logDetail">
@@ -77,5 +77,33 @@
 		WHERE
 			log_id = #{logId}
 	</delete>
+	
+	<resultMap type="com.example.demo.entity.TimeLog"
+		id="changeDay">
+		<id property="logId" column="log_id" />
+		<result property="categoryName" column="category_name" />
+		<result property="endTime" column="end_time" />
+		<result property="startTime" column="start_time_str" />
+		<result property="userId" column="user_id" />
+		<result property="categoryId" column="category_id" />
+		
+	</resultMap>
+	<select id="selectByNowDay"
+		resultType="com.example.demo.entity.TimeLog" resultMap="changeDay">
+		SELECT log_id,
+		category_name, DATE_FORMAT(start_time,'%H:%i') AS
+		start_time_str,
+		DATE_FORMAT(end_time,'%H:%i') AS end_time, user_id,
+		log.category_id
+		FROM log LEFT JOIN category ON log.category_id =
+		category.category_id
+		LEFT JOIN user ON log.user_id = user.id 
+		WHERE STR_TO_DATE(start_time, '%Y-%m-%d') = #{nowDay}
+		ORDER BY
+		log_id
+	</select>
+	
+	
+	
 
 </mapper>

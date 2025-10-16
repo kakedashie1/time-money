@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,7 @@ public class TimeEditController {
 	
 	@PostMapping("/time-edit")
 	public String edit(@Validated  Model model ,TimeEditForm form,BindingResult result) {
-		
+		LocalDate nowday = LocalDate.now();
 		if (result.hasErrors()) {
 			List<TimeLog> TimeLogList = timeService.findListAll();
 			
@@ -71,7 +72,7 @@ public class TimeEditController {
 		List<TimeLog> TimeLogList = timeService.findListAll();
 		
 		model.addAttribute("timeLogList", TimeLogList);
-		
+		model.addAttribute("today", nowday);
 		model.addAttribute("categoryList", list);
 		
 		return "time-log";
