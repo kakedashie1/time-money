@@ -11,7 +11,7 @@ public interface TimeService {
 
 	List<TimeLog> findListAll();
 	
-	void regist(Log task);
+	void regist(Log log);
 	
 	LogDetail findDetailByLogId(Integer logId);
 	

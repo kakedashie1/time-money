@@ -16,7 +16,7 @@ public interface TimeRepository {
 	
 	List<TimeLog> selectListAll();
 	
-	void insert(@Param("task") Log task);
+	void insert(@Param("log") Log log);
 	
 	LogDetail selectByLogId(@Param("logId") Integer logId);
 	

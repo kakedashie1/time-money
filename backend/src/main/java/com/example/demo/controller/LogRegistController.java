@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class TimeRegistController {
+public class LogRegistController {
 	
 	private final TimeService timeService;
 	
@@ -58,13 +58,13 @@ public class TimeRegistController {
 //		
 		
 		
-		Log task = new Log();
-		task.setCategoryId(form.getCategoryId());
-		task.setStartTime(form.getStartTime());
-		task.setEndTime(form.getEndTime());
+		Log log = new Log();
+		log.setCategoryId(form.getCategoryId());
+		log.setStartTime(form.getStartTime());
+		log.setEndTime(form.getEndTime());
 		
 		
-		timeService.regist(task);
+		timeService.regist(log);
 		
 		List<TimeLog> list = timeService.findListAll();
 		

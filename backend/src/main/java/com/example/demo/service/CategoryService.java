@@ -6,8 +6,13 @@ import com.example.demo.entity.Category;
 
 public interface CategoryService {
 
-	
 	List<Category> findAll();
-	
+
 	Category findByCategoryId(int categoryId);
+
+	void edit(Category category);
+
+	void remove(Integer categoryId);
+	
+	void regist(Category category);
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>TimeLog</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<!-- ------------検索---------------- -->
+	<h2>Category</h2>
+
+
+	<div th:if="${categoryList} != null">
+		<h2>カテゴリ一覧</h2>
+
+		<form th:action="@{/category-show-regist}" method="POST" th:object="${logDetail}">
+			<input type="hidden" th:field="*{logId}">
+			<input type="submit" value="カテゴリー追加" class="btn">
+		</form>
+
+
+
+		<table class="timeLogList">
+			<tr>
+				<th>カテゴリー名</th>
+
+			</tr>
+			<tr th:each="category : ${categoryList}">
+				<td th:text="${category.categoryName}"></td>
+
+
+				<td>
+					<form th:action="@{/category-show-edit}" method="POST">
+						<input type="hidden" name="categoryId" th:value="${category.categoryId}">
+						<input type="hidden" name="logId" th:value="${logDetail.logId}">
+						<input type="submit" value="編集" class="tbtn">
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/category-delete}" method="POST">
+						<input type="hidden" name="categoryId" th:value="${category.categoryId}">
+						<input type="submit" value="削除" class="tbtn">
+					</form>
+				</td>
+
+
+
+			</tr>
+
+		</table>
+
+		<form th:action="@{/log-detail}" method="POST" th:object="${logDetail}">
+			<input type="hidden" th:field="*{logId}">
+			<input type="submit" value="戻る" class="btn">
+		</form>
+	</div>
+
+
+
+
+</body>
+
+</html>
