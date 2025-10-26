@@ -39,7 +39,8 @@
 					</form>
 				</td>
 				<td>
-					<form th:action="@{/category-delete}" method="POST">
+					<form th:action="@{/category-remove}" method="POST">
+						<input type="hidden" name="logId" th:value="${logDetail.logId}">
 						<input type="hidden" name="categoryId" th:value="${category.categoryId}">
 						<input type="submit" value="削除" class="tbtn">
 					</form>
