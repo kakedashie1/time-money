@@ -1,21 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.repository.CategoryRepository">
+<mapper
+	namespace="com.example.demo.repository.CategoryRepository">
 
 	<!-- **************** 全件検索 **************** -->
-	<select id="selectAll" 
-			resultType="com.example.demo.entity.Category">
-		SELECT  category_id,category_name
-		  FROM category
-	  ORDER BY category_id
-	</select>
-	
-	<!-- **************** １件検索 **************** -->
-	<select id="selectByCategoryId" 
-			resultType="com.example.demo.entity.Category">
+	<select id="selectAll"
+		resultType="com.example.demo.entity.Category">
 		SELECT category_id,category_name
-		  FROM category
-		 WHERE category_id = #{categoryId}
+		FROM category
+		ORDER BY
+		category_id
 	</select>
+
+	<!-- **************** １件検索 **************** -->
+	<select id="selectByCategoryId"
+		resultType="com.example.demo.entity.Category">
+		SELECT category_id,category_name
+		FROM category
+		WHERE
+		category_id = #{categoryId}
+	</select>
+
+	<insert id="insert"> INSERT INTO category (category_name )
+		VALUES (
+		#{category.categoryName})
+	</insert>
+
+
 	
+	
+	<delete id="deleteByCategoryId">
+		DELETE
+		FROM
+			category
+		WHERE
+			category_id = #{categoryId}
+	</delete>
+	
+	<update id="editByCategoryId">
+		UPDATE
+		category
+		SET
+		category_name = #{category.categoryName}
+		WHERE
+		category_id = #{category.categoryId}
+	</update>
+
 </mapper>

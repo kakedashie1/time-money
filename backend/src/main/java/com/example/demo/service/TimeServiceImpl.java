@@ -36,10 +36,10 @@ public class TimeServiceImpl implements TimeService {
 
 	@Override
 	@Transactional
-	public void regist(Log task) {
+	public void regist(Log log) {
 		// TODO 自動生成されたメソッド・スタブ
 		
-		timeRepository.insert(task);
+		timeRepository.insert(log);
 	}
 
 

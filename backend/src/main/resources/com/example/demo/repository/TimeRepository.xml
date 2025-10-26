@@ -32,7 +32,7 @@
 	</select>
 
 	<insert id="insert"> INSERT INTO log (start_time, end_time,category_id )
-		VALUES ( #{task.startTime}, #{task.endTime}, #{task.categoryId} )
+		VALUES ( #{log.startTime}, #{log.endTime}, #{log.categoryId} )
 	</insert>
 	<resultMap type="com.example.demo.entity.LogDetail"
 		id="logDetail">

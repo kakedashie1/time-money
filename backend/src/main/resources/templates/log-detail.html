@@ -13,6 +13,12 @@
 		<tr>
 			<td class="guide">【カテゴリー名】</td>
 			<td th:text="*{category.categoryName}"></td>
+			<td>
+				<form th:action="@{/category-list}" method="POST" th:object="${logDetail}">
+					<input type="hidden" th:field="*{logId}">
+					<input type="submit" value="カテゴリー編集" class="btn">
+				</form>
+			</td>
 		</tr>
 		<tr>
 			<td class="guide">【開始時間】</td>

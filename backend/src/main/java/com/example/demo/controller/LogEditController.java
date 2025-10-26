@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Log;
+import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.form.TimeEditForm;
 import com.example.demo.service.CategoryService;
@@ -21,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class TimeEditController {
+public class LogEditController {
 	
 	private final TimeService timeService;
 	
@@ -35,6 +36,8 @@ public class TimeEditController {
 	@PostMapping("/time-show-edit")
 	public String showEdit(@ModelAttribute TimeEditForm form,Model model) {
 		List<Category> list = categoryService.findAll();
+		LogDetail logDetail = timeService.findDetailByLogId(form.getLogId());
+		model.addAttribute("logDetail", logDetail);
 		model.addAttribute("categoryList", list);
 		return "time-edit";
 	}

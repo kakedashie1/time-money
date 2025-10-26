@@ -35,4 +35,25 @@ public class CategoryServiceImpl implements CategoryService {
 		return category;
 	}
 
+	@Override
+	public void edit(Category category) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+		categoryRepository.editByCategoryId(category);
+		
+	}
+
+	@Override
+	public void remove(Integer categoryId) {
+		// TODO 自動生成されたメソッド・スタブ
+		categoryRepository.deleteByCategoryId(categoryId);
+	}
+
+	@Override
+	public void regist(Category category) {
+		// TODO 自動生成されたメソッド・スタブ
+		categoryRepository.insert(category);
+		
+	}
+
 }

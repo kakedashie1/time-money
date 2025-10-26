@@ -1,12 +1,10 @@
-package com.example.demo.entity;
+package com.example.demo.form;
 
 import lombok.Data;
 
 @Data
-public class Category {
-
-	
+public class CategoryEditForm {
+	private Integer logId;
 	private Integer categoryId;
-	
 	private String categoryName;
 }
