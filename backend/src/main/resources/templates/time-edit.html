@@ -11,9 +11,10 @@
 
 	<h2>ログ編集</h2>
 
-	<form th:action="@{/time-edit}" method="POST" th:object="${timeEditForm}">
-		<input type="hidden" th:field="*{logId}">
-		<table class="detail-table">
+	<form th:action="@{/time-edit}" method="POST" th:object="${timeRegistForm}">
+		
+		<table class="detail-table" th:object="${logDetail}">
+			<input type="hidden" th:field="*{logId}">
 			<tr>
 				<td class="guide">【ログ名】</td>
 				<td>

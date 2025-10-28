@@ -9,13 +9,13 @@
 
 <body>
 
-	<h2>タスク登録</h2>
+	<h2>カテゴリー登録</h2>
 
 	<form th:action="@{/category-regist}" method="POST" th:object="${categoryRegistForm}">
 		<input type="hidden" th:field="*{logId}">
 		<table class="detail-table">
 			<tr>
-				<td class="guide">【ログ名】</td>
+				<td class="guide">【カテゴリー名】</td>
 				<td>
 					<input type="text" th:field="*{categoryName}"><br>
 					<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}" class="error-msg">

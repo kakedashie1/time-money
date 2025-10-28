@@ -11,5 +11,6 @@ public class LogDetail {
 	private String startTime;
 	private String endTime;
 	private Integer userId;
+	private Integer categoryId;
 	private Category category;
 }

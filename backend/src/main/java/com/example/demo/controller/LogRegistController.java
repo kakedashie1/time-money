@@ -40,7 +40,7 @@ public class LogRegistController {
 	}
 	
 	@PostMapping("/time-regist")
-	public String regist(@Validated  Model model ,TimeRegistForm form,BindingResult result) {
+	public String regist( Model model ,@Validated TimeRegistForm form,BindingResult result) {
 		LocalDate nowday = LocalDate.now();
 		if (result.hasErrors()) {
 			List<TimeLog> TimeLogList = timeService.findListAll();
