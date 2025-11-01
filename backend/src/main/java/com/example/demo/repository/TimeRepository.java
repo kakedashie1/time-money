@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.example.demo.entity.EditLog;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
@@ -20,7 +21,7 @@ public interface TimeRepository {
 	
 	LogDetail selectByLogId(@Param("logId") Integer logId);
 	
-	void update(@Param("log") Log log);
+	void update(@Param("log") EditLog log);
 	
 	void delete(@Param("logId") Integer logId);
 	

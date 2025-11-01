@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entity.EditLog;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
@@ -56,7 +57,7 @@ public class TimeServiceImpl implements TimeService {
 
 	@Override
 	@Transactional
-	public void edit(Log log) {
+	public void edit(EditLog log) {
 		// TODO 自動生成されたメソッド・スタブ
 		
 		timeRepository.update(log);

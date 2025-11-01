@@ -55,7 +55,7 @@ public class LogRegistController {
 		
 		Category category = categoryService.findByCategoryId(form.getCategoryId());
 		form.setCategoryName(category.getCategoryName());
-//		
+	
 		
 		
 		Log log = new Log();

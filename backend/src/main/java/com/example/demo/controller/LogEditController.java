@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.Category;
-import com.example.demo.entity.Log;
+import com.example.demo.entity.EditLog;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.form.TimeEditForm;
-import com.example.demo.form.TimeRegistForm;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.TimeService;
 
@@ -39,7 +38,7 @@ public class LogEditController {
 	}
 
 	@PostMapping("/time-edit")
-	public String edit(Model model, @Validated TimeRegistForm form, BindingResult result) {
+	public String edit(Model model, @Validated TimeEditForm form, BindingResult result) {
 		LocalDate nowday = LocalDate.now();
 		if (result.hasErrors()) {
 			List<TimeLog> TimeLogList = timeService.findListAll();
@@ -58,7 +57,7 @@ public class LogEditController {
 		Category category = categoryService.findByCategoryId(form.getCategoryId());
 		form.setCategoryName(category.getCategoryName());
 
-		Log log = new Log();
+		EditLog log = new EditLog();
 		log.setLogId(form.getLogId());
 		log.setCategoryId(form.getCategoryId());
 		log.setStartTime(form.getStartTime());
