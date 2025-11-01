@@ -17,6 +17,8 @@ public class CustomDateValidator implements ConstraintValidator<ValidDate, Objec
 	private String endTimeStr;
 
 	private String message;
+	
+	
 
 	@Override
 	public void initialize(ValidDate constraintAnnotation) {
@@ -38,6 +40,13 @@ public class CustomDateValidator implements ConstraintValidator<ValidDate, Objec
 	        	 return true;
 	         }
 	         
+	         if (startTime.equals(endTime)) {
+	        	 context.disableDefaultConstraintViolation();
+	             context.buildConstraintViolationWithTemplate(message)
+	                 .addPropertyNode(startTimeStr)
+	                 .addConstraintViolation();
+	        	 return false;
+	         }
 	         if (startTime.isAfter(endTime)) {
 	             // エラーメッセージをデフォルトのものから変更する場合
 	             context.disableDefaultConstraintViolation();

@@ -17,7 +17,7 @@ import jakarta.validation.Payload;
 @Target({ ElementType.TYPE })
 @Retention(RUNTIME)
 public @interface ValidDate {
-    String message() default "終了時間は開始時間よりも遅い時刻に設定してください。";
+    String message() default "正しい時刻を設定してください。";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
     
