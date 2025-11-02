@@ -1,6 +1,8 @@
 package com.example.demo.form;
 
-import jakarta.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
+
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,12 +19,12 @@ public class TimeEditForm {
 	
 	private Integer categoryId;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd_HH:mm")
-	@NotBlank(message = "開始時間を入力してください。")
-	private String startTime;
-	@DateTimeFormat(pattern = "yyyy-MM-dd_HH:mm")
-	@NotBlank(message = "終了時間を入力してください。")
-	private String endTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	@NotNull(message = "日時を入力してください。")
+	private LocalDateTime startTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	@NotNull(message = "日時を入力してください。")
+	private LocalDateTime endTime;
 	
 	@Size(max=10, message="10文字以内で入力してください。")
 	private String categoryName;

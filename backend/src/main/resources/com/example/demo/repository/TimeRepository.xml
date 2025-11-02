@@ -19,9 +19,9 @@
 	<select id="selectListAll"
 		resultType="com.example.demo.entity.TimeLog" resultMap="logList">
 		SELECT log_id,
-		category_name, DATE_FORMAT(start_time,'%H:%i') AS
+		category_name,start_time AS
 		start_time_str,
-		DATE_FORMAT(end_time,'%H:%i') AS end_time, user_id,
+		 end_time AS end_time, user_id,
 		log.category_id
 		FROM log LEFT JOIN category ON log.category_id =
 		category.category_id
@@ -48,9 +48,9 @@
 	</resultMap>
 	<select id="selectByLogId" resultMap="logDetail">
 		SELECT log_id,
-		category_name, DATE_FORMAT(start_time,'%H:%i') AS
+		category_name,start_time AS
 		start_time_str,
-		DATE_FORMAT(end_time,'%H:%i') AS
+		end_time AS
 		end_time,log.category_id FROM log
 		INNER JOIN category ON
 		log.category_id = category.category_id LEFT JOIN
@@ -91,9 +91,9 @@
 	<select id="selectByNowDay"
 		resultType="com.example.demo.entity.TimeLog" resultMap="changeDay">
 		SELECT log_id,
-		category_name, DATE_FORMAT(start_time,'%H:%i') AS
+		category_name,start_time AS
 		start_time_str,
-		DATE_FORMAT(end_time,'%H:%i') AS end_time, user_id,
+		end_time AS end_time, user_id,
 		log.category_id
 		FROM log LEFT JOIN category ON log.category_id =
 		category.category_id
