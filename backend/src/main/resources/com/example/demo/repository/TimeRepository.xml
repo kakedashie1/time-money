@@ -28,7 +28,7 @@
 		LEFT JOIN user ON log.user_id = user.id 
 		WHERE STR_TO_DATE(start_time, '%Y-%m-%d') = CURDATE()
 		ORDER BY
-		start_time
+		end_time
 	</select>
 
 	<insert id="insert"> INSERT INTO log (start_time, end_time,category_id )

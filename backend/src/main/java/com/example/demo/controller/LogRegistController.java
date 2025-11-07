@@ -36,6 +36,19 @@ public class LogRegistController {
 	@PostMapping("/time-show-regist")
 	public String showRegist(@ModelAttribute TimeRegistForm form,Model model) {
 		List<Category> list = categoryService.findAll();
+		LocalDate toDay = form.getToDay();
+		LocalDate nowDay = LocalDate.now();
+		if (toDay.isAfter(nowDay)) {
+			
+			List<TimeLog> logList = timeService.findListAll();
+			nowDay = LocalDate.now();
+			
+		    form.setToDay(nowDay);
+			model.addAttribute("timeLogList", logList);
+			model.addAttribute("timeRegistForm", form);
+			return "time-log";
+		}
+		
 		MaxDay maxDay = timeService.findByMaxDay(form.getToDay());
 		if(maxDay != null) {
 			form.setMaxDay(maxDay.getMaxDay());
@@ -44,6 +57,7 @@ public class LogRegistController {
 		
 		model.addAttribute("categoryList", list);
 		model.addAttribute("maxDay", maxDay);
+		model.addAttribute("toDay", toDay);
 		return "time-regist";
 	}
 	
@@ -73,6 +87,12 @@ public class LogRegistController {
 		
 		
 		timeService.regist(log);
+		
+		
+		MaxDay maxDay = timeService.findByMaxDay(form.getToDay());
+		if(maxDay != null) {
+			form.setMaxDay(maxDay.getMaxDay());
+		}
 		
 		List<TimeLog> list = timeService.findListAll();
 		
