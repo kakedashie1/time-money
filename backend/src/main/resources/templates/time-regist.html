@@ -12,8 +12,9 @@
 	<h2>タスク登録</h2>
 
 	<form th:action="@{/time-regist}" method="POST" th:object="${timeRegistForm}">
-
+		<input type="hidden" th:field="*{maxDay}">
 		<table class="detail-table">
+			
 			<tr>
 				<td class="guide">【ログ名】</td>
 				<td>
@@ -28,8 +29,9 @@
 			<tr>
 				<td class="guide">【開始時間】</td>
 				<td>
-					<input type="datetime-local" th:field="*{startTime}" ><br>
+					<input type="datetime-local" th:field="*{startTime}"><br>
 					<div th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}" class="error-msg"></div>
+					<div th:if="${#fields.hasErrors('maxDay')}" th:errors="*{maxDay}" class="error-msg"></div>
 				</td>
 			</tr>
 			<tr>
@@ -48,6 +50,7 @@
 
 	<br>
 	<a th:href="@{/top}">トップページに戻る</a>
+	
 
 </body>
 

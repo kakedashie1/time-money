@@ -16,7 +16,8 @@
 		<h2>タイムログ一覧</h2>
 
 
-		<form th:action="@{/time-show-regist}" method="POST">
+		<form th:action="@{/time-show-regist}" method="POST"  th:object="${timeRegistForm}" >
+			<input type="hidden" th:field="*{toDay}">
 			<input type="submit" value="タイムログ登録" class="btn">
 		</form>
 		<form th:action="@{/next-day}" method="POST">
@@ -25,7 +26,7 @@
 		<form th:action="@{/prev-day}" method="POST">
 			<input type="submit" value="前の日" class="btn">
 		</form>
-		<p th:text="${today}"></p>
+		<p th:text="${toDay}"></p>
 
 
 		<table class="timeLogList">

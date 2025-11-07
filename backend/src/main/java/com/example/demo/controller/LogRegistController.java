@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Log;
+import com.example.demo.entity.MaxDay;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.form.TimeRegistForm;
 import com.example.demo.service.CategoryService;
@@ -35,7 +36,14 @@ public class LogRegistController {
 	@PostMapping("/time-show-regist")
 	public String showRegist(@ModelAttribute TimeRegistForm form,Model model) {
 		List<Category> list = categoryService.findAll();
+		MaxDay maxDay = timeService.findByMaxDay(form.getToDay());
+		if(maxDay != null) {
+			form.setMaxDay(maxDay.getMaxDay());
+		}
+		
+		
 		model.addAttribute("categoryList", list);
+		model.addAttribute("maxDay", maxDay);
 		return "time-regist";
 	}
 	
@@ -71,7 +79,7 @@ public class LogRegistController {
 		List<TimeLog> TimeLogList = timeService.findListAll();
 		
 		model.addAttribute("timeLogList", TimeLogList);
-		model.addAttribute("today", nowday);
+		model.addAttribute("toDay", nowday);
 		model.addAttribute("categoryList", list);
 		
 		return "time-log";

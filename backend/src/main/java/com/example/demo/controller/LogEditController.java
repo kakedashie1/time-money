@@ -70,7 +70,7 @@ public class LogEditController {
 		List<TimeLog> TimeLogList = timeService.findListAll();
 
 		model.addAttribute("timeLogList", TimeLogList);
-		model.addAttribute("today", nowday);
+		model.addAttribute("toDay", nowday);
 		model.addAttribute("categoryList", list);
 
 		return "time-log";

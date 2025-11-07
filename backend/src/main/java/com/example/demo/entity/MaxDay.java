@@ -5,16 +5,10 @@ import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
-
 @Data
-public class Log {
+public class MaxDay {
 
 	
-	private Integer logId;
-	private String categoryName;
-	private LocalDateTime startTime;
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-	private LocalDateTime endTime;
-	private Integer userId;
-	private Integer categoryId;
+	private LocalDateTime maxDay;
 }

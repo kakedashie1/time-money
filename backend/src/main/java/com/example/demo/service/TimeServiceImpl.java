@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.entity.EditLog;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
+import com.example.demo.entity.MaxDay;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.repository.TimeRepository;
 
@@ -80,6 +81,15 @@ public class TimeServiceImpl implements TimeService {
 		
 		List<TimeLog> changeDay = timeRepository.selectByNowDay(nowDay);
 		return changeDay;
+	}
+
+
+	@Override
+	public MaxDay findByMaxDay(LocalDate nowDay) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+		MaxDay maxDay = timeRepository.maxDay(nowDay);
+		return maxDay;
 	}
 
 }

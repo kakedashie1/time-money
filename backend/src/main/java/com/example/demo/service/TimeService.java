@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.demo.entity.EditLog;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
+import com.example.demo.entity.MaxDay;
 import com.example.demo.entity.TimeLog;
 
 public interface TimeService {
@@ -21,4 +22,6 @@ public interface TimeService {
 	void remove(Integer logId);
 	
 	List<TimeLog> findByNowDay(LocalDate nowDay);
+	
+	MaxDay findByMaxDay(LocalDate nowDay);
 }

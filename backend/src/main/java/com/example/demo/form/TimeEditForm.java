@@ -1,5 +1,6 @@
 package com.example.demo.form;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.NotNull;
@@ -16,6 +17,10 @@ import lombok.Data;
 public class TimeEditForm {
 	
 	private Integer logId;
+	
+	private LocalDate maxDay;
+	
+	private LocalDateTime MaxDay;
 	
 	private Integer categoryId;
 	

@@ -35,7 +35,7 @@ public class CategoryEditController {
 	}
 
 	@PostMapping("/category-edit")
-	public String edit(@Validated Model model, CategoryEditForm form, BindingResult result) {
+	public String edit( Model model,@Validated CategoryEditForm form, BindingResult result) {
 		
 		if (result.hasErrors()) {
 			Category category = categoryService.findByCategoryId(form.getCategoryId());
