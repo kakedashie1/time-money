@@ -27,6 +27,7 @@
 		category.category_id
 		LEFT JOIN user ON log.user_id = user.id 
 		WHERE STR_TO_DATE(start_time, '%Y-%m-%d') = CURDATE()
+		OR STR_TO_DATE(end_time, '%Y-%m-%d') = CURDATE()
 		ORDER BY
 		end_time
 	</select>
@@ -99,6 +100,7 @@
 		category.category_id
 		LEFT JOIN user ON log.user_id = user.id 
 		WHERE STR_TO_DATE(start_time, '%Y-%m-%d') = #{nowDay}
+		OR STR_TO_DATE(end_time, '%Y-%m-%d') = CURDATE()
 		ORDER BY
 		log_id
 	</select>

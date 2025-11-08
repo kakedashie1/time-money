@@ -3,11 +3,13 @@ package com.example.demo.form;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.example.demo.validation.CategoryDate;
 import com.example.demo.validation.ValidDate;
 import com.example.demo.validation.ValidMaxDate;
 
@@ -16,6 +18,7 @@ import lombok.Data;
 @Data
 @ValidDate(startTimeStr = "startTime", endTimeStr = "endTime")
 @ValidMaxDate(maxDayStr = "maxDay", startTimeStr = "startTime")
+@CategoryDate(categoryIdStr = "categoryId")
 public class TimeRegistForm {
 
 	private Integer logId;
@@ -26,6 +29,8 @@ public class TimeRegistForm {
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime maxDay;
 	
+	
+	@Min( value=1, message = "カテゴリー名を入力してください。")
 	private Integer categoryId;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd-HH-mm")
