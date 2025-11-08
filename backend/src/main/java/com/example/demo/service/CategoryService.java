@@ -8,7 +8,7 @@ public interface CategoryService {
 
 	List<Category> findAll();
 
-	Category findByCategoryId(int categoryId);
+	Category findByCategoryId(String categoryId);
 
 	void edit(Category category);
 

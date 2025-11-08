@@ -32,9 +32,11 @@ public class CategoryRegistController {
 	}
 
 	@PostMapping("/category-regist")
-	public String regist(@Validated Model model, CategoryRegistForm form, BindingResult result) {
+	public String regist(Model model, @Validated CategoryRegistForm form, BindingResult result) {
 
 		if (result.hasErrors()) {
+			LogDetail logDetail = timeService.findDetailByLogId(form.getLogId());
+			model.addAttribute("logDetail", logDetail);
 
 			return "category-regist";
 		}

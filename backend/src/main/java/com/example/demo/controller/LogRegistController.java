@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Log;
+import com.example.demo.entity.MaxDay;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.form.TimeRegistForm;
 import com.example.demo.service.CategoryService;
@@ -35,12 +36,33 @@ public class LogRegistController {
 	@PostMapping("/time-show-regist")
 	public String showRegist(@ModelAttribute TimeRegistForm form,Model model) {
 		List<Category> list = categoryService.findAll();
+		LocalDate toDay = form.getToDay();
+		LocalDate nowDay = LocalDate.now();
+		if (toDay.isAfter(nowDay)) {
+			
+			List<TimeLog> logList = timeService.findListAll();
+			nowDay = LocalDate.now();
+			
+		    form.setToDay(nowDay);
+			model.addAttribute("timeLogList", logList);
+			model.addAttribute("timeRegistForm", form);
+			return "time-log";
+		}
+		
+		MaxDay maxDay = timeService.findByMaxDay(form.getToDay());
+		if(maxDay != null) {
+			form.setMaxDay(maxDay.getMaxDay());
+		}
+		
+		
 		model.addAttribute("categoryList", list);
+		model.addAttribute("maxDay", maxDay);
+		model.addAttribute("toDay", toDay);
 		return "time-regist";
 	}
 	
 	@PostMapping("/time-regist")
-	public String regist(@Validated  Model model ,TimeRegistForm form,BindingResult result) {
+	public String regist( Model model ,@Validated TimeRegistForm form,BindingResult result) {
 		LocalDate nowday = LocalDate.now();
 		if (result.hasErrors()) {
 			List<TimeLog> TimeLogList = timeService.findListAll();
@@ -55,7 +77,7 @@ public class LogRegistController {
 		
 		Category category = categoryService.findByCategoryId(form.getCategoryId());
 		form.setCategoryName(category.getCategoryName());
-//		
+	
 		
 		
 		Log log = new Log();
@@ -66,12 +88,18 @@ public class LogRegistController {
 		
 		timeService.regist(log);
 		
+		
+		MaxDay maxDay = timeService.findByMaxDay(form.getToDay());
+		if(maxDay != null) {
+			form.setMaxDay(maxDay.getMaxDay());
+		}
+		
 		List<TimeLog> list = timeService.findListAll();
 		
 		List<TimeLog> TimeLogList = timeService.findListAll();
 		
 		model.addAttribute("timeLogList", TimeLogList);
-		model.addAttribute("today", nowday);
+		model.addAttribute("toDay", nowday);
 		model.addAttribute("categoryList", list);
 		
 		return "time-log";

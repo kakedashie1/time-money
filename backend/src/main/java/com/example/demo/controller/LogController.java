@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.form.TimeDetailForm;
+import com.example.demo.form.TimeRegistForm;
 import com.example.demo.service.TimeService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,8 +34,10 @@ public class LogController {
 		// HTMLテンプレート名で return
 		List<TimeLog> list = timeService.findListAll();
 		nowDay = LocalDate.now();
+		TimeRegistForm form = new TimeRegistForm();
+	    form.setToDay(nowDay);
 		model.addAttribute("timeLogList", list);
-		model.addAttribute("today", nowDay);
+		model.addAttribute("timeRegistForm", form);
 		return "time-log";
 	}
 	
@@ -45,9 +48,10 @@ public class LogController {
 	private String showLogList(Model model) {
 		nowDay = LocalDate.now();
 		List<TimeLog> list = timeService.findListAll();
-		
+		TimeRegistForm form = new TimeRegistForm();
+	    form.setToDay(nowDay);
 		model.addAttribute("timeLogList", list);
-		model.addAttribute("today", nowDay);
+		model.addAttribute("timeRegistForm", form);
 		return "time-log";
 	}
 	
@@ -67,9 +71,10 @@ public class LogController {
 	private String nextDay(Model model) {
 		nowDay = nowDay.plusDays(1);
 		List<TimeLog> nextDay = timeService.findByNowDay(nowDay);
-		
+		TimeRegistForm form = new TimeRegistForm();
+	    form.setToDay(nowDay);
 		model.addAttribute("timeLogList", nextDay);
-		model.addAttribute("today", nowDay);
+		model.addAttribute("timeRegistForm", form);
 		
 		return "time-log";
 	}
@@ -78,9 +83,10 @@ public class LogController {
 	private String prevDay(Model model) {
 		nowDay = nowDay.plusDays(-1);
 		List<TimeLog> prevDay = timeService.findByNowDay(nowDay);
-		
+		TimeRegistForm form = new TimeRegistForm();
+	    form.setToDay(nowDay);
 		model.addAttribute("timeLogList", prevDay);
-		model.addAttribute("today", nowDay);
+		model.addAttribute("timeRegistForm", form);
 		
 		return "time-log";
 	}

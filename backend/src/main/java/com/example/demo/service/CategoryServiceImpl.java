@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Category findByCategoryId(int categoryId) {
+	public Category findByCategoryId(String categoryId) {
 		// TODO 自動生成されたメソッド・スタブ
 		
 		Category category = categoryRepository.selectByCategoryId(categoryId);
