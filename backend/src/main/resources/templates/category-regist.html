@@ -32,7 +32,7 @@
 	</form>
 
 	<br>
-	<form th:action="@{/category-edit}" method="POST" th:object="${logDetail}">
+	<form th:action="@{/category-list}" method="POST" th:object="${logDetail}">
 		<input type="hidden" th:field="*{logId}">
 		<input type="submit" value="戻る" class="btn">
 	</form>

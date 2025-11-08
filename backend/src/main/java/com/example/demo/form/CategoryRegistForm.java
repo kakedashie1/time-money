@@ -13,6 +13,6 @@ public class CategoryRegistForm {
 	
 	@NotNull(message="カテゴリー名を入力してください。")
 	@NotBlank(message="カテゴリー名を入力してください。")
-	@Size(min=1, max=20, message="1文字以上20文字以内で入力してください。")
+	@Size(min=1, max=20, message="1文字以上20文字以内で入力してください")
 	private String categoryName;
 }

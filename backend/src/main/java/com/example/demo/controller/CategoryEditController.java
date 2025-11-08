@@ -39,9 +39,11 @@ public class CategoryEditController {
 		
 		if (result.hasErrors()) {
 			Category category = categoryService.findByCategoryId(form.getCategoryId());
+			LogDetail logDetail = timeService.findDetailByLogId(form.getLogId());
+			model.addAttribute("logDetail", logDetail);
 			model.addAttribute("category", category);
 
-			return "category-show-edit";
+			return "category-edit";
 		}
 
 		
