@@ -29,7 +29,7 @@
 		WHERE STR_TO_DATE(start_time, '%Y-%m-%d') = CURDATE()
 		OR STR_TO_DATE(end_time, '%Y-%m-%d') = CURDATE()
 		ORDER BY
-		end_time
+		start_time
 	</select>
 
 	<insert id="insert"> INSERT INTO log (start_time, end_time,category_id )
@@ -100,9 +100,9 @@
 		category.category_id
 		LEFT JOIN user ON log.user_id = user.id 
 		WHERE STR_TO_DATE(start_time, '%Y-%m-%d') = #{nowDay}
-		OR STR_TO_DATE(end_time, '%Y-%m-%d') = CURDATE()
+		OR STR_TO_DATE(end_time, '%Y-%m-%d') = #{nowDay}
 		ORDER BY
-		log_id
+		start_time
 	</select>
 	
 	<resultMap type="com.example.demo.entity.MaxDay"

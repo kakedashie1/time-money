@@ -14,5 +14,5 @@ public class EditLog {
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime endTime;
 	private Integer userId;
-	private Integer categoryId;
+	private String categoryId;
 }

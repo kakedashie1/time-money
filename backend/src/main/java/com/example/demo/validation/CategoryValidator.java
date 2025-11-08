@@ -22,36 +22,36 @@ public class CategoryValidator implements ConstraintValidator<CategoryDate, Obje
 
 	private String message;
 	
-	
+	private String category;
 
 	@Override
 	public void initialize(CategoryDate constraintAnnotation) {
-	
+
 		this.categoryIdStr = constraintAnnotation.categoryIdStr();
 		this.message = constraintAnnotation.message();
 	}
 
 	@Override
-	    public boolean isValid(Object value, ConstraintValidatorContext context) {
-	    	
-	    	
-	    	 BeanWrapper beanWrapper = new BeanWrapperImpl(value);
-	         Integer categoryId = (Integer) beanWrapper.getPropertyValue(categoryIdStr);
-	         
-	         Category category = categoryService.findByCategoryId(categoryId);
-	         
-	         
-	         
-	         if (category == null) {
-	        	 context.disableDefaultConstraintViolation();
-	             context.buildConstraintViolationWithTemplate(message)
-	                 .addPropertyNode(categoryIdStr)
-	                 .addConstraintViolation();
-	        	 return false;
-	         }
-	         
+	public boolean isValid(Object value, ConstraintValidatorContext context) {
 
-	        	 return true;
-	         
+		BeanWrapper beanWrapper = new BeanWrapperImpl(value);
+		category = (String)beanWrapper.getPropertyValue(categoryIdStr);
+		
+
+		if (categoryIdStr != null) {
+			Category categoryId = categoryService.findByCategoryId(category);
+
+			if (categoryId == null) {
+				context.disableDefaultConstraintViolation();
+				context.buildConstraintViolationWithTemplate(message)
+						.addPropertyNode(categoryIdStr)
+						.addConstraintViolation();
+				return false;
+			}
+
+		}
+
+		return true;
+
 	}
 }

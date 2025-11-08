@@ -3,7 +3,6 @@ package com.example.demo.form;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -30,8 +29,7 @@ public class TimeRegistForm {
 	private LocalDateTime maxDay;
 	
 	
-	@Min( value=1, message = "カテゴリー名を入力してください。")
-	private Integer categoryId;
+	private String categoryId;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd-HH-mm")
 	@NotNull(message = "日時を入力してください。")

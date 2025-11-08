@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class CategoryEditForm {
 	private Integer logId;
-	private Integer categoryId;
+	private String categoryId;
 	@NotNull(message="カテゴリー名を入力してください。")
 	@NotBlank(message="カテゴリー名を入力してください。")
 	@Size(min=1, max=20, message="1文字以上20文字以内で入力してください。")

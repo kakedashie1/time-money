@@ -12,7 +12,7 @@ public interface CategoryRepository {
 
 	List<Category> selectAll();
 	
-	Category selectByCategoryId(@Param("categoryId") Integer categoryId);
+	Category selectByCategoryId(@Param("categoryId") String categoryId);
 	
 	void editByCategoryId(@Param("category") Category category);
 	

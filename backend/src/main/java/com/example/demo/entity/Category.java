@@ -6,7 +6,7 @@ import lombok.Data;
 public class Category {
 
 	
-	private Integer categoryId;
+	private String categoryId;
 	
 	private String categoryName;
 }
