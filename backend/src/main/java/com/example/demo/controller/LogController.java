@@ -57,6 +57,8 @@ public class LogController {
 	private String logDetail(Model model, TimeDetailForm form) {
 
 		String correctId;
+		
+		LocalDate toDay = LocalDate.now();
 
 		LogDetail logDetail = timeService.findDetailByLogId(form.getLogId());
 
@@ -66,7 +68,7 @@ public class LogController {
 
 		Integer logId = logDetail.getLogId();
 
-		if (maxId == logId) {
+		if (maxId == logId && toDay.isEqual(nowDay)) {
 
 			correctId = "true";
 			model.addAttribute("correctId",correctId );

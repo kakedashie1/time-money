@@ -67,7 +67,7 @@
 		log
 		SET
 		category_id= #{log.categoryId},
-		start_time = #{log.startTime},
+<!--		start_time = #{log.startTime},-->
 		end_time = #{log.endTime}
 
 		WHERE
