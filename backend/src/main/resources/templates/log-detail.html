@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>ログ詳細</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
+	<meta charset="UTF-8">
+	<title>ログ詳細</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
 	<h2>タスク詳細</h2>
 
@@ -28,15 +30,18 @@
 			<td class="guide">【終了時間】</td>
 			<td th:text="*{endTime}"></td>
 		</tr>
-		
+
 	</table>
-	<form th:action="@{/time-show-edit}" method="POST" th:object="${logDetail}">
-		<input type="hidden" th:field="*{logId}">
-		<input type="hidden" name="categoryId" th:value="*{category.categoryId}">
-		<input type="hidden" th:field="*{startTime}">
-		<input type="hidden" th:field="*{endTime}">
-		<input type="submit" value="編集" class="btn">
-	</form>
+	<div th:if="${correctId != null}">
+		<form th:action="@{/time-show-edit}" method="POST" th:object="${logDetail}">
+			<input type="hidden" th:field="*{logId}">
+			<input type="hidden" name="categoryId" th:value="*{category.categoryId}">
+			<input type="hidden" th:field="*{startTime}">
+			<input type="hidden" th:field="*{endTime}">
+			<input type="submit" value="編集" class="btn">
+		</form>
+	</div>
+
 	<form th:action="@{/log-remove}" method="POST" th:object="${logDetail}">
 		<input type="hidden" th:field="*{logId}">
 		<input type="submit" value="削除" class="btn">
@@ -45,4 +50,5 @@
 	<br>
 	<a th:href="@{/top}">トップページに戻る</a>
 </body>
+
 </html>

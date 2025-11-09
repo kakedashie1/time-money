@@ -29,4 +29,6 @@ public interface TimeRepository {
 	List<TimeLog> selectByNowDay(@Param("nowDay") LocalDate nowDay);
 	
 	MaxDay maxDay(@Param("nowDay") LocalDate nowDay);
+	
+	Log maxLogId(@Param("nowDay") LocalDate nowDay);
 }

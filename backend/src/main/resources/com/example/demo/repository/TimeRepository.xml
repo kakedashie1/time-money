@@ -14,20 +14,23 @@
 		<result property="startTime" column="start_time_str" />
 		<result property="userId" column="user_id" />
 		<result property="categoryId" column="category_id" />
-		
+
 	</resultMap>
 	<select id="selectListAll"
 		resultType="com.example.demo.entity.TimeLog" resultMap="logList">
 		SELECT log_id,
 		category_name,start_time AS
 		start_time_str,
-		 end_time AS end_time, user_id,
+		end_time AS end_time, user_id,
 		log.category_id
-		FROM log LEFT JOIN category ON log.category_id =
+		FROM log LEFT JOIN category ON
+		log.category_id =
 		category.category_id
-		LEFT JOIN user ON log.user_id = user.id 
+		LEFT JOIN user ON log.user_id =
+		user.id
 		WHERE STR_TO_DATE(start_time, '%Y-%m-%d') = CURDATE()
-		OR STR_TO_DATE(end_time, '%Y-%m-%d') = CURDATE()
+		OR
+		STR_TO_DATE(end_time, '%Y-%m-%d') = CURDATE()
 		ORDER BY
 		start_time
 	</select>
@@ -68,17 +71,18 @@
 		end_time = #{log.endTime}
 
 		WHERE
-		log_id = #{log.logId}
+		log_id =
+		#{log.logId}
 	</update>
-	
+
 	<delete id="delete">
 		DELETE
 		FROM
-			log
+		log
 		WHERE
-			log_id = #{logId}
+		log_id = #{logId}
 	</delete>
-	
+
 	<resultMap type="com.example.demo.entity.TimeLog"
 		id="changeDay">
 		<id property="logId" column="log_id" />
@@ -87,40 +91,55 @@
 		<result property="startTime" column="start_time_str" />
 		<result property="userId" column="user_id" />
 		<result property="categoryId" column="category_id" />
-		
+
 	</resultMap>
 	<select id="selectByNowDay"
 		resultType="com.example.demo.entity.TimeLog" resultMap="changeDay">
 		SELECT log_id,
 		category_name,start_time AS
 		start_time_str,
-		end_time AS end_time, user_id,
+		end_time AS end_time,
+		user_id,
 		log.category_id
-		FROM log LEFT JOIN category ON log.category_id =
+		FROM log LEFT JOIN category ON log.category_id
+		=
 		category.category_id
-		LEFT JOIN user ON log.user_id = user.id 
+		LEFT JOIN user ON log.user_id = user.id
 		WHERE STR_TO_DATE(start_time, '%Y-%m-%d') = #{nowDay}
-		OR STR_TO_DATE(end_time, '%Y-%m-%d') = #{nowDay}
+		OR
+		STR_TO_DATE(end_time, '%Y-%m-%d') = #{nowDay}
 		ORDER BY
 		start_time
 	</select>
-	
+
 	<resultMap type="com.example.demo.entity.MaxDay"
 		id="maxEndTimeDay">
-		
+
 		<result property="maxDay" column="maxDay" />
 
-		
+
 	</resultMap>
-	<select id="maxDay"
-		resultType="com.example.demo.entity.MaxDay" resultMap="maxEndTimeDay">
-		SELECT 
+	<select id="maxDay" resultType="com.example.demo.entity.MaxDay"
+		resultMap="maxEndTimeDay">
+		SELECT
 		MAX(end_time) AS maxDay
-		FROM log 
+		FROM log
 		WHERE STR_TO_DATE(end_time, '%Y-%m-%d') = #{nowDay}
-		
-		
+
+
 	</select>
-	
+
+
+	<resultMap type="com.example.demo.entity.Log" id="maxLogId">
+		<id property="logId" column="max_log_id" />
+		
+
+	</resultMap>
+	<select id="maxLogId" resultMap="maxLogId">
+		SELECT MAX(log_id) AS max_log_id
+		FROM log
+		WHERE STR_TO_DATE(end_time, '%Y-%m-%d') = #{nowDay}
+
+	</select>
 
 </mapper>

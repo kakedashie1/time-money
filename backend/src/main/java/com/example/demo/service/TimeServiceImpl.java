@@ -91,5 +91,13 @@ public class TimeServiceImpl implements TimeService {
 		MaxDay maxDay = timeRepository.maxDay(nowDay);
 		return maxDay;
 	}
+	
+	@Override
+	public Log maxLogId(LocalDate nowDay) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+		Log maxLogId = timeRepository.maxLogId(nowDay);
+		return maxLogId;
+	}
 
 }

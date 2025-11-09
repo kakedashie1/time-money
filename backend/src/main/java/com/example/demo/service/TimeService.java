@@ -24,4 +24,6 @@ public interface TimeService {
 	List<TimeLog> findByNowDay(LocalDate nowDay);
 	
 	MaxDay findByMaxDay(LocalDate nowDay);
+	
+	Log maxLogId(LocalDate nowDay);
 }
