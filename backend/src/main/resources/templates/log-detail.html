@@ -44,6 +44,7 @@
 
 	<form th:action="@{/log-remove}" method="POST" th:object="${logDetail}">
 		<input type="hidden" th:field="*{logId}">
+		<input type="hidden" name="toDay" th:value="${timeRegistForm.toDay}">
 		<input type="submit" value="削除" class="btn">
 	</form>
 	<br>

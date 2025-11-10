@@ -96,7 +96,7 @@ public class LogRegistController {
 		
 		List<TimeLog> list = timeService.findListAll();
 		
-		List<TimeLog> TimeLogList = timeService.findListAll();
+		List<TimeLog> TimeLogList = timeService.findByNowDay(form.getToDay());
 		
 		model.addAttribute("timeLogList", TimeLogList);
 		model.addAttribute("toDay", nowday);

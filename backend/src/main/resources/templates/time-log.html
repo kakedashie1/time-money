@@ -39,6 +39,7 @@
 			<tr th:each="time : ${timeLogList}">
 				<td>
 					<form th:action="@{/log-detail}" method="POST">
+						<input type="hidden" name="toDay" th:value="${timeRegistForm.toDay}">
 						<input type="hidden" name="logId" th:value="${time.logId}">
 						<input type="submit" value="詳細" class="tbtn">
 					</form>

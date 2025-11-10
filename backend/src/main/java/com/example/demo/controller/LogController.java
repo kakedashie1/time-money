@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
-import com.example.demo.form.TimeDetailForm;
 import com.example.demo.form.TimeRegistForm;
 import com.example.demo.service.TimeService;
 
@@ -54,9 +53,11 @@ public class LogController {
 	}
 
 	@PostMapping("/log-detail")
-	private String logDetail(Model model, TimeDetailForm form) {
+	private String logDetail(Model model, TimeRegistForm form) {
 
 		String correctId;
+		
+		form.setToDay(form.getToDay());
 		
 		LocalDate toDay = LocalDate.now();
 
@@ -75,6 +76,7 @@ public class LogController {
 		}
 
 		model.addAttribute("logDetail", logDetail);
+		model.addAttribute("timeRegistForm", form);
 		
 
 		return "log-detail";
