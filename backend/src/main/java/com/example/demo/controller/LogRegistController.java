@@ -89,19 +89,8 @@ public class LogRegistController {
 		timeService.regist(log);
 		
 		
-		MaxDay maxDay = timeService.findByMaxDay(form.getToDay());
-		if(maxDay != null) {
-			form.setMaxDay(maxDay.getMaxDay());
-		}
 		
-		List<TimeLog> list = timeService.findListAll();
 		
-		List<TimeLog> TimeLogList = timeService.findByNowDay(form.getToDay());
-		
-		model.addAttribute("timeLogList", TimeLogList);
-		model.addAttribute("toDay", nowday);
-		model.addAttribute("categoryList", list);
-		
-		return "time-log";
+		return "redirect:/top";
 	}
 }

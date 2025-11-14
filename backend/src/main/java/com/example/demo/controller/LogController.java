@@ -69,7 +69,7 @@ public class LogController {
 
 		Integer logId = logDetail.getLogId();
 
-		if (maxId == logId && toDay.isEqual(nowDay)) {
+		if (maxId.equals(logId) && toDay.isEqual(nowDay)) {
 
 			correctId = "true";
 			model.addAttribute("correctId",correctId );
