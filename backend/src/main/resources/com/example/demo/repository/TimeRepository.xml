@@ -21,7 +21,7 @@
 		SELECT log_id,
 		category_name,start_time AS
 		start_time_str,
-		end_time AS end_time, user_id,
+		end_time AS end_time, log.user_id,
 		log.category_id
 		FROM log LEFT JOIN category ON
 		log.category_id =
@@ -99,7 +99,7 @@
 		category_name,start_time AS
 		start_time_str,
 		end_time AS end_time,
-		user_id,
+		log.user_id,
 		log.category_id
 		FROM log LEFT JOIN category ON log.category_id
 		=

@@ -24,12 +24,12 @@ public class LogController {
 
 	private LocalDate nowDay = LocalDate.now();
 
-	@GetMapping("/login")
-	private String login() {
-		return "login";
-	}
+//	@GetMapping("/login")
+//	private String login() {
+//		return "login";
+//	}
 
-	@GetMapping("/top")
+	@GetMapping("/")
 	private String showListSelection(Model model) {
 		// HTMLテンプレート名で return
 		List<TimeLog> list = timeService.findListAll();
@@ -40,7 +40,19 @@ public class LogController {
 		model.addAttribute("timeRegistForm", form);
 		return "time-log";
 	}
-
+	
+	@GetMapping("/top")
+	private String top(Model model) {
+		// HTMLテンプレート名で return
+		List<TimeLog> list = timeService.findListAll();
+		nowDay = LocalDate.now();
+		TimeRegistForm form = new TimeRegistForm();
+		form.setToDay(nowDay);
+		model.addAttribute("timeLogList", list);
+		model.addAttribute("timeRegistForm", form);
+		return "time-log";
+	}
+	
 	@PostMapping("/time-log")
 	private String showLogList(Model model) {
 		nowDay = LocalDate.now();
