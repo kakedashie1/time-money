@@ -10,9 +10,15 @@
 <body>
 	<!-- ------------検索---------------- -->
 	<h2>TimeLog</h2>
+
+	<div>
+		ユーザ：<span sec:authentication="principal.username"></span>
+		
+	</div>
+	<br>
 	<div>
 		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="ログアウト"/>
+			<input type="submit" value="ログアウト" />
 		</form>
 	</div>
 
@@ -21,7 +27,7 @@
 		<h2>タイムログ一覧</h2>
 
 
-		<form th:action="@{/time-show-regist}" method="POST"  th:object="${timeRegistForm}" >
+		<form th:action="@{/time-show-regist}" method="POST" th:object="${timeRegistForm}">
 			<input type="hidden" th:field="*{toDay}">
 			<input type="submit" value="タイムログ登録" class="btn">
 		</form>

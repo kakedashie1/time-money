@@ -11,6 +11,12 @@
 	<!-- ------------検索---------------- -->
 	<h2>ログイン</h2>
 
+	<div>
+		<form th:action="@{/show-user-regist-form}" method="GET">
+			<input type="submit" value="ユーザ登録" class="btn">
+		</form>
+	</div>
+
 	<div th:if="${message != null}" th:text="${message}" class="error-msg"></div>
 	<br>
 	<form th:action="@{/login}" method="post">

@@ -15,7 +15,7 @@
 		<input type="hidden" th:field="*{maxDay}">
 		<input type="hidden" th:field="*{toDay}">
 		<table class="detail-table">
-			
+
 			<tr>
 				<td class="guide">【ログ名】</td>
 				<td>
@@ -25,6 +25,12 @@
 						</option>
 					</select>
 					<div th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}" class="error-msg"></div>
+				</td>
+				<td>
+					<form th:action="@{/category-list}" method="POST" th:object="${logDetail}">
+						<input type="hidden" th:field="*{logId}">
+						<input type="submit" value="カテゴリー編集" class="btn">
+					</form>
 				</td>
 			</tr>
 			<tr>
@@ -51,7 +57,7 @@
 
 	<br>
 	<a th:href="@{/top}">トップページに戻る</a>
-	
+
 
 </body>
 

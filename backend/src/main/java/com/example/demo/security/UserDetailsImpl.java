@@ -19,7 +19,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	public UserDetailsImpl(User user) {
 		username = user.getUserId();
-		password =  "{noop}"+ user.getPassword();
+		password = user.getPassword();
 		authorities = AuthorityUtils.createAuthorityList(user.getRole());
 	}
 

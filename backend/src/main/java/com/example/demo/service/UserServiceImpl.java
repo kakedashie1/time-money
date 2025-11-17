@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,12 +14,13 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository repository;
+	private final PasswordEncoder passwordEncoder;
 
 	@Override
 	@Transactional
 	public void regist(User user) {
 
-		String hashed = "{noop}" + user.getPassword();
+		String hashed = passwordEncoder.encode(user.getPassword());
 
 		// パスワードの再設定
 		user.setPassword(hashed);
