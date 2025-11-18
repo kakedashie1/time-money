@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.form.TimeEditForm;
 import com.example.demo.form.TimeRegistForm;
+import com.example.demo.security.UserDetailsImpl;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.TimeService;
 
@@ -39,10 +41,10 @@ public class LogEditController {
 	}
 
 	@PostMapping("/time-edit")
-	public String edit(Model model, @Validated TimeEditForm editForm, BindingResult result) {
+	public String edit(@AuthenticationPrincipal UserDetailsImpl principal,Model model, @Validated TimeEditForm editForm, BindingResult result) {
 		LocalDate nowDay = LocalDate.now();
 		if (result.hasErrors()) {
-			List<TimeLog> TimeLogList = timeService.findListAll();
+			List<TimeLog> TimeLogList = timeService.findListAll(principal.getId());
 
 			model.addAttribute("timeLogList", TimeLogList);
 
@@ -66,9 +68,9 @@ public class LogEditController {
 
 		timeService.edit(log);
 
-		List<TimeLog> list = timeService.findListAll();
+		List<TimeLog> list = timeService.findListAll(principal.getId());
 
-		List<TimeLog> TimeLogList = timeService.findListAll();
+		List<TimeLog> TimeLogList = timeService.findListAll(principal.getId());
 		
 		TimeRegistForm form = new TimeRegistForm();
 	    form.setToDay(nowDay);

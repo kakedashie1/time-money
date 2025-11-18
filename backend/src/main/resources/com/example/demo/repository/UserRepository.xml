@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.repository.UserRepository">
+<insert id="insert"> INSERT INTO user (user_id,password,role)
+	VALUES (
+	#{user.userId}, #{user.password}, #{user.role} )
+</insert>
+
+
+<select id="selectByUserId" >
+	SELECT id,user_id,
+	password,role
+	FROM user
+	WHERE user_id = #{userId}
+</select>
+</mapper>

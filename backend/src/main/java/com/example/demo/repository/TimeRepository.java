@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.example.demo.entity.Day;
 import com.example.demo.entity.EditLog;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
@@ -16,7 +17,7 @@ import com.example.demo.entity.TimeLog;
 public interface TimeRepository {
 
 	
-	List<TimeLog> selectListAll();
+	List<TimeLog> selectListAll(@Param("userId") String username);
 	
 	void insert(@Param("log") Log log);
 	
@@ -26,7 +27,7 @@ public interface TimeRepository {
 	
 	void delete(@Param("logId") Integer logId);
 	
-	List<TimeLog> selectByNowDay(@Param("nowDay") LocalDate nowDay);
+	List<TimeLog> selectByNowDay(@Param("day") Day day);
 	
 	MaxDay maxDay(@Param("nowDay") LocalDate nowDay);
 	

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.form.CategoryRemoveForm;
+import com.example.demo.form.TimeRegistForm;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.TimeService;
 
@@ -27,17 +28,22 @@ public class CategoryRemoveController {
 	@PostMapping("/category-remove")
 	public String remove(
 			@ModelAttribute CategoryRemoveForm form,
-			Model model) {
+			Model model,TimeRegistForm registForm) {
 		
 		categoryService.remove(form.getCategoryId());
 		// タスク削除確認画面に遷移する
 		List<Category> list = categoryService.findAll();
 
 		LogDetail logDetail = timeService.findDetailByLogId(form.getLogId());
+		
+		registForm.setToDay(registForm.getToDay());
+		registForm.setMaxDay(registForm.getMaxDay());
 
 		model.addAttribute("logDetail", logDetail);
 
 		model.addAttribute("categoryList", list);
+		
+		model.addAttribute("timeRegistForm", registForm);
 
 		return "category";
 	}

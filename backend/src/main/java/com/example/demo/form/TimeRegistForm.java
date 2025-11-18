@@ -42,6 +42,7 @@ public class TimeRegistForm {
 	@Size(max = 10, message = "10文字以内で入力してください。")
 	private String categoryName;
 	
+	private String userId;
 	
 	
 }

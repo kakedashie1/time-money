@@ -15,6 +15,6 @@ public class Log {
 	private LocalDateTime startTime;
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime endTime;
-	private Integer userId;
+	private String userId;
 	private String categoryId;
 }

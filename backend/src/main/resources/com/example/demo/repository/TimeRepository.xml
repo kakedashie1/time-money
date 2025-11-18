@@ -21,22 +21,23 @@
 		SELECT log_id,
 		category_name,start_time AS
 		start_time_str,
-		end_time AS end_time, user_id,
+		end_time AS end_time, log.user_id,
 		log.category_id
 		FROM log LEFT JOIN category ON
 		log.category_id =
 		category.category_id
 		LEFT JOIN user ON log.user_id =
 		user.id
-		WHERE STR_TO_DATE(start_time, '%Y-%m-%d') = CURDATE()
+		WHERE (STR_TO_DATE(start_time, '%Y-%m-%d') = CURDATE()
 		OR
-		STR_TO_DATE(end_time, '%Y-%m-%d') = CURDATE()
+		STR_TO_DATE(end_time, '%Y-%m-%d') = CURDATE())
+		AND log.user_id = #{userId}
 		ORDER BY
 		start_time
 	</select>
 
-	<insert id="insert"> INSERT INTO log (start_time, end_time,category_id )
-		VALUES ( #{log.startTime}, #{log.endTime}, #{log.categoryId} )
+	<insert id="insert"> INSERT INTO log (start_time, end_time,category_id,user_id )
+		VALUES ( #{log.startTime}, #{log.endTime}, #{log.categoryId}, #{log.userId} )
 	</insert>
 	<resultMap type="com.example.demo.entity.LogDetail"
 		id="logDetail">
@@ -99,15 +100,16 @@
 		category_name,start_time AS
 		start_time_str,
 		end_time AS end_time,
-		user_id,
+		log.user_id,
 		log.category_id
 		FROM log LEFT JOIN category ON log.category_id
 		=
 		category.category_id
 		LEFT JOIN user ON log.user_id = user.id
-		WHERE STR_TO_DATE(start_time, '%Y-%m-%d') = #{nowDay}
+		WHERE (STR_TO_DATE(start_time, '%Y-%m-%d') = #{day.nowDay}
 		OR
-		STR_TO_DATE(end_time, '%Y-%m-%d') = #{nowDay}
+		STR_TO_DATE(end_time, '%Y-%m-%d') = #{day.nowDay})
+		AND log.user_id = #{day.userId}
 		ORDER BY
 		start_time
 	</select>

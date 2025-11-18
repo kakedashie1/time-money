@@ -10,14 +10,19 @@
 <body>
 
 	<h2>タスク登録</h2>
+	<form th:action="@{/category-list}" method="POST" th:object="${timeRegistForm}">
+		<input type="hidden" th:field="*{maxDay}">
+		<input type="hidden" th:field="*{toDay}">
+		<input type="submit" value="カテゴリー編集" class="btn">
+	</form>
 
 	<form th:action="@{/time-regist}" method="POST" th:object="${timeRegistForm}">
 		<input type="hidden" th:field="*{maxDay}">
 		<input type="hidden" th:field="*{toDay}">
 		<table class="detail-table">
-			
+
 			<tr>
-				<td class="guide">【ログ名】</td>
+				<td class="guide">【カテゴリー名】</td>
 				<td>
 					<select th:field="*{categoryId}">
 						<option th:each="category : ${categoryList}" th:value="${category.categoryId}"
@@ -26,6 +31,7 @@
 					</select>
 					<div th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}" class="error-msg"></div>
 				</td>
+
 			</tr>
 			<tr>
 				<td class="guide">【開始時間】</td>
@@ -51,7 +57,7 @@
 
 	<br>
 	<a th:href="@{/top}">トップページに戻る</a>
-	
+
 
 </body>
 
