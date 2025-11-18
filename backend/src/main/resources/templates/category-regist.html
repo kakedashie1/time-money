@@ -11,31 +11,64 @@
 
 	<h2>カテゴリー登録</h2>
 
-	<form th:action="@{/category-regist}" method="POST" th:object="${categoryRegistForm}">
-		<input type="hidden" th:field="*{logId}">
-		<table class="detail-table">
-			<tr>
-				<td class="guide">【カテゴリー名】</td>
-				<td>
-					<input type="text" th:field="*{categoryName}"><br>
-					<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}" class="error-msg">
-					</div>
-				</td>
+	<div th:if="${logDetail} != null">
+		<form th:action="@{/category-regist}" method="POST" th:object="${categoryRegistForm}">
+			<input type="hidden" th:field="*{logId}">
+			<table class="detail-table">
+				<tr>
+					<td class="guide">【カテゴリー名】</td>
+					<td>
+						<input type="text" th:field="*{categoryName}"><br>
+						<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}" class="error-msg">
+						</div>
+					</td>
 
-			</tr>
+				</tr>
 
 
-		</table>
+			</table>
 
-		<input type="submit" value="登録" class="btn">
+			<input type="submit" value="登録" class="btn">
 
-	</form>
+		</form>
+	</div>
 
+	<div th:unless="${logDetail} != null">
+		<form th:action="@{/category-regist}" method="POST" th:object="${categoryRegistForm}">
+			<input type="hidden" th:field="${timeRegistForm.toDay}">
+			<input type="hidden" th:field="${timeRegistForm.maxDay}">
+			<table class="detail-table">
+				<tr>
+					<td class="guide">【カテゴリー名】</td>
+					<td>
+						<input type="text" th:field="*{categoryName}"><br>
+						<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}" class="error-msg">
+						</div>
+					</td>
+
+				</tr>
+
+
+			</table>
+
+			<input type="submit" value="登録" class="btn">
+
+		</form>
+	</div>
 	<br>
-	<form th:action="@{/category-list}" method="POST" th:object="${logDetail}">
-		<input type="hidden" th:field="*{logId}">
-		<input type="submit" value="戻る" class="btn">
-	</form>
+	<div th:if="${logDetail} != null">
+		<form th:action="@{/category-list}" method="POST" th:object="${logDetail}">
+			<input type="hidden" th:field="*{logId}">
+			<input type="submit" value="戻る" class="btn">
+		</form>
+	</div>
+	<div th:unless="${logDetail} != null">
+		<form th:action="@{/category-list}" method="POST" th:object="${timeRegistForm}">
+			<input type="hidden" th:field="*{maxDay}">
+			<input type="hidden" th:field="*{toDay}">
+			<input type="submit" value="戻る" class="btn">
+		</form>
+	</div>
 	<br>
 	<a th:href="@{/top}">トップページに戻る</a>
 

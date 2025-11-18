@@ -9,7 +9,7 @@
 
 
 <select id="selectByUserId" >
-	SELECT user_id,
+	SELECT id,user_id,
 	password,role
 	FROM user
 	WHERE user_id = #{userId}

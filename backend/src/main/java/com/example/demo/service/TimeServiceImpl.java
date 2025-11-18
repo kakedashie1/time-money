@@ -3,17 +3,16 @@ package com.example.demo.service;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entity.Day;
 import com.example.demo.entity.EditLog;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.MaxDay;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.repository.TimeRepository;
-import com.example.demo.security.UserDetailsImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,14 +24,11 @@ public class TimeServiceImpl implements TimeService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<TimeLog> findListAll() {
+	public List<TimeLog> findListAll(String username) {
 		// TODO 自動生成されたメソッド・スタブ
 
-		UserDetailsImpl principal = (UserDetailsImpl) SecurityContextHolder.getContext()
-				.getAuthentication()
-				.getPrincipal();
 
-		List<TimeLog> list = timeRepository.selectListAll();
+		List<TimeLog> list = timeRepository.selectListAll(username);
 		return list;
 	}
 
@@ -72,10 +68,10 @@ public class TimeServiceImpl implements TimeService {
 	}
 
 	@Override
-	public List<TimeLog> findByNowDay(LocalDate nowDay) {
+	public List<TimeLog> findByNowDay(Day day) {
 		// TODO 自動生成されたメソッド・スタブ
 
-		List<TimeLog> changeDay = timeRepository.selectByNowDay(nowDay);
+		List<TimeLog> changeDay = timeRepository.selectByNowDay(day);
 		return changeDay;
 	}
 

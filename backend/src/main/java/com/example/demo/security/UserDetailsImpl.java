@@ -14,10 +14,12 @@ public class UserDetailsImpl implements UserDetails {
 	
 	private final String username;
 	private final String password;
+	private final String id;
 	private final Collection<? extends GrantedAuthority> authorities;
 	
 	
 	public UserDetailsImpl(User user) {
+		id = user.getId();
 		username = user.getUserId();
 		password = user.getPassword();
 		authorities = AuthorityUtils.createAuthorityList(user.getRole());
@@ -39,6 +41,12 @@ public class UserDetailsImpl implements UserDetails {
 	public String getUsername() {
 		// TODO 自動生成されたメソッド・スタブ
 		return username;
+	}
+	
+	
+	public String getId() {
+		// TODO 自動生成されたメソッド・スタブ
+		return id;
 	}
 
 }

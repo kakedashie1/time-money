@@ -3,14 +3,17 @@ package com.example.demo.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.entity.Day;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.form.LogRemoveForm;
 import com.example.demo.form.TimeRegistForm;
+import com.example.demo.security.UserDetailsImpl;
 import com.example.demo.service.TimeService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,18 +26,23 @@ public class LogRemoveController {
 
 	/*--- タスク削除リクエスト（タスク詳細画面より） ---*/
 	@PostMapping("/log-remove")
-	public String remove(
+	public String remove(@AuthenticationPrincipal UserDetailsImpl principal,
 			@ModelAttribute LogRemoveForm removeForm,TimeRegistForm form,
 			Model model) {
-		LocalDate nowday = LocalDate.now();
+		LocalDate nowDay = LocalDate.now();
 		timeService.remove(removeForm.getLogId());
 		// タスク削除確認画面に遷移する
-		List<TimeLog> list = timeService.findListAll();
+		
+		Day day = new Day();
 
-		List<TimeLog> TimeLogList = timeService.findByNowDay(form.getToDay());
+		day.setNowDay(nowDay);
+		day.setUserId(principal.getId());
+		List<TimeLog> list = timeService.findListAll(principal.getId());
+
+		List<TimeLog> TimeLogList = timeService.findByNowDay(day);
 
 		model.addAttribute("timeLogList", TimeLogList);
-		model.addAttribute("today", nowday);
+		model.addAttribute("today", nowDay);
 		model.addAttribute("categoryList", list);
 
 		return "time-log";

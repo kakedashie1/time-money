@@ -15,8 +15,57 @@
 	<div th:if="${categoryList} != null">
 		<h2>カテゴリ一覧</h2>
 
-		<form th:action="@{/category-show-regist}" method="POST" th:object="${logDetail}">
-			<input type="hidden" th:field="*{logId}">
+
+		<div th:if="${logDetail} != null">
+			<form th:action="@{/category-show-regist}" method="POST" th:object="${logDetail}">
+				<input type="hidden" th:field="*{logId}">
+				<input type="submit" value="カテゴリー追加" class="btn">
+			</form>
+
+
+
+			<table class="timeLogList">
+				<tr>
+					<th>カテゴリー名</th>
+
+				</tr>
+				<tr th:each="category : ${categoryList}">
+					<td th:text="${category.categoryName}"></td>
+
+
+					<td>
+						<form th:action="@{/category-show-edit}" method="POST">
+							<input type="hidden" name="categoryId" th:value="${category.categoryId}">
+							<input type="hidden" name="logId" th:value="${logDetail.logId}">
+							<input type="submit" value="編集" class="tbtn">
+						</form>
+					</td>
+					<td>
+						<form th:action="@{/category-remove}" method="POST">
+							<input type="hidden" name="logId" th:value="${logDetail.logId}">
+							<input type="hidden" name="categoryId" th:value="${category.categoryId}">
+							<input type="submit" value="削除" class="tbtn">
+						</form>
+					</td>
+
+
+
+				</tr>
+
+			</table>
+
+			<form th:action="@{/log-detail}" method="POST" th:object="${logDetail}">
+				<input type="hidden" th:field="*{logId}">
+				<input type="submit" value="戻る" class="btn">
+			</form>
+		</div>
+
+	</div>
+
+	<div th:unless="${logDetail} != null">
+		<form th:action="@{/category-show-regist}" method="POST" th:object="${timeRegistForm}">
+			<input type="hidden" th:field="*{maxDay}">
+			<input type="hidden" th:field="*{toDay}">
 			<input type="submit" value="カテゴリー追加" class="btn">
 		</form>
 
@@ -32,15 +81,17 @@
 
 
 				<td>
-					<form th:action="@{/category-show-edit}" method="POST">
+					<form th:action="@{/category-show-edit}" method="POST" th:object="${timeRegistForm}">
 						<input type="hidden" name="categoryId" th:value="${category.categoryId}">
-						<input type="hidden" name="logId" th:value="${logDetail.logId}">
+						<input type="hidden" th:field="*{maxDay}">
+						<input type="hidden" th:field="*{toDay}">
 						<input type="submit" value="編集" class="tbtn">
 					</form>
 				</td>
 				<td>
-					<form th:action="@{/category-remove}" method="POST">
-						<input type="hidden" name="logId" th:value="${logDetail.logId}">
+					<form th:action="@{/category-remove}" method="POST" th:object="${timeRegistForm}">
+						<input type="hidden" th:field="*{maxDay}">
+						<input type="hidden" th:field="*{toDay}">
 						<input type="hidden" name="categoryId" th:value="${category.categoryId}">
 						<input type="submit" value="削除" class="tbtn">
 					</form>
@@ -52,14 +103,14 @@
 
 		</table>
 
-		<form th:action="@{/log-detail}" method="POST" th:object="${logDetail}">
-			<input type="hidden" th:field="*{logId}">
+		<form th:action="@{/time-show-regist}" method="POST" th:object="${timeRegistForm}">
+			<input type="hidden" th:field="*{maxDay}">
+			<input type="hidden" th:field="*{toDay}">
 			<input type="submit" value="戻る" class="btn">
 		</form>
 	</div>
 
-
-
+	</div>
 
 </body>
 
