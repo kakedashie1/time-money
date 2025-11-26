@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+
+
+header {
+
+	display: flex;
+}
+
+
+.header-right {
+
+	margin-left: auto;
+	margin-top: 10px;
+}
+
+
+.user {}
+
+.container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.container h2 {
+
+	text-align: center;
+	justify-content: center;
+
+}
+
+
+
+
+.day {
+
+	display: flex;
+	gap: 8px;
+	justify-content: center;
+}
+
+
+.day form {
+
+	line-height: 74px;
+
+	display: block;
+}
+
+input[type=submit] {
+	font-family: FontAwesome;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+
+
+}
+
+
+
+input[type=submit]:hover {
+
+	background-color: #5e696c;
+}
+
+button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+button:hover {
+	
+	background-color: #5e696c;
+}
+
+.log {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+
+}
+
+.logo img {
+	width: 150px;
+	height: 46px;
+	object-fit: contain;
+
+}
+
+
+.log form {
+	display: flex;
+	justify-content: center;
+}
+
+table {
+	border: 1px solid #5e696c;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	border-collapse: collapse;
+}
+
+
+
+td {
+
+	text-align: center;
+}
+
+tr:nth-child(odd) {
+
+	background-color: rgba(193, 193, 191, 0.4);
+
+}
