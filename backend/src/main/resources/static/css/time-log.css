@@ -1,10 +1,18 @@
 @charset "utf-8";
 
-
+body {
+	margin:0;
+}
 
 header {
 
 	display: flex;
+}
+
+header img {
+	
+	height: 56px;
+	display: inline-block;
 }
 
 
@@ -14,6 +22,37 @@ header {
 	margin-top: 10px;
 }
 
+.sp-menu {
+	
+	margin-left: auto;
+}
+
+.sp-menu #open {
+	
+	font-size: 32px;
+	line-height: 56px;
+	cursor: pointer;
+}
+
+.sp-menu #open.hide {
+	
+	display: none;
+}
+.list {
+	
+	opacity: 0;
+	pointer-events: none;
+}
+
+.list.show {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+# open {
+	
+	cursor: pointer;
+}
 
 .user {}
 
@@ -114,5 +153,22 @@ td {
 tr:nth-child(odd) {
 
 	background-color: rgba(193, 193, 191, 0.4);
+
+}
+
+
+
+
+@media (max-width: 600px){
+	
+.header-right {
+	display: none;
+}
+}
+@media (min-width: 600px){
+	
+.sp-menu {
+	display: none;
+}
 
 }
