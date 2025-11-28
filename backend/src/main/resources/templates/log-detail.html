@@ -24,11 +24,11 @@
 		</tr>
 		<tr>
 			<td class="guide">【開始時間】</td>
-			<td th:text="*{startTime}"></td>
+			<td th:text="*{#temporals.format(startTime, 'yyyy/MM/dd HH:mm')}"></td>
 		</tr>
 		<tr>
 			<td class="guide">【終了時間】</td>
-			<td th:text="*{endTime}"></td>
+			<td th:text="*{#temporals.format(endTime, 'yyyy/MM/dd HH:mm')}"></td>
 		</tr>
 
 	</table>
