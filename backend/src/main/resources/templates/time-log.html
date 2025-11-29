@@ -76,14 +76,14 @@
 
 				<table class="timeLogList">
 					<tr style="background-color: rgba(193, 193, 191,0.8);">
-						
+
 						<th>カテゴリー</th>
 						<th>開始時間</th>
 						<th>終了時間</th>
 					</tr>
 					<tr th:each="time : ${timeLogList}">
-						
-						<td >
+
+						<td>
 							<form th:action="@{/log-detail}" method="POST">
 								<input type="hidden" name="toDay" th:value="${timeRegistForm.toDay}">
 								<input type="hidden" name="logId" th:value="${time.logId}">
@@ -95,9 +95,41 @@
 
 
 					</tr>
+					<form>
+						<!--					<tr>-->
+						<!--						<td id="category"><input type="text"></td>-->
+						<!--						<td id="start-time"><input type="text"></td>-->
+						<!--						<td id="end-time"><input type="text"></td>-->
+						<!--					</tr>-->
+						<tr>
+							<td  colspan="3"><div id="regist-btn">登録</div></td>
+						</tr>
+					</form>
 
 				</table>
-			</div>
+				<div id="mask" class="hidden"></div>
+
+
+				<section id="modal"  class="hidden">
+					<h2>新規ログ登録</h2>
+					<h3 id="regist-title">カテゴリー入力</h3>
+					<div class="result">
+						<span id="">カテゴリー :</span>
+						<span id="">開始時間 :</span>
+					</div>
+					<div id="content"></div>
+
+
+					<div class="btn">
+						<div id="close-btn">閉じる</div>
+						<div id="back">戻る</div>
+						<div id="time-regist-btn">時間入力へ</div>
+
+					</div>
+				</section>
+
+
+		</div>
 
 
 		</div>
