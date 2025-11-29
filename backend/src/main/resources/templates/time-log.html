@@ -32,7 +32,7 @@
 
 		</div>
 		<div class="list">
-			<span id="close"><i class="fa-solid fa-xmark" ></i></span>
+			<span id="close"><i class="fa-solid fa-xmark"></i></span>
 			ユーザ：<span sec:authentication="principal.username"></span>
 			<form th:action="@{/logout}" method="post">
 				<input type="submit" value="ログアウト&#xf08b" />
@@ -76,20 +76,20 @@
 
 				<table class="timeLogList">
 					<tr style="background-color: rgba(193, 193, 191,0.8);">
-						<th>詳細</th>
+						
 						<th>カテゴリー</th>
 						<th>開始時間</th>
 						<th>終了時間</th>
 					</tr>
 					<tr th:each="time : ${timeLogList}">
-						<td>
+						
+						<td >
 							<form th:action="@{/log-detail}" method="POST">
 								<input type="hidden" name="toDay" th:value="${timeRegistForm.toDay}">
 								<input type="hidden" name="logId" th:value="${time.logId}">
-								<input type="submit" value="&#xf013" class="btn">
+								<button><span th:text="${time.categoryName}"></span></button>
 							</form>
 						</td>
-						<td th:text="${time.categoryName}"></td>
 						<td th:text="${#temporals.format(time.startTime, 'HH:mm')}"></td>
 						<td th:text="${#temporals.format(time.endTime, 'HH:mm')}"></td>
 
