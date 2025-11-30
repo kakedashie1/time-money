@@ -102,7 +102,7 @@
 						<!--						<td id="end-time"><input type="text"></td>-->
 						<!--					</tr>-->
 						<tr>
-							<td  colspan="3"><div id="regist-btn">登録</div></td>
+							<td  colspan="3"><div id="regist-btn">新規ログ登録</div></td>
 						</tr>
 					</form>
 
@@ -114,10 +114,16 @@
 					<h2>新規ログ登録</h2>
 					<h3 id="regist-title">カテゴリー入力</h3>
 					<div class="result">
-						<span id="">カテゴリー :</span>
-						<span id="">開始時間 :</span>
+						<span id="result-category">カテゴリー :</span>
+						<span id="result-start-time">開始時間 :</span>
 					</div>
-					<div id="content"></div>
+					<div id="content">
+						<div id="up">上</div>
+						<div id="category-list">
+							
+						</div>
+						<div id="down">下</div>
+					</div>
 
 
 					<div class="btn">
@@ -139,6 +145,9 @@
 
 
 	<script th:src="@{../js/time-log.js}"></script>
+	<script th:inline="javascript">
+	  const categoryList = /*[[${categoryList}]]*/ "カテゴリー";
+	</script>
 
 </body>
 
