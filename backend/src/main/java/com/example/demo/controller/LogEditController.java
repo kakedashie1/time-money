@@ -72,12 +72,15 @@ public class LogEditController {
 
 		List<TimeLog> TimeLogList = timeService.findListAll(principal.getId());
 		
+		List<Category> categoryList = categoryService.findAll();
+		
 		TimeRegistForm form = new TimeRegistForm();
 	    form.setToDay(nowDay);
 
 		model.addAttribute("timeLogList", TimeLogList);
 		model.addAttribute("timeRegistForm", form);
 		model.addAttribute("categoryList", list);
+		model.addAttribute("categoryList", categoryList);
 
 		return "time-log";
 	}

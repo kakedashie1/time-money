@@ -9,12 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.entity.Category;
 import com.example.demo.entity.Day;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
 import com.example.demo.form.TimeRegistForm;
 import com.example.demo.security.UserDetailsImpl;
+import com.example.demo.service.CategoryService;
 import com.example.demo.service.TimeService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,8 @@ import lombok.RequiredArgsConstructor;
 public class LogController {
 
 	private final TimeService timeService;
+	
+	private final CategoryService categoryService;
 
 	private LocalDate nowDay = LocalDate.now();
 
@@ -36,12 +40,14 @@ public class LogController {
 	private String showListSelection(@AuthenticationPrincipal UserDetailsImpl principal, Model model) {
 		// HTMLテンプレート名で return
 		List<TimeLog> list = timeService.findListAll(principal.getId());
+		List<Category> categoryList = categoryService.findAll();
 		nowDay = LocalDate.now();
 		TimeRegistForm form = new TimeRegistForm();
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());
 
 		model.addAttribute("timeLogList", list);
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("timeRegistForm", form);
 		return "time-log";
 	}
@@ -49,13 +55,16 @@ public class LogController {
 	@GetMapping("/top")
 	private String top(@AuthenticationPrincipal UserDetailsImpl principal, Model model) {
 		// HTMLテンプレート名で return
+		
 		List<TimeLog> list = timeService.findListAll(principal.getId());
+		List<Category> categoryList = categoryService.findAll();
 		nowDay = LocalDate.now();
 		TimeRegistForm form = new TimeRegistForm();
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());
 		model.addAttribute("timeLogList", list);
 		model.addAttribute("timeRegistForm", form);
+		model.addAttribute("categoryList", categoryList);
 		return "time-log";
 	}
 
@@ -63,11 +72,13 @@ public class LogController {
 	private String showLogList(@AuthenticationPrincipal UserDetailsImpl principal, Model model) {
 		nowDay = LocalDate.now();
 		List<TimeLog> list = timeService.findListAll(principal.getId());
+		List<Category> categoryList = categoryService.findAll();
 		TimeRegistForm form = new TimeRegistForm();
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());
 		model.addAttribute("timeLogList", list);
 		model.addAttribute("timeRegistForm", form);
+		model.addAttribute("categoryList", categoryList);
 		return "time-log";
 	}
 
@@ -105,15 +116,18 @@ public class LogController {
 	private String nextDay(@AuthenticationPrincipal UserDetailsImpl principal, Model model) {
 		nowDay = nowDay.plusDays(1);
 		Day day = new Day();
+		
 
 		day.setNowDay(nowDay);
 		day.setUserId(principal.getId());
 		List<TimeLog> nextDay = timeService.findByNowDay(day);
+		List<Category> categoryList = categoryService.findAll();
 		TimeRegistForm form = new TimeRegistForm();
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());
 		model.addAttribute("timeLogList", nextDay);
 		model.addAttribute("timeRegistForm", form);
+		model.addAttribute("categoryList", categoryList);
 
 		return "time-log";
 	}
@@ -126,6 +140,7 @@ public class LogController {
 		day.setNowDay(nowDay);
 		day.setUserId(principal.getId());
 		List<TimeLog> prevDay = timeService.findByNowDay(day);
+		List<Category> categoryList = categoryService.findAll();
 		TimeRegistForm form = new TimeRegistForm();
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());

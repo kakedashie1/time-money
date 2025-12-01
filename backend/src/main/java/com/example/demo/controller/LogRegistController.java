@@ -73,8 +73,10 @@ public class LogRegistController {
 			
 			List<Category> CategoryList = categoryService.findAll();
 			model.addAttribute("categoryList", CategoryList);
+			model.addAttribute("errorMessage", "error");
 			
-			return "time-regist";
+			
+			return "time-log";
 		}
 		
 		Category category = categoryService.findByCategoryId(form.getCategoryId());
