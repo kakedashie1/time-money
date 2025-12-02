@@ -113,67 +113,225 @@
 
 
 				<section id="modal" class="hidden">
-					<h2>タスク登録</h2>
-					<div th:if="${errorMessage != null}">
-						<span id="errorMessage"></span>
+
+					<!--					ログ登録モーダルウィンドウ-->
+					<div id="regist-modal">
+						<h2>タスク登録</h2>
+						<div th:if="${errorMessage != null}">
+							<span id="errorMessage"></span>
+						</div>
+						<!--						<form th:action="@{/category-list}" method="POST" th:object="${timeRegistForm}">-->
+						<!--							<input type="hidden" th:field="*{maxDay}">-->
+						<!--							<input type="hidden" th:field="*{toDay}">-->
+						<!--							<input type="submit" value="カテゴリー編集" class="btn">-->
+						<!--						</form>-->
+
+						<form th:action="@{/time-regist}" method="POST" th:object="${timeRegistForm}">
+							<input type="hidden" th:field="*{maxDay}">
+							<input type="hidden" th:field="*{toDay}">
+							<table class="detail-table">
+
+								<tr>
+									<td class="guide">【カテゴリー名】</td>
+									<td>
+										<select th:field="*{categoryId}">
+											<option th:each="category : ${categoryList}"
+												th:value="${category.categoryId}" th:text="${category.categoryName}"
+												th:selected="${category.categoryId == categoryId}">
+											</option>
+										</select>
+										<div th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"
+											class="error-msg" id="categoryErr"></div>
+									</td>
+									<td>
+										<div id="category-edit"><i class="fa-solid fa-gear"></i></div>
+									</td>
+
+								</tr>
+								<tr>
+									<td class="guide">【開始時間】</td>
+									<td>
+										<input type="datetime-local" name="startTime" th:value="*{maxDay}"><br>
+										<div th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"
+											class="error-msg" id="startErr"></div>
+										<div th:if="${#fields.hasErrors('maxDay')}" th:errors="*{maxDay}"
+											class="error-msg">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="guide">【終了時間】</td>
+									<td>
+										<input type="datetime-local" th:field="*{endTime}"><br>
+										<div th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"
+											class="error-msg" id="endErr"></div>
+									</td>
+								</tr>
+
+							</table>
+
+							<input type="submit" value="登録" class="btn">
+
+						</form>
+
+						<br>
+						<div id="close-btn">閉じる</div>
+
 					</div>
-					<form th:action="@{/category-list}" method="POST" th:object="${timeRegistForm}">
-						<input type="hidden" th:field="*{maxDay}">
-						<input type="hidden" th:field="*{toDay}">
-						<input type="submit" value="カテゴリー編集" class="btn">
-					</form>
 
-					<form th:action="@{/time-regist}" method="POST" th:object="${timeRegistForm}">
-						<input type="hidden" th:field="*{maxDay}">
-						<input type="hidden" th:field="*{toDay}">
-						<table class="detail-table">
 
-							<tr>
-								<td class="guide">【カテゴリー名】</td>
-								<td>
-									<select th:field="*{categoryId}">
-										<option th:each="category : ${categoryList}" th:value="${category.categoryId}"
-											th:text="${category.categoryName}"
-											th:selected="${category.categoryId == categoryId}">
-										</option>
-									</select>
-									<div th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"
-										class="error-msg" id="categoryErr"></div>
-								</td>
+					<!--					カテゴリーモーダルウィンドウ-->
 
-							</tr>
-							<tr>
-								<td class="guide">【開始時間】</td>
-								<td>
-									<input type="datetime-local" name="startTime" th:value="*{maxDay}"><br>
-									<div th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"
-										class="error-msg" id="startErr"></div>
-									<div th:if="${#fields.hasErrors('maxDay')}" th:errors="*{maxDay}" class="error-msg" >
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="guide">【終了時間】</td>
-								<td>
-									<input type="datetime-local" th:field="*{endTime}"><br>
-									<div th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"
-										class="error-msg" id="endErr"></div>
-								</td>
-							</tr>
+					<div id="category-modal" class="hidden">
+						<h2>Category</h2>
 
-						</table>
 
-						<input type="submit" value="登録" class="btn">
+						<div th:if="${categoryList} != null">
+							<h2>カテゴリ一覧</h2>
 
-					</form>
 
-					<br>
-					<div id="close-btn">閉じる</div>
+							<div th:if="${logDetail} != null">
+								<form th:action="@{/category-show-regist}" method="POST" th:object="${logDetail}">
+									<input type="hidden" th:field="*{logId}">
+									<input type="submit" value="カテゴリー追加" class="btn">
+								</form>
 
-				</section>
 
+
+								<table class="timeLogList">
+									<tr>
+										<th>カテゴリー名</th>
+
+									</tr>
+									<tr th:each="category : ${categoryList}">
+										<td th:text="${category.categoryName}"></td>
+
+
+										<td>
+											<form th:action="@{/category-show-edit}" method="POST">
+												<input type="hidden" name="categoryId"
+													th:value="${category.categoryId}">
+												<input type="hidden" name="logId" th:value="${logDetail.logId}">
+												<input type="submit" value="編集" class="tbtn">
+											</form>
+										</td>
+										<td>
+											<form th:action="@{/category-remove}" method="POST">
+												<input type="hidden" name="logId" th:value="${logDetail.logId}">
+												<input type="hidden" name="categoryId"
+													th:value="${category.categoryId}">
+												<input type="submit" value="削除" class="tbtn">
+											</form>
+										</td>
+
+
+
+									</tr>
+
+								</table>
+
+								<form th:action="@{/log-detail}" method="POST" th:object="${logDetail}">
+									<input type="hidden" th:field="*{logId}">
+									<input type="submit" value="戻る" class="btn">
+								</form>
+							</div>
+
+						</div>
+
+						<div th:unless="${logDetail} != null">
+							
+
+
+
+							<table class="timeLogList">
+								<tr>
+									<th>カテゴリー名</th>
+									<th></th>
+
+								</tr>
+								<tr th:each="category : ${categoryList}">
+									<td th:text="${category.categoryName}"></td>
+
+
+									<td>
+										<form th:action="@{/category-show-edit}" method="POST"
+											th:object="${timeRegistForm}">
+											<input type="hidden" name="categoryId" th:value="${category.categoryId}">
+											<input type="hidden" th:field="*{maxDay}">
+											<input type="hidden" th:field="*{toDay}">
+											<input type="submit" value="編集" class="tbtn">
+										</form>
+									</td>
+									<td>
+										<form th:action="@{/category-remove}" method="POST"
+											th:object="${timeRegistForm}">
+											<input type="hidden" th:field="*{maxDay}">
+											<input type="hidden" th:field="*{toDay}">
+											<input type="hidden" name="categoryId" th:value="${category.categoryId}">
+											<input type="submit" value="削除" class="tbtn">
+										</form>
+									</td>
+
+
+
+								</tr>
+
+								<tr>
+									<td>
+										<div id="category-add-btn">カテゴリー追加</div>
+									</td>
+								</tr>
+
+							</table>
+
+							<div id="category-back-btn">戻る</div>
+
+						</div>
+
+					</div>
+
+					<!--					カテゴリー登録モーダルウィンドウ-->
+
+					<div id="category-add-modal" class="hidden">
+						<h2>カテゴリー登録</h2>
+
+						<div th:if="${errorMessage != null}">
+							<span id="categoryErrorMessage"></span>
+						</div>
+
+						<form th:action="@{/category-regist}" method="POST" th:object="${categoryRegistForm}">
+
+							<table class="detail-table">
+								<tr>
+									<td class="guide">【カテゴリー名】</td>
+									<td>
+										<input type="text" th:field="*{categoryName}"><br>
+										<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
+											class="error-msg" id="categoryRegistErr">
+										</div>
+									</td>
+
+								</tr>
+
+
+							</table>
+
+							<input type="submit" value="登録" class="btn">
+
+						</form>
+
+						<br>
+
+						<div id="category-regist-back-btn">戻る</div>
+
+					</div>
 
 			</div>
+
+			</section>
+
+
+		</div>
 
 
 		</div>
@@ -183,7 +341,7 @@
 
 
 	<script th:src="@{../js/time-log.js}"></script>
-	
+
 
 </body>
 

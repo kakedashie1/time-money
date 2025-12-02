@@ -14,6 +14,7 @@ import com.example.demo.entity.Day;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
+import com.example.demo.form.CategoryRegistForm;
 import com.example.demo.form.TimeRegistForm;
 import com.example.demo.security.UserDetailsImpl;
 import com.example.demo.service.CategoryService;
@@ -45,10 +46,12 @@ public class LogController {
 		TimeRegistForm form = new TimeRegistForm();
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());
+		CategoryRegistForm registForm = new CategoryRegistForm();
 
 		model.addAttribute("timeLogList", list);
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("timeRegistForm", form);
+		model.addAttribute("categoryRegistForm", registForm);
 		return "time-log";
 	}
 

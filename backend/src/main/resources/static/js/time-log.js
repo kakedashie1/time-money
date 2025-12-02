@@ -39,6 +39,14 @@
 	const startErr = document.getElementById('startErr');
 	const categoryErr = document.getElementById('categoryErr');
 	const endErr = document.getElementById('endErr');
+	const registModal = document.getElementById('regist-modal');
+	const categoryModal = document.getElementById('category-modal');
+	const categoryEdit = document.getElementById('category-edit');
+	const categoryBackBtn = document.getElementById('category-back-btn');
+	const categoryAddBtn = document.getElementById('category-add-btn');
+	const categoryAddModal = document.getElementById('category-add-modal');
+	const categoryRegistBackBtn = document.getElementById('category-regist-back-btn');
+	const categoryErrorMessage = document.getElementById('categoryErrorMessage');
 
 	registBtn.addEventListener('click', (e) => {
 		e.preventDefault();
@@ -50,39 +58,108 @@
 	if (errrorMessage) {
 
 		document.addEventListener('DOMContentLoaded', function() {
-			
+
 			modal.classList.remove('hidden');
 			mask.classList.remove('hidden');
 		});
 	}
+	if (categoryErrorMessage) {
+
+		document.addEventListener('DOMContentLoaded', function() {
+
+			modal.classList.remove('hidden');
+			mask.classList.remove('hidden');
+			categoryAddModal.classList.remove('hidden');
+			registModal.classList.add('hidden');
+
+		});
+	}
 
 	closeBtn.addEventListener('click', () => {
-		
+
 		modal.classList.add('hidden');
 		mask.classList.add('hidden');
 
+
 		if (startErr) {
 			startErr.textContent = '';
-			
+
 		}
 
 		if (categoryErr) {
 			categoryErr.textContent = '';
-			
+
 		}
 
 
 		if (endErr) {
 			endErr.textContent = '';
-			document.getElementById("errorMessage").textContent = "";
+
 		}
+
+		if (categoryRegistErr) {
+			categoryRegistErr.textContent = '';
+
+		}
+
+
 	});
 
 
 
 	mask.addEventListener('click', () => {
 
-		closeBtn.click();
+		categoryAddModal.classList.add('hidden');
+		registModal.classList.remove('hidden');
+		categoryModal.classList.add('hidden');
+
+		modal.classList.add('hidden');
+		mask.classList.add('hidden');
+
+		if (categoryRegistErr) {
+			categoryRegistErr.textContent = '';
+
+		}
+
+
+
+
+
+
+	});
+
+
+	categoryEdit.addEventListener('click', () => {
+
+		categoryModal.classList.remove('hidden');
+		registModal.classList.add('hidden');
+
+	});
+
+
+	categoryBackBtn.addEventListener('click', () => {
+
+		categoryModal.classList.add('hidden');
+		registModal.classList.remove('hidden');
+
+	});
+
+	categoryAddBtn.addEventListener('click', () => {
+
+		categoryModal.classList.add('hidden');
+		categoryAddModal.classList.remove('hidden');
+
+	});
+
+	categoryRegistBackBtn.addEventListener('click', () => {
+
+		categoryAddModal.classList.add('hidden');
+		categoryModal.classList.remove('hidden');
+		if (categoryRegistErr) {
+			categoryRegistErr.textContent = '';
+
+		}
+
 	});
 
 
