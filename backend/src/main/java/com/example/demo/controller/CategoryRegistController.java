@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
+import com.example.demo.form.CategoryEditForm;
 import com.example.demo.form.CategoryRegistForm;
 import com.example.demo.form.TimeRegistForm;
 import com.example.demo.security.UserDetailsImpl;
@@ -40,17 +41,20 @@ public class CategoryRegistController {
 
 	@PostMapping("/category-regist")
 	public String regist(Model model, @Validated CategoryRegistForm form, BindingResult result,
-			TimeRegistForm registForm,@AuthenticationPrincipal UserDetailsImpl principal) {
+			TimeRegistForm registForm, @AuthenticationPrincipal UserDetailsImpl principal) {
 
 		if (result.hasErrors()) {
 			List<TimeLog> TimeLogList = timeService.findListAll(principal.getId());
 
 			model.addAttribute("timeLogList", TimeLogList);
-
+			CategoryEditForm editForm = new CategoryEditForm();
+			Category categoryEdit = new Category();
 			List<Category> CategoryList = categoryService.findAll();
 			model.addAttribute("categoryList", CategoryList);
 			model.addAttribute("timeRegistForm", registForm);
 			model.addAttribute("errorMessage", "error");
+			model.addAttribute("categoryEditForm", editForm);
+			model.addAttribute("category", categoryEdit);
 
 			return "time-log";
 		}
@@ -65,11 +69,16 @@ public class CategoryRegistController {
 
 		registForm.setToDay(registForm.getToDay());
 		registForm.setMaxDay(registForm.getMaxDay());
-
+		List<TimeLog> timeLogList = timeService.findListAll(principal.getId());
+		CategoryEditForm editForm = new CategoryEditForm();
+		Category categoryEdit = new Category();
+		model.addAttribute("timeLogList", timeLogList);
 		model.addAttribute("logDetail", logDetail);
 		model.addAttribute("categoryList", list);
 		model.addAttribute("timeRegistForm", registForm);
+		model.addAttribute("categoryEditForm", editForm);
+		model.addAttribute("category", categoryEdit);
 
-		return "category";
+		return "time-log";
 	}
 }

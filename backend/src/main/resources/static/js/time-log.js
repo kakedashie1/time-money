@@ -47,6 +47,21 @@
 	const categoryAddModal = document.getElementById('category-add-modal');
 	const categoryRegistBackBtn = document.getElementById('category-regist-back-btn');
 	const categoryErrorMessage = document.getElementById('categoryErrorMessage');
+	const categoryRegistContent = document.getElementById('categoryRegistContent');
+	const categoryRegistBtn = document.getElementById('category-regist-btn');
+	const categoryRemoveBtn = document.getElementById('cateogry-remove-btn');
+	const categoryRegistErr = document.getElementById('categoryRegistErr');
+	const categoryEditModal = document.getElementById('category-edit-modal');
+	const categoryEditBtn = document.getElementById('category-edit-btn');
+	const categoryEditBackBtn = document.getElementById('category-edit-back-btn');
+
+
+
+	document.addEventListener('DOMContentLoaded', function() {
+		categoryRegistContent.value = "";
+
+
+	});
 
 	registBtn.addEventListener('click', (e) => {
 		e.preventDefault();
@@ -66,11 +81,12 @@
 	if (categoryErrorMessage) {
 
 		document.addEventListener('DOMContentLoaded', function() {
-
+			categoryRegistContent.value = "";
 			modal.classList.remove('hidden');
 			mask.classList.remove('hidden');
 			categoryAddModal.classList.remove('hidden');
 			registModal.classList.add('hidden');
+
 
 		});
 	}
@@ -113,6 +129,7 @@
 		registModal.classList.remove('hidden');
 		categoryModal.classList.add('hidden');
 
+		categoryRegistContent.value = "";
 		modal.classList.add('hidden');
 		mask.classList.add('hidden');
 
@@ -162,5 +179,46 @@
 
 	});
 
+	categoryRegistBtn.addEventListener('click', () => {
+
+
+
+	});
+
+
+	//	categoryRemoveBtn.addEventListener('click', () => {
+	//
+	//		CheckDelete();
+	//
+	//	});
+
+
+	categoryEditBtn.addEventListener('click', () => {
+
+		categoryModal.classList.add('hidden');
+		categoryEditModal.classList.remove('hidden');
+
+	});
+	
+	categoryEditBackBtn.addEventListener('click', () => {
+
+		categoryEditModal.classList.add('hidden');
+		categoryModal.classList.remove('hidden');
+
+	});
+
+
+
 
 }
+
+function CheckDelete() {
+	if (confirm('削除しますか？')) {
+		return true;
+	} else {
+		alert('キャンセルされました');
+		return false;
+	}
+}
+
+

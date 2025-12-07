@@ -14,6 +14,7 @@ import com.example.demo.entity.Day;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
+import com.example.demo.form.CategoryEditForm;
 import com.example.demo.form.CategoryRegistForm;
 import com.example.demo.form.TimeRegistForm;
 import com.example.demo.security.UserDetailsImpl;
@@ -47,11 +48,14 @@ public class LogController {
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());
 		CategoryRegistForm registForm = new CategoryRegistForm();
-
+		CategoryEditForm editForm = new CategoryEditForm();
+		Category category = new Category();
 		model.addAttribute("timeLogList", list);
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("timeRegistForm", form);
 		model.addAttribute("categoryRegistForm", registForm);
+		model.addAttribute("categoryEditForm", editForm);
+		model.addAttribute("category", category);
 		return "time-log";
 	}
 
