@@ -50,6 +50,7 @@
 		<div th:if="${timeLogList} != null" class="container">
 
 
+
 			<div class="day">
 
 				<form th:action="@{/prev-day}" method="POST">
@@ -184,10 +185,14 @@
 
 					<div id="category-modal" class="hidden">
 						<h2>Category</h2>
+						<div th:if="${categoryEditMode != null}">
+							<span id="categoryEditMode"></span>
+						</div>
 
 
 						<div th:if="${categoryList} != null">
 							<h2>カテゴリ一覧</h2>
+
 
 
 
@@ -209,11 +214,16 @@
 
 
 									<td>
-										<div id="category-edit-btn">編集</div>
+										<form th:action="@{/category-show-edit}" method="POST"
+											th:object="${timeRegistForm}">
+											<input type="hidden" name="categoryId" th:value="${category.categoryId}">
+
+											<input type="submit" value="編集" class="category-edit-btn">
+										</form>
 									</td>
 									<td>
 										<form th:action="@{/category-remove}" method="POST">
-											
+
 											<input type="hidden" name="categoryId" th:value="${category.categoryId}">
 											<input type="submit" value="削除" class="tbtn">
 										</form>
@@ -232,97 +242,99 @@
 							<div id="category-back-btn">戻る</div>
 
 
+						</div>
+
+
+
+
+
+
+
+
+
+
+
 					</div>
 
+					<!--					カテゴリー登録モーダルウィンドウ-->
+
+					<div id="category-add-modal" class="hidden">
+						<h2>カテゴリー登録</h2>
+
+						<div th:if="${errorMessage != null}">
+							<span id="categoryErrorMessage"></span>
+						</div>
+
+						<form th:action="@{/category-regist}" method="POST" th:object="${categoryRegistForm}">
+
+							<table class="detail-table">
+								<tr>
+									<td class="guide">【カテゴリー名】</td>
+									<td>
+										<input type="text" th:field="*{categoryName}" id="categoryRegistContent"><br>
+										<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
+											class="error-msg" id="categoryRegistErr">
+										</div>
+									</td>
+
+								</tr>
+
+
+							</table>
+
+							<input type="submit" value="登録" class="btn" id="category-regist-btn">
+
+						</form>
+
+						<br>
+
+						<div id="category-regist-back-btn">戻る</div>
+
+					</div>
+
+					<!--					カテゴリー編集モーダルウィンドウ-->
+					<div id="category-edit-modal" class="hidden">
+						<h2>カテゴリー編集</h2>
+						<div th:if="${ categoryEditedMode!= null}">
+							<span id="categoryEditedMode"></span>
+						</div>
 
 
 
+						<form th:action="@{/category-edit}" method="POST" th:object="${categoryEditForm}">
+							<input type="hidden" th:field="*{categoryId}">
+
+							<table class="detail-table">
+								<tr>
+									<td class="guide">【カテゴリー名】</td>
+									<td>
+										<input type="text" th:field="${category.categoryName}"><br>
+										<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
+											class="error-msg">
+										</div>
+									</td>
+								</tr>
+
+
+							</table>
+
+							<input type="submit" value="更新" class="btn">
+
+						</form>
+
+
+						<div id="category-edit-back-btn">戻る</div>
 
 
 
+					</div>
 
-
-
-
-			</div>
-
-			<!--					カテゴリー登録モーダルウィンドウ-->
-
-			<div id="category-add-modal" class="hidden">
-				<h2>カテゴリー登録</h2>
-
-				<div th:if="${errorMessage != null}">
-					<span id="categoryErrorMessage"></span>
 				</div>
 
-				<form th:action="@{/category-regist}" method="POST" th:object="${categoryRegistForm}">
-
-					<table class="detail-table">
-						<tr>
-							<td class="guide">【カテゴリー名】</td>
-							<td>
-								<input type="text" th:field="*{categoryName}" id="categoryRegistContent"><br>
-								<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
-									class="error-msg" id="categoryRegistErr">
-								</div>
-							</td>
-
-						</tr>
-
-
-					</table>
-
-					<input type="submit" value="登録" class="btn" id="category-regist-btn">
-
-				</form>
-
-				<br>
-
-				<div id="category-regist-back-btn">戻る</div>
-
-			</div>
-
-			<!--					カテゴリー編集モーダルウィンドウ-->
-			<div id="category-edit-modal" class="hidden">
-				<h2>カテゴリー編集</h2>
-
-
-
-
-				<form th:action="@{/category-edit}" method="POST" th:object="${categoryEditForm}">
-					<input type="hidden" th:field="*{categoryId}">
-
-					<table class="detail-table">
-						<tr>
-							<td class="guide">【カテゴリー名】</td>
-							<td>
-								<input type="text" th:field="${category.categoryName}"><br>
-								<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
-									class="error-msg">
-								</div>
-							</td>
-						</tr>
-
-
-					</table>
-
-					<input type="submit" value="更新" class="btn">
-
-				</form>
-
-
-				<div id="category-edit-back-btn">戻る</div>
-
+				</section>
 
 
 			</div>
-
-		</div>
-
-		</section>
-
-
-		</div>
 
 
 		</div>
