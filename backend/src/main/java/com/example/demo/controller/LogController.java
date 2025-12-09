@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Day;
@@ -38,7 +39,7 @@ public class LogController {
 	//		return "login";
 	//	}
 
-	@GetMapping("/")
+	@RequestMapping("/")
 	private String showListSelection(@AuthenticationPrincipal UserDetailsImpl principal, Model model) {
 		// HTMLテンプレート名で return
 		List<TimeLog> list = timeService.findListAll(principal.getId());
@@ -62,17 +63,23 @@ public class LogController {
 	@GetMapping("/top")
 	private String top(@AuthenticationPrincipal UserDetailsImpl principal, Model model) {
 		// HTMLテンプレート名で return
-		
 		List<TimeLog> list = timeService.findListAll(principal.getId());
 		List<Category> categoryList = categoryService.findAll();
 		nowDay = LocalDate.now();
 		TimeRegistForm form = new TimeRegistForm();
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());
+		CategoryRegistForm registForm = new CategoryRegistForm();
+		CategoryEditForm editForm = new CategoryEditForm();
+		Category category = new Category();
 		model.addAttribute("timeLogList", list);
-		model.addAttribute("timeRegistForm", form);
 		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("timeRegistForm", form);
+		model.addAttribute("categoryRegistForm", registForm);
+		model.addAttribute("categoryEditForm", editForm);
+		model.addAttribute("category", category);
 		return "time-log";
+		
 	}
 
 	@PostMapping("/time-log")

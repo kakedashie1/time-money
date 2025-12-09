@@ -52,8 +52,10 @@
 	const categoryRemoveBtn = document.getElementById('cateogry-remove-btn');
 	const categoryRegistErr = document.getElementById('categoryRegistErr');
 	const categoryEditModal = document.getElementById('category-edit-modal');
-	const categoryEditBtn = document.getElementById('category-edit-btn');
+	const categoryEditBtn = document.querySelectorAll('category-edit-btn');
 	const categoryEditBackBtn = document.getElementById('category-edit-back-btn');
+	const categoryEditMode = document.getElementById('categoryEditMode');
+	const categoryEditedMode = document.getElementById('categoryEditedMode');
 
 
 
@@ -128,6 +130,7 @@
 		categoryAddModal.classList.add('hidden');
 		registModal.classList.remove('hidden');
 		categoryModal.classList.add('hidden');
+		categoryEditModal.classList.add('hidden');
 
 		categoryRegistContent.value = "";
 		modal.classList.add('hidden');
@@ -135,6 +138,15 @@
 
 		if (categoryRegistErr) {
 			categoryRegistErr.textContent = '';
+
+		}
+
+		if (categoryEditMode) {
+			categoryEditMode.textContent = '';
+
+		}
+		if (categoryEditedMode) {
+			categoryEditedMode.textContent = '';
 
 		}
 
@@ -193,17 +205,40 @@
 	//	});
 
 
-	categoryEditBtn.addEventListener('click', () => {
+	if (categoryEditMode) {
 
-		categoryModal.classList.add('hidden');
-		categoryEditModal.classList.remove('hidden');
+		document.addEventListener('DOMContentLoaded', function() {
+			modal.classList.remove('hidden');
+			mask.classList.remove('hidden');
+			categoryModal.classList.add('hidden');
+			registModal.classList.add('hidden');
+			categoryEditModal.classList.remove('hidden');
+		});
+	}
+	if (categoryEditedMode) {
 
-	});
-	
+		document.addEventListener('DOMContentLoaded', function() {
+			modal.classList.remove('hidden');
+			mask.classList.remove('hidden');
+			registModal.classList.add('hidden');
+			categoryModal.classList.remove('hidden');
+			
+		});
+	}
+
 	categoryEditBackBtn.addEventListener('click', () => {
 
 		categoryEditModal.classList.add('hidden');
 		categoryModal.classList.remove('hidden');
+
+				if (categoryEditMode) {
+					categoryEditMode.textContent = '';
+		
+				}
+				if (categoryEditedMode) {
+					categoryEditedMode.textContent = '';
+		
+				}
 
 	});
 
