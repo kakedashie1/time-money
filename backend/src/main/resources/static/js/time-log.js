@@ -140,6 +140,14 @@
 			categoryRegistErr.textContent = '';
 
 		}
+		if (startErr) {
+			startErr.textContent = '';
+
+		}
+		if (endErr) {
+			endErr.textContent = '';
+
+		}
 
 		if (categoryEditMode) {
 			categoryEditMode.textContent = '';

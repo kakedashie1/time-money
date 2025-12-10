@@ -52,7 +52,7 @@ public class CategoryRegistController {
 			List<Category> CategoryList = categoryService.findAll();
 			model.addAttribute("categoryList", CategoryList);
 			model.addAttribute("timeRegistForm", registForm);
-			model.addAttribute("errorMessage", "error");
+			model.addAttribute("categoryErrorMessage", "error");
 			model.addAttribute("categoryEditForm", editForm);
 			model.addAttribute("category", categoryEdit);
 
