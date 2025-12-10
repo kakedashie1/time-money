@@ -40,11 +40,11 @@ public class LogRemoveController {
 		List<TimeLog> list = timeService.findListAll(principal.getId());
 
 		List<TimeLog> TimeLogList = timeService.findByNowDay(day);
-
+		form.setToDay(nowDay);
 		model.addAttribute("timeLogList", TimeLogList);
 		model.addAttribute("today", nowDay);
 		model.addAttribute("categoryList", list);
-
+		model.addAttribute("timeRegistForm", form);
 		return "time-log";
 	}
 

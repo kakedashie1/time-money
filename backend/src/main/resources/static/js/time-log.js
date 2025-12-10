@@ -38,6 +38,7 @@
 	const registTitle = document.getElementById('regist-title');
 	const errrorMessage = document.getElementById("errorMessage");
 	const startErr = document.getElementById('startErr');
+	const maxErr = document.getElementById('maxErr');
 	const categoryErr = document.getElementById('categoryErr');
 	const endErr = document.getElementById('endErr');
 	const registModal = document.getElementById('regist-modal');
@@ -132,6 +133,10 @@
 			endErr.textContent = '';
 
 		}
+		if (maxErr) {
+			maxErr.textContent = '';
+
+		}
 
 		if (categoryRegistErr) {
 			categoryRegistErr.textContent = '';
@@ -164,6 +169,10 @@
 		}
 		if (endErr) {
 			endErr.textContent = '';
+
+		}
+		if (maxErr) {
+			maxErr.textContent = '';
 
 		}
 

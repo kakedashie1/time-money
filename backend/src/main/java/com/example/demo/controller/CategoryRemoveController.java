@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -43,6 +44,8 @@ public class CategoryRemoveController {
 		CategoryRegistForm categoryRegistForm = new CategoryRegistForm();
 		registForm.setToDay(registForm.getToDay());
 		registForm.setMaxDay(registForm.getMaxDay());
+		LocalDate nowDay = LocalDate.now();
+		registForm.setToDay(nowDay);
 		CategoryEditForm editForm = new CategoryEditForm();
 		Category categoryEdit = new Category();
 

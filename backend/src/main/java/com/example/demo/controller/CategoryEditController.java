@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -86,6 +87,8 @@ public class CategoryEditController {
 
 		registForm.setToDay(registForm.getToDay());
 		registForm.setMaxDay(registForm.getMaxDay());
+		LocalDate nowDay = LocalDate.now();
+		registForm.setToDay(nowDay);
 		
 		List<TimeLog> TimeLogList = timeService.findListAll(principal.getId());
 		CategoryEditForm editForm = new CategoryEditForm();

@@ -231,7 +231,7 @@ public class LogController {
 		model.addAttribute("categoryRegistForm", registForm);
 		model.addAttribute("categoryEditForm", editForm);
 		model.addAttribute("category", category);
-
+		model.addAttribute("categoryList", categoryList);
 		return "time-log";
 	}
 }
