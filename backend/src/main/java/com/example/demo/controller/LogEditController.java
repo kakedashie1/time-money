@@ -15,6 +15,8 @@ import com.example.demo.entity.Category;
 import com.example.demo.entity.EditLog;
 import com.example.demo.entity.LogDetail;
 import com.example.demo.entity.TimeLog;
+import com.example.demo.form.CategoryEditForm;
+import com.example.demo.form.CategoryRegistForm;
 import com.example.demo.form.TimeEditForm;
 import com.example.demo.form.TimeRegistForm;
 import com.example.demo.security.UserDetailsImpl;
@@ -76,12 +78,16 @@ public class LogEditController {
 		
 		TimeRegistForm form = new TimeRegistForm();
 	    form.setToDay(nowDay);
-
+	    CategoryRegistForm categoryRegistForm = new CategoryRegistForm();
+	    CategoryEditForm categoryEditForm = new CategoryEditForm();
+		Category categoryEdit = new Category();
 		model.addAttribute("timeLogList", TimeLogList);
 		model.addAttribute("timeRegistForm", form);
 		model.addAttribute("categoryList", list);
 		model.addAttribute("categoryList", categoryList);
-
+		model.addAttribute("categoryRegistForm",categoryRegistForm);
+		model.addAttribute("categoryEditForm", categoryEditForm);
+		model.addAttribute("category", categoryEdit);
 		return "time-log";
 	}
 }
