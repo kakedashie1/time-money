@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -52,7 +53,7 @@ public class CategoryRegistController {
 			List<Category> CategoryList = categoryService.findAll();
 			model.addAttribute("categoryList", CategoryList);
 			model.addAttribute("timeRegistForm", registForm);
-			model.addAttribute("errorMessage", "error");
+			model.addAttribute("categoryErrorMessage", "error");
 			model.addAttribute("categoryEditForm", editForm);
 			model.addAttribute("category", categoryEdit);
 
@@ -69,6 +70,8 @@ public class CategoryRegistController {
 
 		registForm.setToDay(registForm.getToDay());
 		registForm.setMaxDay(registForm.getMaxDay());
+		LocalDate nowDay = LocalDate.now();
+		registForm.setToDay(nowDay);
 		List<TimeLog> timeLogList = timeService.findListAll(principal.getId());
 		CategoryEditForm editForm = new CategoryEditForm();
 		Category categoryEdit = new Category();

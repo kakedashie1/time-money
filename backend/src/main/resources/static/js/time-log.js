@@ -28,6 +28,7 @@
 	//ログ登録処理
 
 
+	const date = document.getElementById('date');
 	const modal = document.getElementById('modal');
 	const mask = document.getElementById('mask');
 	const timeBtn = document.getElementById('time-btn');
@@ -37,6 +38,7 @@
 	const registTitle = document.getElementById('regist-title');
 	const errrorMessage = document.getElementById("errorMessage");
 	const startErr = document.getElementById('startErr');
+	const maxErr = document.getElementById('maxErr');
 	const categoryErr = document.getElementById('categoryErr');
 	const endErr = document.getElementById('endErr');
 	const registModal = document.getElementById('regist-modal');
@@ -58,10 +60,27 @@
 	const categoryEditedMode = document.getElementById('categoryEditedMode');
 
 
+	
+	
+	const day = date.textContent;
+	
+	const today = new Date();
+	var year = today.getFullYear();
+	var month = today.getMonth() + 1;
+	var d = today.getDate();
+	
+	const todate = year + "-" + month + "-" + d;
 
 	document.addEventListener('DOMContentLoaded', function() {
 		categoryRegistContent.value = "";
-
+		
+		if(day == todate) {
+			
+			registBtn.classList.remove('hidden');
+		}
+		
+		console.log(todate);
+		console.log(day);
 
 	});
 
@@ -114,6 +133,10 @@
 			endErr.textContent = '';
 
 		}
+		if (maxErr) {
+			maxErr.textContent = '';
+
+		}
 
 		if (categoryRegistErr) {
 			categoryRegistErr.textContent = '';
@@ -138,6 +161,18 @@
 
 		if (categoryRegistErr) {
 			categoryRegistErr.textContent = '';
+
+		}
+		if (startErr) {
+			startErr.textContent = '';
+
+		}
+		if (endErr) {
+			endErr.textContent = '';
+
+		}
+		if (maxErr) {
+			maxErr.textContent = '';
 
 		}
 

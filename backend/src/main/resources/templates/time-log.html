@@ -57,7 +57,7 @@
 					<button><i class="bi bi-caret-left-fill"></i></button>
 				</form>
 
-				<h2 th:text="${timeRegistForm.toDay}"></h2>
+				<h2 th:text="${timeRegistForm.toDay}" id="date"></h2>
 
 				<form th:action="@{/next-day}" method="POST">
 					<button><i class="bi bi-caret-right-fill"></i></button>
@@ -104,7 +104,7 @@
 						<!--					</tr>-->
 						<tr>
 							<td colspan="3">
-								<div id="regist-btn">新規ログ登録</div>
+								<div id="regist-btn" class="hidden">新規ログ登録</div>
 							</td>
 						</tr>
 					</form>
@@ -156,7 +156,7 @@
 										<div th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"
 											class="error-msg" id="startErr"></div>
 										<div th:if="${#fields.hasErrors('maxDay')}" th:errors="*{maxDay}"
-											class="error-msg">
+											class="error-msg" id="maxErr">
 										</div>
 									</td>
 								</tr>
@@ -261,7 +261,7 @@
 					<div id="category-add-modal" class="hidden">
 						<h2>カテゴリー登録</h2>
 
-						<div th:if="${errorMessage != null}">
+						<div th:if="${categoryErrorMessage != null}">
 							<span id="categoryErrorMessage"></span>
 						</div>
 
