@@ -136,10 +136,17 @@ button:hover {
 	justify-content: center;
 }
 
-table {
+.timeLogList {
 	border: 1px solid #5e696c;
 	margin-left: auto;
 	margin-right: auto;
+	width: 50%;
+	border-collapse: collapse;
+}
+.detail-table{
+	border: 1px solid #5e696c;
+	
+	
 	width: 50%;
 	border-collapse: collapse;
 }
@@ -157,6 +164,17 @@ tr:nth-child(odd) {
 
 }
 
+#category-add-btn {
+	text-align: center;
+	margin-top: 30px;
+}
+
+
+
+.log-regist-btn {
+	
+	line-height: 78px;
+}
 
 
 #mask {
@@ -195,6 +213,12 @@ tr:nth-child(odd) {
 
 	text-align: center;
 }
+
+/*#regist-modal {*/
+/*	display: flex;*/
+/*	justify-content: center;*/
+/*	flex-direction: column;*/
+/*}*/
 
 
 /*.btn {*/
