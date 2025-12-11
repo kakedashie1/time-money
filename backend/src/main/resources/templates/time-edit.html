@@ -29,7 +29,7 @@
 			<tr>
 				<td class="guide">【開始時間】</td>
 				<td>
-					<p th:text="*{#temporals.format(startTime, 'yyyy/MM/dd HH:mm')}" th:field="*{startTime}"></p><br>
+					<input type="datetime-local" name="startTime" th:value="*{startTime}"><br>
 					<div th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}" class="error-msg"></div>
 				</td>
 			</tr>

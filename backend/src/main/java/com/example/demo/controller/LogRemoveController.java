@@ -17,6 +17,7 @@ import com.example.demo.form.CategoryRegistForm;
 import com.example.demo.form.LogRemoveForm;
 import com.example.demo.form.TimeRegistForm;
 import com.example.demo.security.UserDetailsImpl;
+import com.example.demo.service.CategoryService;
 import com.example.demo.service.TimeService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class LogRemoveController {
 
 	private final TimeService timeService;
+	private final CategoryService categoryService;
 
 	/*--- タスク削除リクエスト（タスク詳細画面より） ---*/
 	@PostMapping("/log-remove")
@@ -40,15 +42,15 @@ public class LogRemoveController {
 
 		day.setNowDay(nowDay);
 		day.setUserId(principal.getId());
-		List<TimeLog> list = timeService.findListAll(principal.getId());
 		CategoryRegistForm categoryRegistForm = new CategoryRegistForm();
 		CategoryEditForm categoryEditForm = new CategoryEditForm();
 		Category categoryEdit = new Category();
 		List<TimeLog> TimeLogList = timeService.findByNowDay(day);
 		form.setToDay(nowDay);
+		List<Category> CategoryList = categoryService.findAll();
 		model.addAttribute("timeLogList", TimeLogList);
 		model.addAttribute("today", nowDay);
-		model.addAttribute("categoryList", list);
+		model.addAttribute("categoryList", CategoryList);
 		model.addAttribute("timeRegistForm", form);
 		model.addAttribute("categoryRegistForm",categoryRegistForm);
 		model.addAttribute("categoryEditForm", categoryEditForm);

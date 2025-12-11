@@ -9,11 +9,12 @@ import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.demo.validation.CategoryDate;
+import com.example.demo.validation.ValidDate;
 
 import lombok.Data;
 
 @Data
-//@ValidDate(startTimeStr = "startTime", endTimeStr = "endTime")
+@ValidDate(startTimeStr = "startTime", endTimeStr = "endTime")
 @CategoryDate(categoryIdStr = "categoryId")
 public class TimeEditForm {
 	
