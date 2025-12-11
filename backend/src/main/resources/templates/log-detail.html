@@ -4,12 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ログ詳細</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/time-detail.css}">
 </head>
 
 <body>
 	<h2>タスク詳細</h2>
-
+	<div class="container">
 	<!-- ------------タスク詳細---------------- -->
 	<table class="detail-table" th:object="${logDetail}">
 		<tr>
@@ -27,7 +27,8 @@
 		</tr>
 
 	</table>
-	<div th:if="${correctId != null}">
+	<div class="detail-btns">
+	<div th:if="${correctId != null}" class="log-edit-btn">
 		<form th:action="@{/time-show-edit}" method="POST" th:object="${logDetail}">
 			<input type="hidden" th:field="*{logId}">
 			<input type="hidden" name="categoryId" th:value="*{category.categoryId}">
@@ -36,16 +37,18 @@
 			<input type="submit" value="編集" class="btn">
 		</form>
 	</div>
-
+	<div class="log-delete-btn">
 	<form th:action="@{/log-remove}" method="POST" th:object="${logDetail}">
 		<input type="hidden" th:field="*{logId}">
 		<input type="hidden" name="toDay" th:value="${timeRegistForm.toDay}">
 		<input type="submit" value="削除" class="btn">
 	</form>
+	</div>
+	</div>
 	<br>
 	<br>
 	<a th:href="@{/top}">トップページに戻る</a>
-	
+	</div>
 	<script th:src="@{../js/time-log.js}"></script>
 </body>
 
