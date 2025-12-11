@@ -50,13 +50,14 @@
 		<div th:if="${timeLogList} != null" class="container">
 
 
+
 			<div class="day">
 
 				<form th:action="@{/prev-day}" method="POST">
 					<button><i class="bi bi-caret-left-fill"></i></button>
 				</form>
 
-				<h2 th:text="${timeRegistForm.toDay}"></h2>
+				<h2 th:text="${timeRegistForm.toDay}" id="date"></h2>
 
 				<form th:action="@{/next-day}" method="POST">
 					<button><i class="bi bi-caret-right-fill"></i></button>
@@ -102,7 +103,9 @@
 						<!--						<td id="end-time"><input type="text"></td>-->
 						<!--					</tr>-->
 						<tr>
-							<td  colspan="3"><div id="regist-btn">新規ログ登録</div></td>
+							<td colspan="3">
+								<div id="regist-btn" class="hidden">新規ログ登録</div>
+							</td>
 						</tr>
 					</form>
 
@@ -110,32 +113,228 @@
 				<div id="mask" class="hidden"></div>
 
 
-				<section id="modal"  class="hidden">
-					<h2>新規ログ登録</h2>
-					<h3 id="regist-title">カテゴリー入力</h3>
-					<div class="result">
-						<span id="result-category">カテゴリー :</span>
-						<span id="result-start-time">開始時間 :</span>
-					</div>
-					<div id="content">
-						<div id="up">上</div>
-						<div id="category-list">
-							
+				<div id="modal" class="hidden">
+
+					<!--					ログ登録モーダルウィンドウ-->
+					<div id="regist-modal">
+						<h2>タスク登録</h2>
+						<div th:if="${errorMessage != null}">
+							<span id="errorMessage"></span>
 						</div>
-						<div id="down">下</div>
-					</div>
+						<!--						<form th:action="@{/category-list}" method="POST" th:object="${timeRegistForm}">-->
+						<!--							<input type="hidden" th:field="*{maxDay}">-->
+						<!--							<input type="hidden" th:field="*{toDay}">-->
+						<!--							<input type="submit" value="カテゴリー編集" class="btn">-->
+						<!--						</form>-->
 
+						<form th:action="@{/time-regist}" method="POST" th:object="${timeRegistForm}">
+							<input type="hidden" th:field="*{maxDay}">
+							<input type="hidden" th:field="*{toDay}">
+							<table class="detail-table">
 
-					<div class="btn">
+								<tr>
+									<td class="guide">【カテゴリー名】</td>
+									<td>
+										<select th:field="*{categoryId}">
+											<option th:each="category : ${categoryList}"
+												th:value="${category.categoryId}" th:text="${category.categoryName}"
+												th:selected="${category.categoryId == categoryId}">
+											</option>
+										</select>
+										<div th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"
+											class="error-msg" id="categoryErr"></div>
+									</td>
+									<td>
+										<div id="category-edit"><i class="fa-solid fa-gear"></i></div>
+									</td>
+
+								</tr>
+								<tr>
+									<td class="guide">【開始時間】</td>
+									<td>
+										<input type="datetime-local" name="startTime" th:value="*{maxDay}"><br>
+										<div th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"
+											class="error-msg" id="startErr"></div>
+										<div th:if="${#fields.hasErrors('maxDay')}" th:errors="*{maxDay}"
+											class="error-msg" id="maxErr">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="guide">【終了時間】</td>
+									<td>
+										<input type="datetime-local" th:field="*{endTime}"><br>
+										<div th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"
+											class="error-msg" id="endErr"></div>
+									</td>
+								</tr>
+
+							</table>
+
+							<input type="submit" value="登録" class="btn">
+
+						</form>
+
+						<br>
 						<div id="close-btn">閉じる</div>
-						<div id="back">戻る</div>
-						<div id="time-regist-btn">時間入力へ</div>
 
 					</div>
+
+
+					<!--					カテゴリーモーダルウィンドウ-->
+
+					<div id="category-modal" class="hidden">
+						<h2>Category</h2>
+						<div th:if="${categoryEditMode != null}">
+							<span id="categoryEditMode"></span>
+						</div>
+
+
+						<div th:if="${categoryList} != null">
+							<h2>カテゴリ一覧</h2>
+
+
+
+
+
+							<form th:action="@{/category-show-regist}" method="POST" th:object="${logDetail}">
+
+								<input type="submit" value="カテゴリー追加" class="btn">
+							</form>
+
+
+
+							<table class="timeLogList">
+								<tr>
+									<th>カテゴリー名</th>
+
+								</tr>
+								<tr th:each="category : ${categoryList}">
+									<td th:text="${category.categoryName}"></td>
+
+
+									<td>
+										<form th:action="@{/category-show-edit}" method="POST"
+											th:object="${timeRegistForm}">
+											<input type="hidden" name="categoryId" th:value="${category.categoryId}">
+
+											<input type="submit" value="編集" class="category-edit-btn">
+										</form>
+									</td>
+									<td>
+										<form th:action="@{/category-remove}" method="POST">
+
+											<input type="hidden" name="categoryId" th:value="${category.categoryId}">
+											<input type="submit" value="削除" class="tbtn">
+										</form>
+									</td>
+
+
+
+								</tr>
+								<tr>
+									<td>
+										<div id="category-add-btn">カテゴリー追加</div>
+									</td>
+								</tr>
+
+							</table>
+							<div id="category-back-btn">戻る</div>
+
+
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+					</div>
+
+					<!--					カテゴリー登録モーダルウィンドウ-->
+
+					<div id="category-add-modal" class="hidden">
+						<h2>カテゴリー登録</h2>
+
+						<div th:if="${categoryErrorMessage != null}">
+							<span id="categoryErrorMessage"></span>
+						</div>
+
+						<form th:action="@{/category-regist}" method="POST" th:object="${categoryRegistForm}">
+
+							<table class="detail-table">
+								<tr>
+									<td class="guide">【カテゴリー名】</td>
+									<td>
+										<input type="text" th:field="*{categoryName}" id="categoryRegistContent"><br>
+										<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
+											class="error-msg" id="categoryRegistErr">
+										</div>
+									</td>
+
+								</tr>
+
+
+							</table>
+
+							<input type="submit" value="登録" class="btn" id="category-regist-btn">
+
+						</form>
+
+						<br>
+
+						<div id="category-regist-back-btn">戻る</div>
+
+					</div>
+
+					<!--					カテゴリー編集モーダルウィンドウ-->
+					<div id="category-edit-modal" class="hidden">
+						<h2>カテゴリー編集</h2>
+						<div th:if="${ categoryEditedMode!= null}">
+							<span id="categoryEditedMode"></span>
+						</div>
+
+
+
+						<form th:action="@{/category-edit}" method="POST" th:object="${categoryEditForm}">
+							<input type="hidden" th:field="*{categoryId}">
+
+							<table class="detail-table">
+								<tr>
+									<td class="guide">【カテゴリー名】</td>
+									<td>
+										<input type="text" th:field="${category.categoryName}"><br>
+										<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
+											class="error-msg">
+										</div>
+									</td>
+								</tr>
+
+
+							</table>
+
+							<input type="submit" value="更新" class="btn">
+
+						</form>
+
+
+						<div id="category-edit-back-btn">戻る</div>
+
+
+
+					</div>
+
+				</div>
+
 				</section>
 
 
-		</div>
+			</div>
 
 
 		</div>
@@ -145,9 +344,7 @@
 
 
 	<script th:src="@{../js/time-log.js}"></script>
-	<script th:inline="javascript">
-	  const categoryList = /*[[${categoryList}]]*/ "カテゴリー";
-	</script>
+
 
 </body>
 
