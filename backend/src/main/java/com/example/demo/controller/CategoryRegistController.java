@@ -46,7 +46,8 @@ public class CategoryRegistController {
 
 		if (result.hasErrors()) {
 			List<TimeLog> TimeLogList = timeService.findListAll(principal.getId());
-
+			LocalDate nowDay = LocalDate.now();
+			registForm.setToDay(nowDay);
 			model.addAttribute("timeLogList", TimeLogList);
 			CategoryEditForm editForm = new CategoryEditForm();
 			Category categoryEdit = new Category();
@@ -82,6 +83,6 @@ public class CategoryRegistController {
 		model.addAttribute("categoryEditForm", editForm);
 		model.addAttribute("category", categoryEdit);
 
-		return "time-log";
+		return "redirect:/top";
 	}
 }

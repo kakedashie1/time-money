@@ -30,6 +30,8 @@ public class CategoryEditController {
 	private final TimeService timeService;
 
 	private final CategoryService categoryService;
+	
+	private LocalDate nowDay = LocalDate.now();
 
 	@PostMapping("/category-show-edit")
 	public String showEdit(@ModelAttribute CategoryEditForm form, Model model,TimeRegistForm registForm, @AuthenticationPrincipal UserDetailsImpl principal) {
@@ -38,7 +40,7 @@ public class CategoryEditController {
 		registForm.setToDay(registForm.getToDay());
 		registForm.setMaxDay(registForm.getMaxDay());
 		List<TimeLog> TimeLogList = timeService.findListAll(principal.getId());
-		
+		registForm.setToDay(nowDay);
 		CategoryRegistForm categoryRegistForm = new CategoryRegistForm();
 		List<Category> CategoryList = categoryService.findAll();
 		model.addAttribute("timeLogList", TimeLogList);
@@ -61,7 +63,8 @@ public class CategoryEditController {
 			registForm.setToDay(registForm.getToDay());
 			registForm.setMaxDay(registForm.getMaxDay());
 			List<TimeLog> TimeLogList = timeService.findListAll(principal.getId());
-			
+			LocalDate nowDay = LocalDate.now();
+			registForm.setToDay(nowDay);
 			CategoryRegistForm categoryRegistForm = new CategoryRegistForm();
 			List<Category> CategoryList = categoryService.findAll();
 			model.addAttribute("logDetail", logDetail);

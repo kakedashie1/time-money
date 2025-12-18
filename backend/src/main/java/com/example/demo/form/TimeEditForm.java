@@ -25,8 +25,8 @@ public class TimeEditForm {
 	
 	private String categoryId;
 	
-//	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-//	@NotNull(message = "日時を入力してください。")
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	@NotNull(message = "日時を入力してください。")
 	private LocalDateTime startTime;
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	@NotNull(message = "日時を入力してください。")

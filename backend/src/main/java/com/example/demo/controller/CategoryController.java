@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -29,8 +30,9 @@ public class CategoryController {
 		List<Category> list = categoryService.findAll();
 
 		LogDetail logDetail = timeService.findDetailByLogId(form.getLogId());
-		
-		registForm.setToDay(registForm.getToDay());
+		LocalDate nowDay = LocalDate.now();
+
+		registForm.setToDay(nowDay);
 		registForm.setMaxDay(registForm.getMaxDay());
 
 		model.addAttribute("logDetail", logDetail);
