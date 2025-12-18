@@ -15,6 +15,8 @@ import com.example.demo.entity.Category;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.MaxDay;
 import com.example.demo.entity.TimeLog;
+import com.example.demo.form.CategoryEditForm;
+import com.example.demo.form.CategoryRegistForm;
 import com.example.demo.form.TimeRegistForm;
 import com.example.demo.security.UserDetailsImpl;
 import com.example.demo.service.CategoryService;
@@ -70,11 +72,19 @@ public class LogRegistController {
 			List<TimeLog> TimeLogList = timeService.findListAll(principal.getId());
 			
 			model.addAttribute("timeLogList", TimeLogList);
-			
+			CategoryEditForm editForm = new CategoryEditForm();
+			Category categoryEdit = new Category();
 			List<Category> CategoryList = categoryService.findAll();
+			CategoryRegistForm registForm = new CategoryRegistForm();
 			model.addAttribute("categoryList", CategoryList);
+			model.addAttribute("errorMessage", "error");
+			model.addAttribute("categoryEditForm", editForm);
+			model.addAttribute("category", categoryEdit);
+			model.addAttribute("categoryRegistForm", registForm);
+
 			
-			return "time-regist";
+			
+			return "time-log";
 		}
 		
 		Category category = categoryService.findByCategoryId(form.getCategoryId());

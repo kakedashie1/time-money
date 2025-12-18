@@ -4,35 +4,31 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ログ詳細</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/time-detail.css}">
 </head>
 
 <body>
-	<h2>タスク詳細</h2>
-
+	<h2>ログ詳細</h2>
+	<div class="container">
 	<!-- ------------タスク詳細---------------- -->
 	<table class="detail-table" th:object="${logDetail}">
 		<tr>
 			<td class="guide">【カテゴリー名】</td>
 			<td th:text="*{category.categoryName}"></td>
-			<td>
-				<form th:action="@{/category-list}" method="POST" th:object="${logDetail}">
-					<input type="hidden" th:field="*{logId}">
-					<input type="submit" value="カテゴリー編集" class="btn">
-				</form>
-			</td>
+			
 		</tr>
 		<tr>
 			<td class="guide">【開始時間】</td>
-			<td th:text="*{startTime}"></td>
+			<td th:text="*{#temporals.format(startTime, 'yyyy/MM/dd HH:mm')}"></td>
 		</tr>
 		<tr>
 			<td class="guide">【終了時間】</td>
-			<td th:text="*{endTime}"></td>
+			<td th:text="*{#temporals.format(endTime, 'yyyy/MM/dd HH:mm')}"></td>
 		</tr>
 
 	</table>
-	<div th:if="${correctId != null}">
+	<div class="detail-btns">
+	<div th:if="${correctId != null}" class="log-edit-btn">
 		<form th:action="@{/time-show-edit}" method="POST" th:object="${logDetail}">
 			<input type="hidden" th:field="*{logId}">
 			<input type="hidden" name="categoryId" th:value="*{category.categoryId}">
@@ -41,15 +37,19 @@
 			<input type="submit" value="編集" class="btn">
 		</form>
 	</div>
-
+	<div class="log-delete-btn">
 	<form th:action="@{/log-remove}" method="POST" th:object="${logDetail}">
 		<input type="hidden" th:field="*{logId}">
 		<input type="hidden" name="toDay" th:value="${timeRegistForm.toDay}">
 		<input type="submit" value="削除" class="btn">
 	</form>
+	</div>
+	</div>
 	<br>
 	<br>
 	<a th:href="@{/top}">トップページに戻る</a>
+	</div>
+	<script th:src="@{../js/time-log.js}"></script>
 </body>
 
 </html>
