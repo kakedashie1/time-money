@@ -59,12 +59,12 @@
 	</div>
 
 	<br>
-	<div th:if="${logDetail} != null">
-		<form th:action="@{/category-list}" method="POST" th:object="${logDetail}">
-			<input type="hidden" th:field="*{logId}">
-			<input type="submit" value="戻る" class="btn">
-		</form>
-	</div>
+<!--	<div th:if="${logDetail} != null">-->
+<!--		<form th:action="@{/category-list}" method="POST" th:object="${logDetail}">-->
+<!--			<input type="hidden" th:field="*{logId}">-->
+<!--			<input type="submit" value="戻る" class="btn">-->
+<!--		</form>-->
+<!--	</div>-->
 	<div th:unless="${logDetail} != null">
 		<form th:action="@{/category-list}" method="POST" th:object="${timeRegistForm}">
 			<input type="hidden" th:field="*{maxDay}">

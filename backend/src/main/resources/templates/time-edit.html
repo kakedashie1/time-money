@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ログ編集</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/time-edit.css}">
 </head>
 
 <body>
@@ -29,8 +29,8 @@
 			<tr>
 				<td class="guide">【開始時間】</td>
 				<td>
-					<p th:text="*{startTime}"></p><br>
-<!--					<div th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}" class="error-msg"></div>-->
+					<input type="datetime-local" name="startTime" th:value="*{startTime}"><br>
+					<div th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}" class="error-msg"></div>
 				</td>
 			</tr>
 			<tr>
@@ -42,15 +42,18 @@
 			</tr>
 
 		</table>
-
-		<input type="submit" value="更新" class="btn">
+		<div class="edit-btn">
+		
+			<input type="submit" value="更新" class="btn">
+		</div>
+		
 
 	</form>
 
 	<br>
-	<form th:action="@{/log-detail}" method="POST" th:object="${logDetail}">
+	<form th:action="@{/log-detail}" method="POST" th:object="${logDetail}" class="btn">
 		<input type="hidden" th:field="*{logId}">
-		<input type="submit" value="戻る" class="btn">
+		<input type="submit" value="戻る" >
 	</form>
 	
 </body>

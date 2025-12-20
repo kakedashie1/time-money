@@ -7,14 +7,21 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.entity.Category;
 import com.example.demo.entity.Day;
 import com.example.demo.entity.Log;
 import com.example.demo.entity.LogDetail;
+import com.example.demo.entity.MaxDay;
 import com.example.demo.entity.TimeLog;
+import com.example.demo.form.CategoryEditForm;
+import com.example.demo.form.CategoryRegistForm;
 import com.example.demo.form.TimeRegistForm;
 import com.example.demo.security.UserDetailsImpl;
+import com.example.demo.service.CategoryService;
 import com.example.demo.service.TimeService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +32,8 @@ public class LogController {
 
 	private final TimeService timeService;
 
+	private final CategoryService categoryService;
+
 	private LocalDate nowDay = LocalDate.now();
 
 	//	@GetMapping("/login")
@@ -32,17 +41,46 @@ public class LogController {
 	//		return "login";
 	//	}
 
-	@GetMapping("/")
-	private String showListSelection(@AuthenticationPrincipal UserDetailsImpl principal, Model model) {
+	@RequestMapping("/")
+	private String showListSelection(@AuthenticationPrincipal UserDetailsImpl principal,
+			@ModelAttribute TimeRegistForm form, Model model) {
 		// HTMLテンプレート名で return
 		List<TimeLog> list = timeService.findListAll(principal.getId());
+		List<Category> categoryList = categoryService.findAll();
 		nowDay = LocalDate.now();
-		TimeRegistForm form = new TimeRegistForm();
+		LocalDate toDay = form.getToDay();
+		if (toDay == null) {
+
+			toDay = LocalDate.now();
+		}
+
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());
+		CategoryRegistForm registForm = new CategoryRegistForm();
+		CategoryEditForm editForm = new CategoryEditForm();
+		Category category = new Category();
 
+		if (toDay.isAfter(nowDay)) {
+
+			List<TimeLog> logList = timeService.findListAll(principal.getId());
+			nowDay = LocalDate.now();
+
+			form.setToDay(nowDay);
+			model.addAttribute("timeLogList", logList);
+			model.addAttribute("timeRegistForm", form);
+			return "time-log";
+		}
+
+		MaxDay maxDay = timeService.findByMaxDay(form.getToDay());
+		if (maxDay != null) {
+			form.setMaxDay(maxDay.getMaxDay());
+		}
 		model.addAttribute("timeLogList", list);
-		model.addAttribute("timeRegistForm", form);
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("maxDay", maxDay);
+		model.addAttribute("categoryRegistForm", registForm);
+		model.addAttribute("categoryEditForm", editForm);
+		model.addAttribute("category", category);
 		return "time-log";
 	}
 
@@ -50,24 +88,40 @@ public class LogController {
 	private String top(@AuthenticationPrincipal UserDetailsImpl principal, Model model) {
 		// HTMLテンプレート名で return
 		List<TimeLog> list = timeService.findListAll(principal.getId());
+		List<Category> categoryList = categoryService.findAll();
 		nowDay = LocalDate.now();
 		TimeRegistForm form = new TimeRegistForm();
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());
+		CategoryRegistForm registForm = new CategoryRegistForm();
+		CategoryEditForm editForm = new CategoryEditForm();
+		Category category = new Category();
+		MaxDay maxDay = timeService.findByMaxDay(form.getToDay());
+		if (maxDay != null) {
+			form.setMaxDay(maxDay.getMaxDay());
+		}
 		model.addAttribute("timeLogList", list);
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("timeRegistForm", form);
+		model.addAttribute("categoryRegistForm", registForm);
+		model.addAttribute("categoryEditForm", editForm);
+		model.addAttribute("category", category);
+		model.addAttribute("maxDay", maxDay);
 		return "time-log";
+
 	}
 
 	@PostMapping("/time-log")
 	private String showLogList(@AuthenticationPrincipal UserDetailsImpl principal, Model model) {
 		nowDay = LocalDate.now();
 		List<TimeLog> list = timeService.findListAll(principal.getId());
+		List<Category> categoryList = categoryService.findAll();
 		TimeRegistForm form = new TimeRegistForm();
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());
 		model.addAttribute("timeLogList", list);
 		model.addAttribute("timeRegistForm", form);
+		model.addAttribute("categoryList", categoryList);
 		return "time-log";
 	}
 
@@ -102,36 +156,82 @@ public class LogController {
 	}
 
 	@PostMapping("/next-day")
-	private String nextDay(@AuthenticationPrincipal UserDetailsImpl principal, Model model) {
+	private String nextDay(@AuthenticationPrincipal UserDetailsImpl principal, Model model,@ModelAttribute TimeRegistForm form) {
 		nowDay = nowDay.plusDays(1);
 		Day day = new Day();
+		LocalDate toDay = form.getToDay();
+		if (toDay == null) {
 
+			toDay = LocalDate.now();
+		}
+		
+		form.setToDay(nowDay);
+		form.setUserId(principal.getUsername());
+		
+		MaxDay maxDay = timeService.findByMaxDay(form.getToDay());
+		if (maxDay != null) {
+			form.setMaxDay(maxDay.getMaxDay());
+		}
+		
+		model.addAttribute("maxDay", maxDay);
+		form.setUserId(principal.getUsername());
 		day.setNowDay(nowDay);
 		day.setUserId(principal.getId());
 		List<TimeLog> nextDay = timeService.findByNowDay(day);
-		TimeRegistForm form = new TimeRegistForm();
-		form.setToDay(nowDay);
-		form.setUserId(principal.getUsername());
+		List<Category> categoryList = categoryService.findAll();
+		
 		model.addAttribute("timeLogList", nextDay);
 		model.addAttribute("timeRegistForm", form);
+		model.addAttribute("categoryList", categoryList);
+		CategoryRegistForm registForm = new CategoryRegistForm();
+		CategoryEditForm editForm = new CategoryEditForm();
+		Category category = new Category();
+		model.addAttribute("categoryRegistForm", registForm);
+		model.addAttribute("categoryEditForm", editForm);
+		model.addAttribute("category", category);
 
 		return "time-log";
 	}
 
 	@PostMapping("/prev-day")
-	private String prevDay(@AuthenticationPrincipal UserDetailsImpl principal, Model model) {
+	private String prevDay(@AuthenticationPrincipal UserDetailsImpl principal, Model model,@ModelAttribute TimeRegistForm form) {
 		nowDay = nowDay.plusDays(-1);
 		Day day = new Day();
 
 		day.setNowDay(nowDay);
 		day.setUserId(principal.getId());
 		List<TimeLog> prevDay = timeService.findByNowDay(day);
-		TimeRegistForm form = new TimeRegistForm();
+		List<Category> categoryList = categoryService.findAll();
+		
+		
+		
+		
+		LocalDate toDay = form.getToDay();
+		if (toDay == null) {
+
+			toDay = LocalDate.now();
+		}
+		
+		form.setToDay(nowDay);
+		form.setUserId(principal.getUsername());
+		
+		MaxDay maxDay = timeService.findByMaxDay(form.getToDay());
+		if (maxDay != null) {
+			form.setMaxDay(maxDay.getMaxDay());
+		}
+		
+		model.addAttribute("maxDay", maxDay);
 		form.setToDay(nowDay);
 		form.setUserId(principal.getUsername());
 		model.addAttribute("timeLogList", prevDay);
 		model.addAttribute("timeRegistForm", form);
-
+		CategoryRegistForm registForm = new CategoryRegistForm();
+		CategoryEditForm editForm = new CategoryEditForm();
+		Category category = new Category();
+		model.addAttribute("categoryRegistForm", registForm);
+		model.addAttribute("categoryEditForm", editForm);
+		model.addAttribute("category", category);
+		model.addAttribute("categoryList", categoryList);
 		return "time-log";
 	}
 }
