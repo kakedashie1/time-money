@@ -89,10 +89,10 @@ header img {
 }
 
 input[type=submit] {
-	font-family: FontAwesome;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
+	color: #000;
 
 
 }
@@ -248,9 +248,10 @@ tr:nth-child(odd) {
 	.header-right {
 		display: none;
 	}
+	
 }
 
-@media (min-width: 600px) {
+@media (min-width: 601px) {
 
 	.sp-menu {
 		display: none;
