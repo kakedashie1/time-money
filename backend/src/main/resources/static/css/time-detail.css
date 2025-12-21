@@ -2,6 +2,7 @@
 
 body {
 	margin: 0;
+	height: 600px;
 }
 
 h2 {
@@ -12,6 +13,8 @@ h2 {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	align-items: center;
+	height: 600px;
 }
 
 table {
@@ -75,8 +78,8 @@ a {
 
 	}
 
-	#detail-table th,
-	#detail-table td {
+	.detail-table th,
+	.detail-table td {
 
 		display: block;
 

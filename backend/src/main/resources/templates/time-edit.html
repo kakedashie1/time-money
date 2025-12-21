@@ -10,11 +10,11 @@
 
 <body>
 
+	<div class="container">
 	<h2>ログ編集</h2>
-
+		<table class="detail-table">
 	<form th:action="@{/time-edit}" method="POST" th:object="${timeEditForm}">
 		
-		<table class="detail-table">
 			<input type="hidden" th:field="*{logId}">
 			<tr>
 				<td class="guide">【ログ名】</td>
@@ -56,7 +56,7 @@
 		<input type="hidden" th:field="*{logId}">
 		<input type="submit" value="戻る" >
 	</form>
-	
+	</div>
 </body>
 
 </html>
