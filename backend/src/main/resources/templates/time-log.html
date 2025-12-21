@@ -133,18 +133,20 @@
 								<tr >
 									<td class="guide">【カテゴリー名】</td>
 									<td>
+										<div class="category-selectbox">
+											
 										<select th:field="*{categoryId}">
 											<option th:each="category : ${categoryList}"
 												th:value="${category.categoryId}" th:text="${category.categoryName}"
 												th:selected="${category.categoryId == categoryId}">
 											</option>
 										</select>
+										<div id="category-edit"><i class="fa-solid fa-gear"></i></div>
+										</div>
 										<div th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"
 											class="error-msg" id="categoryErr"></div>
 									</td>
-									<td>
-										<div id="category-edit"><i class="fa-solid fa-gear"></i></div>
-									</td>
+									
 
 								</tr>
 								<tr>
