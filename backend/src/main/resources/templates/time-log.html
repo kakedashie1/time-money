@@ -128,9 +128,9 @@
 						<form th:action="@{/time-regist}" method="POST" th:object="${timeRegistForm}">
 							<input type="hidden" th:field="*{maxDay}">
 							<input type="hidden" th:field="*{toDay}">
-							<table class="detail-table">
+							<table class="log-regist-table">
 
-								<tr>
+								<tr >
 									<td class="guide">【カテゴリー名】</td>
 									<td>
 										<select th:field="*{categoryId}">
