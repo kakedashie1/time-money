@@ -18,13 +18,18 @@ header img {
 
 .header-right {
 
-	margin-left: auto;
-	margin-top: 10px;
+	top: 0;
+	left: 300px;
+	right: 220px;
+	position: relative;
 }
 
 .sp-menu {
 
-	margin-left: auto;
+	top: 0;
+	left: 180px;
+	right: 0px;
+	position: relative;
 }
 
 .sp-menu #open {
@@ -48,6 +53,11 @@ header img {
 .list.show {
 	opacity: 1;
 	pointer-events: auto;
+	top: 0;
+	left: 100px;
+	right: 0px;
+	position: relative;
+
 }
 
 #open {
@@ -143,10 +153,11 @@ button:hover {
 	width: 50%;
 	border-collapse: collapse;
 }
-.detail-table{
+
+.detail-table {
 	border: 1px solid #5e696c;
-	
-	
+
+
 	width: 50%;
 	border-collapse: collapse;
 }
@@ -172,8 +183,8 @@ tr:nth-child(odd) {
 
 
 .log-regist-btn {
-	
-	line-height: 78px;
+
+	line-height: 178px;
 }
 
 
@@ -248,7 +259,78 @@ tr:nth-child(odd) {
 	.header-right {
 		display: none;
 	}
+
+	#modal {
+
+		background-color: #fff;
+		width: 400px;
+		height: 400px;
+		padding: 20px;
+		border-radius: 4px;
+		position: absolute;
+		top: -100px;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		position: relative;
+
+
+	}
+
+	#regist-modal th,
+	#regist-modal td {
+
+		display: block;
+
+	}
+
+	#category-add-modal th,
+	#category-add-modal td {
+
+		display: block;
+
+	}
+
+	#category-edit-modal th,
+	#category-edit-modal td {
+
+		display: block;
+	}
+
+	.log-regist-table td:nth-child(2) {
+
+		display: inline;
+	}
+
+	.log-regist-table td:nth-child(3) {
+
+		display: inline;
+	}
 	
+	
+	.timeLogList {
+		border: 1px solid #5e696c;
+		margin-left: auto;
+		margin-right: auto;
+		width: 80%;
+		border-collapse: collapse;
+	}
+
+	.detail-table {
+		border: 1px solid #5e696c;
+
+
+		width: 80%;
+		border-collapse: collapse;
+	}
+	.log-regist-table {
+		border: 1px solid #5e696c;
+
+
+		width: 70%;
+		border-collapse: collapse;
+	}
+
 }
 
 @media (min-width: 601px) {
