@@ -50,3 +50,80 @@ tr:nth-child(odd) {
 a {
 	text-align: center;
 }
+
+
+@media (max-width: 600px) {
+
+	.header-right {
+		display: none;
+	}
+
+	#modal {
+
+		background-color: #fff;
+		width: 400px;
+		height: 400px;
+		padding: 20px;
+		border-radius: 4px;
+		position: absolute;
+		top: -100px;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		position: relative;
+
+
+	}
+
+	#detail-table th,
+	#detail-table td {
+
+		display: block;
+
+	}
+
+	
+
+	.log-regist-table td:nth-child(2) {
+
+		display: inline;
+	}
+
+	.log-regist-table td:nth-child(3) {
+
+		display: inline;
+	}
+	
+	
+	.timeLogList {
+		border: 1px solid #5e696c;
+		margin-left: auto;
+		margin-right: auto;
+		width: 80%;
+		border-collapse: collapse;
+	}
+
+	.detail-table {
+		border: 1px solid #5e696c;
+
+
+		width: 80%;
+		border-collapse: collapse;
+	}
+	.log-regist-table {
+		border: 1px solid #5e696c;
+
+
+		width: 70%;
+		border-collapse: collapse;
+	}
+	
+	.header-right {
+
+		top: 0;
+		left: 300px;
+		right: 220px;
+		position: relative;
+	}
+
+}
