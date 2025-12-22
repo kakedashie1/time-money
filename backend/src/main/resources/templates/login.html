@@ -4,36 +4,40 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ログイン</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/login.css}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 	<!-- ------------検索---------------- -->
-	<h2>ログイン</h2>
-
-	<div>
-		<form th:action="@{/show-user-regist-form}" method="GET">
-			<input type="submit" value="ユーザ登録" class="btn">
-		</form>
+	<div class="logo">
+		<img th:src="@{../images/logo.png}">
 	</div>
 
+
+	<div class="container">
+		
 	<div th:if="${message != null}" th:text="${message}" class="error-msg"></div>
-	<br>
-	<form th:action="@{/login}" method="post">
+	
 		<table class="login-table">
+	<form th:action="@{/login}" method="post">
 			<tr>
-				<td class="guide">【ユーザID】</td>
-				<td><input type="text" name="username"></td>
+				<td><input type="text" name="username" placeholder="ユーザID"></td>
 			</tr>
 			<tr>
-				<td class="guide">【パスワード】</td>
-				<td><input type="password" name="password"></td>
+				<td><input type="password" name="password" placeholder="パスワード"></td>
 			</tr>
 		</table>
 		<br>
-		<input type="submit" value="ログイン" class="btn">
+		<div class="login-btn"><input type="submit" value="ログイン" class="btn"></div>
+
 
 	</form>
+		<div class="user-regist">
+			<span>アカウントをお持ちでない場合は</span><a th:href="@{/show-user-regist-form}">ユーザ登録</a>
+			<span>はこちらから登録</span>
+		</div>
+	</div>
 
 
 
