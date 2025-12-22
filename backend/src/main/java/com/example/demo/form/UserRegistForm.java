@@ -16,7 +16,7 @@ public class UserRegistForm {
 	private String password;
 	
 	
-	@Size(min=1, message="入力してください。")
+	
 	private String role;
 
 }
