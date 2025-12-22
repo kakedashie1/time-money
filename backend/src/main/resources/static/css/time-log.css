@@ -159,8 +159,8 @@ button:hover {
 	border-collapse: collapse;
 }
 
-.category-selectbox{
-	
+.category-selectbox {
+
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -168,7 +168,7 @@ button:hover {
 
 
 #category-edit {
-	
+
 	margin-left: 8px;
 }
 
@@ -195,6 +195,44 @@ tr:nth-child(odd) {
 	line-height: 178px;
 }
 
+
+.category-regist-place {
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#categoryRegistContent {
+
+	display: block;
+	text-align: center;
+}
+
+#category-regist-btn {
+
+	display: block;
+	margin-left: 4px;
+}
+
+.category-edit-place {
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.categoryEditContent {
+
+	display: block;
+	text-align: center;
+}
+
+.category-edit-btn {
+
+	display: block;
+	margin-left: 4px;
+}
 
 #mask {
 
@@ -262,6 +300,20 @@ tr:nth-child(odd) {
 
 }
 
+#category-add-modal th,
+#category-add-modal td {
+
+	display: block;
+
+}
+
+
+#category-edit-modal th,
+#category-edit-modal td {
+
+	display: block;
+}
+
 @media (max-width: 600px) {
 
 	.header-right {
@@ -314,8 +366,8 @@ tr:nth-child(odd) {
 
 		display: inline;
 	}
-	
-	
+
+
 	.timeLogList {
 		border: 1px solid #5e696c;
 		margin-left: auto;
@@ -330,7 +382,10 @@ tr:nth-child(odd) {
 
 		width: 80%;
 		border-collapse: collapse;
+
+
 	}
+
 	.log-regist-table {
 		border: 1px solid #5e696c;
 
@@ -338,7 +393,7 @@ tr:nth-child(odd) {
 		width: 70%;
 		border-collapse: collapse;
 	}
-	
+
 	.header-right {
 
 		top: 0;
@@ -352,6 +407,11 @@ tr:nth-child(odd) {
 @media (min-width: 601px) {
 
 	.sp-menu {
+		display: none;
+	}
+
+	.sp-menu #open {
+
 		display: none;
 	}
 
