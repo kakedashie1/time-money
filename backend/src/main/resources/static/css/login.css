@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+
+body {
+	margin: 0;
+}
+
+.logo {
+	
+	text-align: center;
+	margin-top: 80px;
+
+}
+
+.logo img {
+	width: 200px;
+	height: 200px;
+	object-fit: contain;
+
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.login-table{
+	
+	text-align: center;
+}
+
+input {
+	text-align: center;
+}
+
+
+.login-btn {
+	
+	text-align: center;
+}
+.user-regist {
+	
+	text-align: center;
+	margin-top: 8px;
+}

@@ -24,6 +24,7 @@ public class WebSecurityConfig {
 				.authorizeHttpRequests(
 						auth -> auth
 								.requestMatchers("/css/*").permitAll()
+								.requestMatchers("/images/*").permitAll()
 								.requestMatchers("/show-user-regist-form").permitAll()
 								.requestMatchers("/regist-user").permitAll()
 								.requestMatchers("/admin/**").hasRole("ADMIN")
