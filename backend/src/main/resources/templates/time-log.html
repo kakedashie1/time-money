@@ -265,7 +265,11 @@
 								<tr>
 									<td class="guide">【カテゴリー名】</td>
 									<td>
-										<input type="text" th:field="*{categoryName}" id="categoryRegistContent"><br>
+										<div class="category-regist-place">
+											
+										<div><input type="text" th:field="*{categoryName}" id="categoryRegistContent"></div>
+										<div><input type="submit" value="登録" class="btn" id="category-regist-btn"></div>
+										</div>
 										<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
 											class="error-msg" id="categoryRegistErr">
 										</div>
@@ -276,7 +280,7 @@
 
 							</table>
 
-							<input type="submit" value="登録" class="btn" id="category-regist-btn">
+							
 
 						</form>
 
@@ -302,7 +306,11 @@
 								<tr>
 									<td class="guide">【カテゴリー名】</td>
 									<td>
-										<input type="text" th:field="${category.categoryName}"><br>
+										<div class="category-edit-place">
+											
+										<input type="text" th:field="${category.categoryName}" class="categoryEditContent">
+										<input type="submit" value="更新" class="category-edit-btn">
+										</div>
 										<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
 											class="error-msg">
 										</div>
@@ -312,7 +320,7 @@
 
 							</table>
 
-							<input type="submit" value="更新" class="btn">
+							
 
 						</form>
 

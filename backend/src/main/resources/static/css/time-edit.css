@@ -12,6 +12,9 @@ h2 {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	align-items: center;
+	height: 600px;
+	
 }
 
 
@@ -19,7 +22,7 @@ table {
 	border: 1px solid #5e696c;
 	margin-left: auto;
 	margin-right: auto;
-	width: 50%;
+	width: 80%;
 	border-collapse: collapse;
 }
 
@@ -71,8 +74,8 @@ tr:nth-child(odd) {
 
 	}
 
-	#detail-table th,
-	#detail-table td {
+	.detail-table th,
+	.detail-table td {
 
 		display: block;
 
