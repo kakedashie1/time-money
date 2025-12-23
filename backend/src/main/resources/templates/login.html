@@ -22,10 +22,10 @@
 	<div th:if="${message != null}" th:text="${message}" class="error-msg"></div>
 	<form th:action="@{/login}" method="post">
 			<tr>
-				<td><input type="text" name="username" placeholder="ユーザID"></td>
+				<td><input type="text" name="username" placeholder="ユーザID" autocomplete="off"></td>
 			</tr>
 			<tr>
-				<td><input type="password" name="password" placeholder="パスワード"></td>
+				<td><input type="password" name="password" placeholder="パスワード" autocomplete="off"></td>
 			</tr>
 		</table>
 		<br>

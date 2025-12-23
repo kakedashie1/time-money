@@ -172,6 +172,10 @@ button:hover {
 	margin-left: 8px;
 }
 
+.error-msg {
+	color: red;
+}
+
 td {
 
 	text-align: center;
@@ -183,18 +187,153 @@ tr:nth-child(odd) {
 
 }
 
-#category-add-btn {
+#regist-btn {
 	text-align: center;
-	margin-top: 30px;
+	margin-top: 16px;
+	cursor: pointer;
+	display: inline-block;
+	border-radius: 5%;
+	transition: .3s;
+	box-shadow: 2px 2px 1px #666666;
+	background: rgb(192, 192, 192);
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	padding: 4px;
 }
 
 
+#regist-btn:hover {
+	box-shadow: none;
+	/* カーソル時の影消去 */
+	opacity: 1;
+	/* カーソル時透明度 */
+}
+
+
+#category-add-btn {
+	margin-top: 30px;
+	text-align: center;
+	margin-top: 16px;
+	cursor: pointer;
+/*	display: inline-block;*/
+	border-radius: 5%;
+	transition: .3s;
+	box-shadow: 2px 2px 1px #666666;
+	background: rgb(255, 255, 255);
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	padding: 4px;
+}
+
+#category-add-btn:hover {
+	box-shadow: none;
+	/* カーソル時の影消去 */
+	opacity: 1;
+	/* カーソル時透明度 */
+}
+
+#category-back-btn {
+
+	text-align: center;
+	display: inline-block;
+	border-radius: 5%;
+	cursor: pointer;
+	transition: .3s;
+	box-shadow: 2px 2px 1px #666666;
+	background: rgb(255, 255, 255);
+	padding: 8px;
+}
+
+#category-back-btn:hover {
+	box-shadow: none;
+	/* カーソル時の影消去 */
+	opacity: 1;
+	/* カーソル時透明度 */
+}
+#category-regist-back-btn {
+
+	text-align: center;
+	display: inline-block;
+	border-radius: 5%;
+	cursor: pointer;
+	transition: .3s;
+	box-shadow: 2px 2px 1px #666666;
+	background: rgb(255, 255, 255);
+	padding: 8px;
+}
+
+#category-regist-back-btn:hover {
+	box-shadow: none;
+	/* カーソル時の影消去 */
+	opacity: 1;
+	/* カーソル時透明度 */
+}
+#category-edit-back-btn {
+
+	text-align: center;
+	display: inline-block;
+	border-radius: 5%;
+	cursor: pointer;
+	transition: .3s;
+	box-shadow: 2px 2px 1px #666666;
+	background: rgb(255, 255, 255);
+	padding: 8px;
+}
+
+#category-edit-back-btn:hover {
+	box-shadow: none;
+	/* カーソル時の影消去 */
+	opacity: 1;
+	/* カーソル時透明度 */
+}
 
 .log-regist-btn {
 
 	line-height: 178px;
+	margin-left: 8px;
+
 }
 
+
+.btn {
+
+	text-align: center;
+	display: inline-block;
+	border-radius: 5%;
+	cursor: pointer;
+	transition: .3s;
+	box-shadow: 2px 2px 1px #666666;
+	background: rgb(128, 128, 128);
+	padding: 8px;
+}
+
+.btn:hover {
+	box-shadow: none;
+	/* カーソル時の影消去 */
+	opacity: 1;
+	/* カーソル時透明度 */
+}
+
+#close-btn {
+
+	text-align: center;
+	display: inline-block;
+	border-radius: 5%;
+	cursor: pointer;
+	transition: .3s;
+	box-shadow: 2px 2px 1px #666666;
+	background: rgb(255, 255, 255);
+	padding: 8px;
+}
+
+#close-btn:hover {
+	box-shadow: none;
+	/* カーソル時の影消去 */
+	opacity: 1;
+	/* カーソル時透明度 */
+}
 
 .category-regist-place {
 

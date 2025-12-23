@@ -12,7 +12,7 @@ public class UserRegistForm {
 	@Size(min=1, max=16, message="1文字から16文字で指定してください。")
 	private String userId;
 	
-	@Size(min=1, message="入力してください。")
+	@Size(min=1, max=16, message="1文字から16文字で指定してください。")
 	private String password;
 	
 	
