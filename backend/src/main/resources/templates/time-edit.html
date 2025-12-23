@@ -52,9 +52,9 @@
 	</form>
 
 	<br>
-	<form th:action="@{/log-detail}" method="POST" th:object="${logDetail}" class="btn">
+	<form th:action="@{/log-detail}" method="POST" th:object="${logDetail}" >
 		<input type="hidden" th:field="*{logId}">
-		<input type="submit" value="戻る" >
+		<input type="submit" value="戻る" class="btn">
 	</form>
 	</div>
 </body>
