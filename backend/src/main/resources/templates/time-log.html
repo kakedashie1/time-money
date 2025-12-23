@@ -100,14 +100,11 @@
 						<!--						<td id="start-time"><input type="text"></td>-->
 						<!--						<td id="end-time"><input type="text"></td>-->
 						<!--					</tr>-->
-						<tr>
-							<td colspan="3">
-								<div id="regist-btn" class="hidden">新規ログ登録</div>
-							</td>
-						</tr>
+						
 					</form>
 
 				</table>
+				<div id="regist-btn" class="hidden">新規ログ登録</div>
 				<div id="mask" class="hidden"></div>
 
 
@@ -232,7 +229,7 @@
 
 
 							</table>
-							<div id="category-add-btn" colgroup span="3">カテゴリー追加</div>
+							<div id="category-add-btn" >カテゴリー追加</div>
 							<div id="category-back-btn">戻る</div>
 
 
@@ -268,7 +265,7 @@
 										<div class="category-regist-place">
 											
 										<div><input type="text" th:field="*{categoryName}" id="categoryRegistContent"></div>
-										<div><input type="submit" value="登録" class="btn" id="category-regist-btn"></div>
+										<div><input type="submit" value="登録" class="" id="category-regist-btn"></div>
 										</div>
 										<div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
 											class="error-msg" id="categoryRegistErr">

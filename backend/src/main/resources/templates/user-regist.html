@@ -27,13 +27,13 @@
 			<tr>
 				
 				<td>
-					<input type="text" th:field="*{userId}" placeholder="ユーザID"><br>
+					<input type="text" th:field="*{userId}" placeholder="ユーザID" autocomplete="off"><br>
 					<div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="error-msg"></div>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<input type="password" th:field="*{password}" placeholder="パスワード"><br>
+					<input type="password" th:field="*{password}" placeholder="パスワード" autocomplete="off"><br>
 					<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-msg"></div>
 				</td>
 			</tr>
@@ -52,7 +52,7 @@
 			</if>
 	</table>
 
-	<div class="user-regist-btn"><input type="submit" value="登録" class="user-regist-btn"></div>
+	<div class="user-regist-btn"><input type="submit" value="登録" class="btn"></div>
 
 	</form>
 
