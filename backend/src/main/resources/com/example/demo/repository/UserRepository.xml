@@ -7,6 +7,11 @@
 	#{user.userId}, #{user.password}, #{user.role} )
 </insert>
 
+<insert id="userInsert"> INSERT INTO user (user_id,password)
+	VALUES (
+	#{user.userId}, #{user.password} )
+</insert>
+
 
 <select id="selectByUserId" >
 	SELECT id,user_id,

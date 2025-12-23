@@ -9,6 +9,8 @@ import com.example.demo.entity.User;
 public interface UserRepository {
 
 	void insert(@Param("user") User user);
+	
+	void userInsert(@Param("user") User user);
 
 	User selectByUserId(@Param("userId") String userId);
 }

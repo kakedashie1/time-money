@@ -1,51 +1,64 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>ユーザ登録</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
+	<meta charset="UTF-8">
+	<title>ユーザ登録</title>
+	<link rel="stylesheet" th:href="@{/css/user-regist.css}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
 
-<h2>ユーザ登録</h2>
+	<div class="logo">
+		<img th:src="@{../images/logo.png}">
+	</div>
+	<div class="anounce">
+		<h3>無料アカウント登録</h3>
+		<span>初めてのご利用の方は、<br>新規アカウント登録が必要です。</span><br>
+		<span>アカウントをお持ちの方は</span><br>
+		<a th:href="@{/login}">こちらからログイン</a>
+		<span>できます。</span>
+	</div>
+	<div class="container">
+	<table class="user-regist-table">
+		<form th:action="@{/regist-user}" method="POST" th:object="${userRegistForm}">
+			
+			<tr>
+				
+				<td>
+					<input type="text" th:field="*{userId}" placeholder="ユーザID"><br>
+					<div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="error-msg"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="password" th:field="*{password}" placeholder="パスワード"><br>
+					<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-msg"></div>
+				</td>
+			</tr>
+			<if th:if="*{role == 'ROLE_ADMIN'}">
+				
+			<tr>
+				<td>
+					<select th:field="*{role}">
+						<option value="">選択してください。</option>
+						<option value="ROLE_USER">ROLE_USER</option>
+						<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+					</select>
+					<div th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="error-msg"></div>
+				</td>
+			</tr>
+			</if>
+	</table>
 
-<form th:action="@{/regist-user}" method="POST" th:object="${userRegistForm}">
+	<div class="user-regist-btn"><input type="submit" value="登録" class="user-regist-btn"></div>
 
-<table class="detail-table">
-	<tr>
-		<td class="guide">【ユーザID】</td>
-		<td>
-		   	<input type="text" th:field="*{userId}"><br>
-		   	<div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="error-msg"></div>
-		</td>
-	</tr>
-	<tr>
-		<td class="guide">【パスワード】</td>
-		<td>
-		   	<input type="password" th:field="*{password}"><br>
-		   	<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-msg"></div>
-		</td>
-	</tr>
+	</form>
+
+	<br>
 	
-	<tr>
-		<td class="guide">【役割】</td>
-		<td>
-    		<select th:field="*{role}">
-				<option value="">選択してください。</option>
-				<option value="ROLE_USER">ROLE_USER</option>
-				<option value="ROLE_ADMIN">ROLE_ADMIN</option>
-			</select>
-		   	<div th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="error-msg"></div>
-		</td>
-	</tr>
-</table>
-
-<input type="submit" value="登録" class="btn">
-
-</form>
-
-<br>
-<a th:href="@{/login}">戻る</a>
-
+	</div>
 </body>
+
 </html>
