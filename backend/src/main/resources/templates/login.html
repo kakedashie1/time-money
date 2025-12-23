@@ -17,9 +17,9 @@
 
 	<div class="container">
 		
-	<div th:if="${message != null}" th:text="${message}" class="error-msg"></div>
 	
 		<table class="login-table">
+	<div th:if="${message != null}" th:text="${message}" class="error-msg"></div>
 	<form th:action="@{/login}" method="post">
 			<tr>
 				<td><input type="text" name="username" placeholder="ユーザID"></td>
@@ -34,8 +34,10 @@
 
 	</form>
 		<div class="user-regist">
-			<span>アカウントをお持ちでない場合は</span><a th:href="@{/show-user-regist-form}">ユーザ登録</a>
-			<span>はこちらから登録</span>
+			<span>アカウントをお持ちでない場合は</span><br>
+			<span>こちらから</span>
+			<a th:href="@{/show-user-regist-form}">ユーザ登録</a>
+			<span>してください。</span>
 		</div>
 	</div>
 

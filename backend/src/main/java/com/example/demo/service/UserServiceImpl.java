@@ -29,4 +29,18 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public void userRegist(User user) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+		String hashed = passwordEncoder.encode(user.getPassword());
+
+		// パスワードの再設定
+		user.setPassword(hashed);
+
+		repository.userInsert(user);
+
+		
+	}
+
 }

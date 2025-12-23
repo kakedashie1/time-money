@@ -40,8 +40,16 @@ public class UserRegistController {
 		user.setUserId(form.getUserId());
 		user.setPassword(form.getPassword());
 		user.setRole(form.getRole());
+		
+		if(user.getRole() == null) {
+			service.userRegist(user);
+			
+			
+		}else {
+			
+			service.regist(user);
+		}
 
-		service.regist(user);
 
 		redirectAttributes.addFlashAttribute("msg", "(ユーザ登録)");
 

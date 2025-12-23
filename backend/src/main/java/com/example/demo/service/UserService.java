@@ -6,4 +6,6 @@ public interface UserService {
 
 	void regist(User user);
 	
+	void userRegist(User user);
+	
 }
