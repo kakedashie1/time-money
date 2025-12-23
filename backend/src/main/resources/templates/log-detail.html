@@ -35,14 +35,14 @@
 			<input type="hidden" name="categoryId" th:value="*{category.categoryId}">
 			<input type="hidden" th:field="*{startTime}">
 			<input type="hidden" th:field="*{endTime}">
-			<input type="submit" value="編集" class="btn">
+			<button type="submit" value="" class="btn">編集</button>
 		</form>
 	</div>
 	<div class="log-delete-btn">
 	<form th:action="@{/log-remove}" method="POST" th:object="${logDetail}">
 		<input type="hidden" th:field="*{logId}">
 		<input type="hidden" name="toDay" th:value="${timeRegistForm.toDay}">
-		<input type="submit" value="削除" class="btn">
+		<button type="submit" value="" class="btn">削除</button>
 	</form>
 	</div>
 	</div>
