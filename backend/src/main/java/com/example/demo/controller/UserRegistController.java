@@ -33,7 +33,7 @@ public class UserRegistController {
 			BindingResult result,RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
-			return "/user-regist";
+			return "user-regist";
 		}
 		
 		User user = new User();
