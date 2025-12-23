@@ -57,6 +57,7 @@ input {
 	box-shadow: 2px 2px 1px #666666;
 	background    : #ffffff;
 	width: 169px;
+	color: black;
 }
 
 .btn:hover {
